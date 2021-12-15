@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-//const userRouter = require("./router");
+const Router = require("./router");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
