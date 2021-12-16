@@ -1,16 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./App.css";
-import Header from "./components/header/Header";
-import LandingPage from "./components/LandingPage";
-import { FooterContainer } from "./containers/footer";
+import React from 'react';
+import GlobalStyle from './globalStyles';
+import Home from './pages/HomePage/Home';
+import SignUp from './pages/SignUp/SignUp';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
+import { Navbar, Footer } from './components';
 
 function App() {
   return (
-    <>
-      <Header />
-      <FooterContainer />
-    </>
+    <Router>
+      <GlobalStyle />
+      <ScrollToTop />
+      <Navbar />
+      <Switch>
+        <Route path='/' exact component={Home} />
+        <Route path='/sign-up' component={SignUp} />
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 
