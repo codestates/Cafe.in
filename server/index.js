@@ -32,4 +32,4 @@ if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
   https
     .createServer(credentials, app)
     .listen(PORT, () => console.log(`${PORT}에서 실행 중`));
-} else app.listen(PORT);
+} else app.listen(PORT, () => console.log("http 중"));

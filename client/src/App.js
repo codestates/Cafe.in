@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React from "react";
+>>>>>>> upstream/dev
 import GlobalStyle from "./globalStyles";
 import Home from "./pages/HomePage/Home";
 import SignUp from "./pages/SignUp/SignUp";
