@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
     })
   }else {
     const payload = jwt.verify(accessToken, ACCESS_SECRET)
-    
+    // git 주석 12.17(금)
     const { password } = req.body    
     const { user_email } = payload
 
