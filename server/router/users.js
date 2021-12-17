@@ -8,7 +8,7 @@ router.post("/sign-up", controllers.sign_up);
 
 router.post("/sign-out", controllers.sign_out);
 
-router.delete("/delete-account", controllers.deleteAccount);
+router.post("/delete-account", controllers.deleteAccount);
 
 router.get("/mypage", controllers.mypage);
 
