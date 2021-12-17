@@ -12,6 +12,7 @@ import {
   ImgWrapper,
   Img
 } from './InfoSection.elements';
+import imgurl from '../../images/svg-1.svg';
 
 function InfoSection({
   primary,
@@ -34,7 +35,7 @@ function InfoSection({
           <InfoRow imgStart={imgStart}>
           <InfoColumn>
               <ImgWrapper start={start}>
-                <Img src={img} />
+                <Img src={imgurl} />
               </ImgWrapper>
             </InfoColumn>
             <InfoColumn>

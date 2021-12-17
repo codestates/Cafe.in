@@ -25,7 +25,8 @@ export const Container = styled.div`
 `;
 
 export const Button = styled.button`
-  border-radius: 10px;
+  margin: 0 10px;
+  border-radius: 40px;
   background: ${({ primary }) => (primary ? '#361a05' : '#9F814F')};
   white-space: nowrap;
   padding: ${({ big }) => (big ? '12px 64px' : '10px 20px')};
