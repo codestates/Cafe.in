@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { IconContext } from 'react-icons/lib';
-import { Button } from '../../globalStyles';
+import React, { useState, useEffect } from "react";
+import { IconContext } from "react-icons/lib";
+import { Button } from "../../globalStyles";
 import {
   Nav,
   NavbarContainer,
@@ -10,10 +10,11 @@ import {
   NavItem,
   NavItemBtn,
   NavLinks,
-  NavBtnLink
-} from './Navbar.elements';
+  NavBtnLink,
+} from "./Navbar.elements";
+import Modal from "../Forms/Modal";
 
-function Navbar() {
+const Navbar = ({ handleLoginSuccess, handleSignupSuccess }) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -31,28 +32,55 @@ function Navbar() {
     showButton();
   }, []);
 
+  // Modal bar 구현 부분
+  const [showModal, setShowModal] = useState(false);
+  const [clickedMenu, setClickedMenu] = useState(null);
+  const openSignup = () => {
+    setClickedMenu("signup");
+    setShowModal((showModal) => !showModal);
+  };
+  const openLogin = () => {
+    setClickedMenu("login");
+    setShowModal((showModal) => !showModal);
+  };
+  // const handleLogin1 = (userInfo) => {
+  //   handleLoginSuccess(userInfo);
+  // };
+  // const handleSignup1 = (userInfo) => {
+  //   handleSignupSuccess(userInfo);
+  // };
+
   return (
     <>
-      <IconContext.Provider value={{color: '#472d0c'}}>
+      <IconContext.Provider value={{ color: "#472d0c" }}>
         <Nav>
           <NavbarContainer>
-            <NavLogo to='/'>
+            <NavLogo to="/">
               <NavIcon />
-             Cafe In
+              Cafe In
             </NavLogo>
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
-                <NavLinks to='/' >
-                  로그인
+                <NavLinks to="/">
+                  <Button onClick={openLogin}>로그인</Button>
                 </NavLinks>
               </NavItem>
-              <NavItemBtn>               
-                  <NavBtnLink to='/sign-up'>
-                    <Button primary>회원가입</Button>
-                  </NavBtnLink>
+              <NavItemBtn>
+                <NavBtnLink to="/sign-up">
+                  <Button primary onClick={openSignup}>
+                    회원가입
+                  </Button>
+                </NavBtnLink>
               </NavItemBtn>
             </NavMenu>
           </NavbarContainer>
+          <Modal
+            clickedMenu={clickedMenu}
+            showModal={showModal}
+            setShowModal={setShowModal}
+            handleLoginSuccess={handleLoginSuccess}
+            handleSignupSuccess={handleSignupSuccess}
+          />
         </Nav>
       </IconContext.Provider>
     </>
