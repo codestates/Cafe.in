@@ -19,7 +19,6 @@ function App() {
     console.log('Signup Success', signupInfo);
   }
 
-  const [userInfo, setUserInfo] = useState(null);
 
   return (
     <Router>
