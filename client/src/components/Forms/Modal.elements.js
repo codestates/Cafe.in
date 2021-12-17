@@ -30,6 +30,7 @@ export const ModalLogo = styled(Link)`
 
 export const ModalIcon = styled(FaMugHot)`
   margin-right: 0.9em;
+  margin: 20px 20px;
 `;
 
 export const ModalWrapper = styled.div`

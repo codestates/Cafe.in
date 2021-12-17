@@ -43,12 +43,7 @@ const Navbar = ({ handleLoginSuccess, handleSignupSuccess }) => {
     setClickedMenu("login");
     setShowModal((showModal) => !showModal);
   };
-  // const handleLogin1 = (userInfo) => {
-  //   handleLoginSuccess(userInfo);
-  // };
-  // const handleSignup1 = (userInfo) => {
-  //   handleSignupSuccess(userInfo);
-  // };
+
 
   return (
     <>

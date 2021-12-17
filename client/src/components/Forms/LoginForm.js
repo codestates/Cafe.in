@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {  Button } from '../../globalStyles';
 import axios from "axios";
 import "./Form.css";
 import { emailCheck, passwordCheck } from "./RegExTest.js";
@@ -63,13 +64,13 @@ const LoginForm = ({ handleLogin }) => {
           <div className="error-message">{errorMessage}</div>
 
           <div />
-          <button
+          <Button 
             className="btn btn-login"
             type="submit"
             onClick={handleLoginInfo}
           >
             Submit
-          </button>
+          </Button>
         </form>
       </center>
     </div>

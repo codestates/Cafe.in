@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GlobalStyle from "./globalStyles";
 import Home from "./pages/HomePage/Home";
 import SignUp from "./pages/SignUp/SignUp";
+import MyPage from './pages/Mypage/Mypage';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import { Navbar, Footer } from "./components";
@@ -19,7 +20,6 @@ function App() {
     console.log('Signup Success', signupInfo);
   }
 
-  const [userInfo, setUserInfo] = useState(null);
 
   return (
     <Router>
@@ -27,11 +27,11 @@ function App() {
       <ScrollToTop />
       <Navbar
         handleLoginSuccess={handleLoginSuccess}
-        handleSignupSuccess={handleSignupSuccess}
-      />
+        handleSignupSuccess={handleSignupSuccess}/>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/sign-up" component={SignUp} />
+        <Route path='/mypage' component={MyPage}/>
       </Switch>
       <Footer />
     </Router>
