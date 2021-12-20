@@ -17,74 +17,34 @@ import {
   PricingCardFeature,
   PricingBottom,
 } from './Pricing.elements';
+import PricingFragment from './PricingFragment';
+import { distanceCalc } from './DistCalculator.js';
+import { dummyData, currentLocation } from './PricingDummyData';
 
 function Pricing() {
+
+  // axios 요청으로 JSON을 받아와서 array+object형태로 바꾼다.
+  // 여기서는 dummy data 이용
+  const { lat: currLat, long: currLong} = currentLocation;
+
+  const priceMap = dummyData.map(({title, title_img, lat, long, likes_hash_tags}) => {
+    let dist = Math.round((distanceCalc(currLat, currLong, lat, long) + Number.EPSILON) * 100) / 100;
+    console.log('dist', dist);
+    return <PricingFragment title={title} title_img={title_img} dist={dist} likes_hash_tags={likes_hash_tags} />
+  })
+
+
+
   return (
     <IconContext.Provider value={{ color: '#FAD79B', size: 64 }}>
       <PricingSection>
         <PricingWrapper>
           <PricingHeading>서비스 맛보기</PricingHeading>
           <PricingContainer>
-            <PricingCard to='/sign-up'>
-              <PricingCardInfo>
-                <PricingCardIcon>
-                  <GiRock />
-                </PricingCardIcon>
-                <PricingCardPlan>수원시 카페</PricingCardPlan>
-                <PricingCardExp ></PricingCardExp>
-                <PricingCardLength>1.00 km</PricingCardLength>
-                <PricingCardFeatures>
-                  <PricingCardFeature>#조용함</PricingCardFeature>
-                  <PricingCardFeature>#여자많음</PricingCardFeature>
-                  <PricingCardFeature>#수원핫플</PricingCardFeature>
-                </PricingCardFeatures>
-              </PricingCardInfo>
-            </PricingCard>
-            <PricingCard to='/sign-up'>
-              <PricingCardInfo>
-                <PricingCardIcon>
-                  <GiCrystalBars />
-                  </PricingCardIcon>
-                <PricingCardPlan>서울시 카페</PricingCardPlan>
-                <PricingCardExp ></PricingCardExp>
-                <PricingCardLength>1.00 km</PricingCardLength>
-                <PricingCardFeatures>
-                  <PricingCardFeature>#조용함</PricingCardFeature>
-                  <PricingCardFeature>#여자많음</PricingCardFeature>
-                  <PricingCardFeature>#수원핫플</PricingCardFeature>
-                </PricingCardFeatures>
-              </PricingCardInfo>
-            </PricingCard>
-            <PricingCard to='/sign-up'>
-              <PricingCardInfo>
-                <PricingCardIcon>
-                  <GiCutDiamond />
-                </PricingCardIcon>
-                <PricingCardPlan>서울시 카페</PricingCardPlan>
-                <PricingCardExp ></PricingCardExp>
-                <PricingCardLength>1.00 km</PricingCardLength>
-                <PricingCardFeatures>
-                  <PricingCardFeature>#조용함</PricingCardFeature>
-                  <PricingCardFeature>#여자많음</PricingCardFeature>
-                  <PricingCardFeature>#수원핫플</PricingCardFeature>
-                </PricingCardFeatures>
-              </PricingCardInfo>
-            </PricingCard>
-            <PricingCard to='/sign-up'>
-              <PricingCardInfo>
-                <PricingCardIcon>
-                  <GiBlackBook  />
-                  </PricingCardIcon>
-                <PricingCardPlan>서울시 카페</PricingCardPlan>
-                <PricingCardExp ></PricingCardExp>
-                <PricingCardLength>1.00 km</PricingCardLength>
-                <PricingCardFeatures>
-                  <PricingCardFeature>#조용함</PricingCardFeature>
-                  <PricingCardFeature>#여자많음</PricingCardFeature>
-                  <PricingCardFeature>#수원핫플</PricingCardFeature>
-                </PricingCardFeatures>
-              </PricingCardInfo>
-            </PricingCard>
+
+            {priceMap}
+            
+
           </PricingContainer>
           <PricingBottom>지금 내 주변의 카페를 알고싶다면？</PricingBottom>
         </PricingWrapper>
