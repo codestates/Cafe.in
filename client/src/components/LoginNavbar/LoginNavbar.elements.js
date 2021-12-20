@@ -3,7 +3,7 @@ import { FaMugHot } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Container } from '../../globalStyles';
 
-export const Nav = styled.nav`
+export const LoginNav = styled.nav`
   background: #D7AC87;
   height: 80px;
   display: flex;
@@ -15,7 +15,7 @@ export const Nav = styled.nav`
   z-index: 999;
 `;
 
-export const NavbarContainer = styled(Container)`
+export const LoginNavbarContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
   height: 80px;
@@ -23,7 +23,7 @@ export const NavbarContainer = styled(Container)`
   ${Container}
 `;
 
-export const NavLogo = styled(Link)`
+export const LoginNavLogo = styled(Link)`
   color: #361a05;
   justify-self: flex-start;
   cursor: pointer;
@@ -33,12 +33,12 @@ export const NavLogo = styled(Link)`
   align-items: center;
 `;
 
-export const NavIcon = styled(FaMugHot)`
+export const LoginNavIcon = styled(FaMugHot)`
   margin-right: 0.9em;
 `;
 
 
-export const NavMenu = styled.ul`
+export const LoginNavMenu = styled.ul`
   display: flex;
   align-items: center;
   list-style: none;
@@ -48,7 +48,8 @@ export const NavMenu = styled.ul`
   @media screen and (max-width: 960px) {
     display: flex;
     flex-direction: column;
-  
+    width: 100%;
+    height: 90vh;
     position: absolute;
     top: 80px;
     left: ${({ click }) => (click ? 0 : '-100%')};
@@ -58,7 +59,7 @@ export const NavMenu = styled.ul`
   }
 `;
 
-export const NavItem = styled.li`
+export const LoginNavItem = styled.li`
   height: 80px;
   border-bottom: 2px solid transparent;
 
@@ -77,7 +78,7 @@ export const NavItem = styled.li`
 
 
 
-export const NavItemBtn = styled.li`
+export const LoginNavItemBtn = styled.li`
   @media screen and (max-width: 960px) {
     display: flex;
     justify-content: center;
@@ -87,7 +88,7 @@ export const NavItemBtn = styled.li`
   }
 `;
 
-export const NavLinks = styled(Link)`
+export const LoginNavLinks = styled(Link)`
   color: #fff;
   display: flex;
   align-items: center;
@@ -108,7 +109,7 @@ export const NavLinks = styled(Link)`
   }
 `;
 
-export const NavBtnLink = styled(Link)`
+export const LoginNavBtnLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;

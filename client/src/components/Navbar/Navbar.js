@@ -50,7 +50,7 @@ const Navbar = ({ handleLoginSuccess, handleSignupSuccess }) => {
       <IconContext.Provider value={{ color: "#472d0c" }}>
         <Nav>
           <NavbarContainer>
-            <NavLogo to="/">
+            <NavLogo to="/main">
               <NavIcon />
               Cafe In
             </NavLogo>

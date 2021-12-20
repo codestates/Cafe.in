@@ -71,7 +71,7 @@ const Modal = ({
           <ModalWrapper showModal={showModal}>
             <ModalLogo>
               <ModalIcon />
-              Cafe.in
+              Cafe In
             </ModalLogo>
 
             <ModalContent>

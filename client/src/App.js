@@ -6,6 +6,7 @@ import MyPage from './pages/Mypage/Mypage';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import { Navbar, Footer } from "./components";
+import MainPage from './pages/MainPage/MainPage';
 
 function App() {
 
@@ -29,9 +30,10 @@ function App() {
         handleLoginSuccess={handleLoginSuccess}
         handleSignupSuccess={handleSignupSuccess}/>
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/sign-up" component={SignUp} />
-        <Route path='/mypage' component={MyPage}/>
+      <Route path='/' exact component={Home} />
+        <Route path='/main' exact component={MainPage} />
+        <Route path='/sign-up' component={SignUp} />
+        <Route path='/mypage' component={MyPage} />
       </Switch>
       <Footer />
     </Router>
