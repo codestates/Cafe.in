@@ -6,11 +6,14 @@ const cors = require("cors");
 //const session = require("express-session");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const { sequelize } = require("./models");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 const Router = require("./router");
+
+sequelize.sync({ force: false }).then(() => console.log("DB연결 성공"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -21,6 +24,7 @@ app.use(
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })
 );
+
 app.use(cookieParser());
 app.use("/", Router);
 

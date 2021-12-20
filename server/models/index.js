@@ -1,46 +1,36 @@
-"use strict";
-
-const fs = require("fs");
-const path = require("path");
 const Sequelize = require("sequelize");
-const basename = path.basename(__filename);
+const user = require("./user");
+const post = require("./post");
+const dislikes_hash_tag = require("./dislikes_hash_tag");
+const likes_hash_tag = require("./likes_hash_tag");
+
 const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.js")[env];
+const config = require("../config/config")[env];
 const db = {};
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
-}
-
-fs.readdirSync(__dirname)
-  .filter((file) => {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach((file) => {
-    const model = require(path.join(__dirname, file))(
-      sequelize,
-      Sequelize.DataTypes
-    );
-    db[model.name] = model;
-  });
-
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  config
+);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+db.user = user;
+db.post = post;
+db.dislikes_hash_tag = dislikes_hash_tag;
+db.likes_hash_tag = likes_hash_tag;
+
+user.init(sequelize);
+post.init(sequelize);
+dislikes_hash_tag.init(sequelize);
+likes_hash_tag.init(sequelize);
+
+user.associate(db);
+post.associate(db);
+dislikes_hash_tag.associate(db);
+likes_hash_tag.associate(db);
 
 module.exports = db;
