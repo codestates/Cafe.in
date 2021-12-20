@@ -54,17 +54,17 @@ const LoginForm = ({ handleLogin }) => {
         <form onSubmit={(e) => e.preventDefault()}>
           <div>
             <span>이메일</span>
-            <input type="text" onChange={handleInputValue("email")} />
+            <input  type="text" onChange={handleInputValue("email")} />
           </div>
           <div>
             <span>비밀번호</span>
-            <input type="password" onChange={handleInputValue("password")} />
+            <input  type="password" onChange={handleInputValue("password")} />
           </div>
 
           <div className="error-message">{errorMessage}</div>
 
           <div />
-          <Button 
+          <Button primary
             className="btn btn-login"
             type="submit"
             onClick={handleLoginInfo}

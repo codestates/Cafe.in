@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Form.css";
+import {  Button } from '../../globalStyles';
 import { emailCheck, passwordCheck } from "./RegExTest.js";
 
 const SignupForm = ({ handleSignup }) => {
@@ -77,13 +78,13 @@ const SignupForm = ({ handleSignup }) => {
           <div className="error-message">{errorMessage}</div>
 
           <div />
-          <button
+          <Button primary
             className="btn btn-login"
             type="submit"
             onClick={handleSignupInfo}
           >
             Submit
-          </button>
+          </Button>
         </form>
       </center>
     </div>

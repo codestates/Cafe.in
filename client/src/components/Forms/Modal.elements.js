@@ -1,3 +1,5 @@
+
+
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md'
 import { FaMugHot } from 'react-icons/fa';
@@ -20,7 +22,6 @@ export const Background = styled.div`
 
 export const ModalLogo = styled(Link)`
   color: #361a05;
-  
   cursor: pointer;
   text-decoration: none;
   font-size: 2.2rem;
@@ -66,13 +67,13 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
   line-height: 1.8;
-  color: #141414;
+  color: #361a05;
   p {
     margin-bottom: 1rem;
   }
   button {
     padding: 10px 24px;
-    background: #141414;
+    background: #361a05;
     color: #fff;
     border: none;
   }

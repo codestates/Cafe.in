@@ -48,12 +48,6 @@ function MypageSection({
                     {buttonLabel1}
                   </Button>
                 </Link>
-                <Link to='/sign-up'>
-                  <Button>
-                 {buttonLabel2}
-                  </Button>
-                </Link>
-               
             </MypageColumn> 
           </MypageRow>
           <MypageSec2>

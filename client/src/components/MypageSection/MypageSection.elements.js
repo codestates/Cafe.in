@@ -69,7 +69,7 @@ export const Id = styled.div`
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #fff;
+      color: #361a05;
       transition: 200ms ease-in;
   }
 `;
@@ -85,7 +85,7 @@ export const Name = styled.h1`
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #fff;
+      color: #361a05;
       transition: 200ms ease-in;
   }
 `
@@ -94,13 +94,14 @@ export const Nickname = styled.p`
   font-size: 24px;
   line-height: 1.8;
   font-weight: 600;
+  padding-bottom: 30px;
   color: ${({ lightTextDesc }) => (lightTextDesc ? '#635949' : '#fff')};
 
   text-decoration: none;
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #fff;
+      color: #361a05;
       transition: 200ms ease-in;
   }
   `;
