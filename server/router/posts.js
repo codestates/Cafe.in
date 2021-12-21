@@ -10,7 +10,7 @@ router.get("/cafe-info/:id", controllers.cafe_info);
 
 router.post("/like-hashtag/:id", controllers.like_hashtag);
 
-//router.post("/dislike-hashtag", controllers.dislike_hashtag);
+router.post("/dislike-hashtag/:id", controllers.dislike_hashtag);
 
 // router.post("/dislike-hashtag");
 

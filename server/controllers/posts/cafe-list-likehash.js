@@ -15,10 +15,15 @@ module.exports = async (req, res) => {
   */
 
   const targetPost = await post.findAll({
-    include: {
-      model: likes_hash_tag,
-      where: { id: req.params.id },
-    },
+    include: [
+      {
+        model: likes_hash_tag,
+        as: "LikesHash",
+        where: { id: req.params.id },
+        attributes: { exclude: "id" },
+      },
+    ],
   });
+
   res.status(200).send({ data: targetPost });
 };

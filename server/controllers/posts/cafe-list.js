@@ -1,4 +1,4 @@
-const { post, likes_hash_tag } = require("../../models");
+const { post, dislikes_hash_tag, likes_hash_tag } = require("../../models");
 
 /*get요청 - 단순하게 카페 목록을 전체 불러오는 것 */
 module.exports = async (req, res) => {
@@ -14,26 +14,18 @@ module.exports = async (req, res) => {
   근데 토큰이 없는채로 들어올 때를 생각해서 위에 하나 걸러주기 대작전
   */
 
-  const allPost = await post.findAll();
-  const hashTag = await Promise.all(
-    allPost.map(async (el) => {
-      return await el.getLikes_hash_tags();
-    })
-  );
-
-  /*
-    allPost = [], 객체
-    hashTag = [[]], 객체 
-    어떻게 담을 것인가. 배열 속 객체로 순서대로
-    allPost + hashTag의 name, counts => 연결된 거 끼리
-
-  */
-
-  allPost.map((fill, idx) => {
-    const a = (fill.long = hashTag[idx]);
-    return a;
+  const allPost = await post.findAll({
+    include: [
+      {
+        model: dislikes_hash_tag,
+        attributes: { exclude: "id" },
+      },
+      {
+        model: likes_hash_tag,
+        attributes: { exclude: "id" },
+      },
+    ],
   });
-  //해시태그 필드를 추가하는 게 괜찮지 않나
 
   res.status(200).send({ data: allPost });
 };
