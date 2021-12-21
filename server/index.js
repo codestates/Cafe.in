@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const { sequelize } = require("./models");
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT
 
 const Router = require("./router");
 
@@ -35,5 +35,5 @@ if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
 
   https
     .createServer(credentials, app)
-    .listen(PORT, () => console.log(`${PORT}에서 실행 중`));
-} else app.listen(PORT, () => console.log("http 중"));
+    .listen(PORT, () => console.log(`서버 구동(https): PORT번호: ${PORT}`));
+} else app.listen(PORT, () => console.log(`서버 구동(http): PORT번호: ${PORT}`));

@@ -10,6 +10,13 @@ module.exports = {
         nickname: "번개전사양승준",
         profile_img: null,
       },
+      {
+        id: "2",
+        user_email: "kihoon@naver.com",
+        password: "123qwe!!",
+        nickname: "코딩전사문기훈",
+        profile_img: null,
+      }
     ]);
   },
 

@@ -1,13 +1,14 @@
 const { post, dislikes_hash_tag } = require("../../models");
+const { isAccessToken } = require('../modules/jwt')
 
 module.exports = async (req, res) => {
+  // ===================================================================
+
+  // like-hashtag.js와 코드 로직(구조)이 동일 -> 데이터의 서비스 기능 차이
+
+  // ===================================================================
   const accessToken = req.cookies.accessToken;
-  if (accessToken === null || !accessToken) {
-    return res.status(401).send({
-      data: null,
-      message: "인증되지 않은 사용자 입니다.",
-    });
-  }
+  isAccessToken(accessToken, res)
 
   const hashtag = req.body.disLike;
 
