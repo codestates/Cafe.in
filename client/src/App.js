@@ -28,14 +28,20 @@ function App() {
       <ScrollToTop />
       <Navbar
         handleLoginSuccess={handleLoginSuccess}
-        handleSignupSuccess={handleSignupSuccess}/>
-      <Switch>
+        handleSignupSuccess={handleSignupSuccess}
+        isLogin={isLogin}
+        setIsLogin={setIsLogin}
+        />
         
-      <Route path='/' exact component={Home} />
+      {/* <Switch>
+        <Route path='/' exact component={Home} />
         <Route path='/main' exact component={MainPage} />
         <Route path='/sign-up' component={SignUp} />
         <Route path='/mypage' component={MyPage} />
-      </Switch>
+      </Switch> */}
+
+      {isLogin === true ? <MainPage /> : <Home />}
+
       <Footer />
     </Router>
   );
