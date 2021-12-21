@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { FaMugHot, FaUserEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { Container } from '../../globalStyles';
 
 export const MypageSec = styled.div`
   color: #D7AC87;
@@ -15,6 +18,7 @@ export const MypageRow = styled.div`
 `;
 
 export const MypageColumn = styled.div`
+  margin-top:20px;
   margin-bottom: 15px;
   padding-right: 15px;
   padding-left: 15px;
@@ -31,7 +35,9 @@ export const MypageColumn = styled.div`
 `;
 
 export const TextWrapper = styled.div`
+
   max-width: 400px;
+  margin-left:50px;
   padding-top: 0;
   padding-bottom: 0px;
 
@@ -59,9 +65,8 @@ export const Img = styled.img`
 `;
 
 export const Id = styled.div`
-  color: ${({ lightTopLine }) => (lightTopLine ? '#635949' : '#fff')};
-  margin-bottom: 30px;
-  font-size: 24px;
+  color: ${({ lightTopLine }) => (lightTopLine ? '#361a05' : '#fff')};
+  font-size: 18px;
   line-height: 1.8;
   font-weight: 600;
 
@@ -69,39 +74,39 @@ export const Id = styled.div`
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #361a05;
+      color: #635949;
       transition: 200ms ease-in;
   }
 `;
 
 export const Name = styled.h1`
   margin-bottom: 14px;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1.8;
   font-weight: 600;
-  color: ${({ lightText }) => (lightText ? '#635949' : '#fff')};
+  color: ${({ lightText }) => (lightText ? '#361a05' : '#fff')};
 
   text-decoration: none;
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #361a05;
+      color: #635949;
       transition: 200ms ease-in;
   }
 `
 
 export const Nickname = styled.p`
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1.8;
   font-weight: 600;
   padding-bottom: 30px;
-  color: ${({ lightTextDesc }) => (lightTextDesc ? '#635949' : '#fff')};
+  color: ${({ lightTextDesc }) => (lightTextDesc ? '#361a05' : '#fff')};
 
   text-decoration: none;
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #361a05;
+      color: #635949;
       transition: 200ms ease-in;
   }
   `;
@@ -117,4 +122,32 @@ export const MypageSec2 = styled.div`
   width: 100%;
   border: none;
   outline: none;
+`;
+
+
+
+export const Header = styled.div`
+  color : #361a05;
+  font-size:30px;
+  font-weight: 600;
+  margin-bottom:20px;
+  text-align:center;
+
+  &:hover {
+      color: #635949;
+      transition: 200ms ease-in;
+  }
+
+`;
+
+export const NameIcon = styled(FaMugHot)`
+
+  margin-right: 0.9em;
+  margin-left:0.9em;
+`;
+
+
+export const NameIconUser = styled(FaUserEdit)`
+  margin-right: 0.6em;
+  margin-left:0.3em;
 `;

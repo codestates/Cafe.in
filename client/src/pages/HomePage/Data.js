@@ -21,7 +21,7 @@ export const homeObjTwo = {
   lightText: true,
   lightTextDesc: true,
   description:
-    "회원가입을　하고　Cafe in을　사용해보세요",
+    "Cafe In 가입을 한 후에 사용해보세요",
   buttonLabel: '지금 이용하기',
   imgStart: '',
   img: require('../../images/svg-1.svg'),

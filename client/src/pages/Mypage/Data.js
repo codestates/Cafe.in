@@ -3,15 +3,15 @@ export const mypageObjOne = {
   lightText: true,
   lightTopLine: true,
   lightTextDesc: true,
-  id: 'psg123',
+  id: 'park1234',
   name: '박세현',
   nickname:
-    '박세현１２３',
+    '커피좋아하는집순이',
   buttonLabel1: '비밀번호 찾기',
   buttonLabel2: '닉네임 변경하기',
   buttonLabel3: '회원탈퇴',
   imgStart: '',
-  img: require('../../images/profile.svg'),
+  img: require('../../images/profile.png'),
   alt: ''
 };
 

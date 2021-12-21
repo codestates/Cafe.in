@@ -34,6 +34,7 @@ export const NavLogo = styled(Link)`
 `;
 
 export const NavIcon = styled(FaMugHot)`
+
   margin-right: 0.9em;
 `;
 
