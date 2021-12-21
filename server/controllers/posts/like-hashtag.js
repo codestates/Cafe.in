@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     where: { name: hashtag },
   });
 
-  const finishHash = await selectedPost.addLikes_hash_tag(findHash[0].id);
+  const finishHash = await selectedPost.addLikesHash(findHash[0].id);
 
   res.status(200).send({ data: { findHash, finishHash } });
 };

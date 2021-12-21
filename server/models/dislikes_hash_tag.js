@@ -6,7 +6,7 @@ module.exports = class dislikes_hash_tag extends Sequelize.Model {
       {
         counts: {
           type: Sequelize.INTEGER,
-          allowNull: false,
+          allowNull: true,
         },
         name: {
           type: Sequelize.STRING(30),
