@@ -1,18 +1,21 @@
 const { post, likes_hash_tag } = require("../../models");
 const { isAccessToken } = require('../modules/jwt')
+const { failedResponse } = require('../modules/response')
 
 module.exports = async (req, res) => {
   // JWT토큰 인증방식 -> 로그인에 성공한 모든 클라이언트는 cookies에 accessToken이 있다.
   // 없으면 접근불가 구현 -> 클라이언트에서 상태를 통해 변경하지만 서버에서 검증하는 부분
   const accessToken = req.cookies.accessToken;
-  isAccessToken(accessToken, res)
+  if(accessToken === null || !accessToken) {
+    return isAccessToken(res)
+  }
 
   // 클라이언트 요청 -> params에 게시물의 id, body에 like(좋아요 해시태그)를 담아 요청
   const hashtag = req.body.like;
 
   // 해시태그안의 내용이 아무것도 없이 전송하였을 경우, 서버단 예외처리
   if (!hashtag) {
-    return res.status(400).send({ data: null, message: "쓰읍!" });
+    return failedResponse(res, 400, '해시태그를 입력해주세요.')
   }
 
   // 선택된 게시물(params로 전송한 id값의 게시물)을 (post)id 값으로 조회

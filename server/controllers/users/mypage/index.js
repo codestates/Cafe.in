@@ -1,5 +1,6 @@
 const { user } = require("../../../models");
-const { accessTokenDecoded } = require('../../modules/jwt')
+const { accessTokenDecoded, isAccessToken } = require('../../modules/jwt')
+const { failedResponse } = require('../../modules/response')
 
 module.exports = async (req, res) => {
 
@@ -10,22 +11,15 @@ module.exports = async (req, res) => {
 // JWT토큰 인증
 const accessToken = req.cookies.accessToken
 if(accessToken === null || !accessToken) {
-  return res.status(400).send({
-    data: null,
-    message: '인증되지 않은 사용자 입니다.'
-  })
+  return isAccessToken(res)
 }
 
 // JWT토큰 복호화 -> 사용자 정보(payload) 핸들링
   const payload = accessTokenDecoded(accessToken)
-  
   if(!payload) {
   // 복호화에 실패했을 경우
   // 클라이언트의 오류가 아닌 서버측에서 오류이기 때문에 500대 오류코드와 오류메시지 전송
-    return res.status(500).send({
-      data: null,
-      message: '미안, 다시 시도해 주세요.'
-    })
+    return failedResponse(res, 500, '미안, 다시 시도해 주세요.')
   }else {
   // 복호화에 성공 했을 경우,
   // 사용자 정보 구조분해 할당

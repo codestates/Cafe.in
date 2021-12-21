@@ -1,6 +1,6 @@
 const { user } = require("../../models");
 const { registerEmail, registerPW1, registerPW2, registerNickname } = require('../modules/register')
-
+const { failedResponse } = require('../modules/response')
 module.exports = async (req, res) => {
   // 클라이언트 요청 -> body에 user_email, password, nickname, profile_img(Optional)
   // 필수 데이터 구조분해 할당으로 받기
@@ -9,11 +9,14 @@ module.exports = async (req, res) => {
   let { profile_img } = req.body
 
   // 필수 데이터 유/무 검증
+  // if(!user_email || !password || !nickname) {
+  //   return res.status(400).send({
+  //     data: null,
+  //     message: '모두 입력하세요.'
+  //   })
+  // }
   if(!user_email || !password || !nickname) {
-    return res.status(400).send({
-      data: null,
-      message: '모두 입력하세요.'
-    })
+    return failedResponse(res, 400, '모두 입력하세요.')
   }
 
   // 데이터베이스랑 비교
@@ -27,10 +30,7 @@ module.exports = async (req, res) => {
   // 하지만 프로젝트 상에서 'id'와 같은 기능으로 사용하기에 'id'를 유효성 검증을 하듯,
   // 프로젝트 상에서 email 중복 검사를 한다.
   if(isEmail) {
-    return res.status(400).send({
-      data: null,
-      message: '이미 존재하는 email 입니다.'
-    })
+    return failedResponse(res, 400, '이미 존재하는 email 입니다.')
   }
 
   
@@ -40,22 +40,15 @@ module.exports = async (req, res) => {
 
   // nickname중복 예외처리 
   if(isNickname) {
-    return res.status(400).send({
-      data: null,
-      message: '이미 존재하는 nickname 입니다.'
-    })
+    return failedResponse(res, 400, '이미 존재하는 nickname 입니다.')
   }
+
   // 비밀번호는 유일성을 만족하지 않아도 되기에 중복검사를 할 필요가 없다.
-
-
   // 유효성 검증(정규식)
   // user_email
   // email형식 (영어랑 숫자만 허용, blah1@blah2.blah3 -> blah3에는 2~3자의 영문만 가능하다.)
   if(!registerEmail(user_email)) {
-    return res.status(400).send({
-      data: null,
-      message: '형식에 맞는 email을 작성하세요.'
-    })
+    return failedResponse(res, 400, '형식에 맞는 email을 작성하세요.')
   }
 
   // password
@@ -63,16 +56,10 @@ module.exports = async (req, res) => {
   // 또한 같은 문자가 3번 이상 반복되지 않는다.
   // 위의 2가지를 모두 검증
   if (!registerPW1(password)) {
-    return res.status(400).send({
-      data: null,
-      message: "비밀번호는 영문, 숫자, 특수문자로 이루어진 8~16자 입니다"
-    })
+    return failedResponse(res, 400, "비밀번호는 영문, 숫자, 특수문자로 이루어진 8~16자 입니다")
   }
   if (registerPW2(password)) {
-    return res.status(400).send({
-      data: null,
-      message: "같은 문자, 숫자는 2번만"
-    })
+    return failedResponse(res, 400, "같은 문자, 숫자는 2번만")
   }
 
   // nickname
@@ -82,10 +69,7 @@ module.exports = async (req, res) => {
   // 모든 유효성 검증은 클라이언트 - 서버 둘 다 확인한다.
   // 닉네임은 영문자와 숫자로만 이루어지며 크기는 4 ~ 12 자까지 허용
   if(!registerNickname(nickname)) {
-    return res.status(400).send({
-      data: null,
-      message: 'nickname은 영문 및 숫자로만 구성이 되며, 길이는 4~12자 입니다.'
-    })
+    return failedResponse(res, 400, 'nickname은 영문 및 숫자로만 구성이 되며, 길이는 4~12자 입니다.')
   } 
   
   // Optional항목인 profile_img

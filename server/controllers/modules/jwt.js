@@ -23,13 +23,10 @@ module.exports = {
     refreshTokenDecoded: (token) => {
         const payload = verify(token, REFRESH_TOKEN)
     },
-    isAccessToken: (accessToken, res) => {
-        if(accessToken === null || !accessToken) {
-            return res.status(401).send({
-                data: null,
-                message: '인증되지 않은 사용자 입니다.'
-            })
-        }
+    isAccessToken: (res) => {
+        return res.status(401).send({
+            data: null,
+            message: '인증되지 않은 사용자 입니다.'
+        })      
     },
-
 }

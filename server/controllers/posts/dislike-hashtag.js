@@ -1,5 +1,6 @@
 const { post, dislikes_hash_tag } = require("../../models");
 const { isAccessToken } = require('../modules/jwt')
+const { failedResponse } = require('../modules/response')
 
 module.exports = async (req, res) => {
   // ===================================================================
@@ -8,12 +9,14 @@ module.exports = async (req, res) => {
 
   // ===================================================================
   const accessToken = req.cookies.accessToken;
-  isAccessToken(accessToken, res)
+  if(accessToken === null || !accessToken) {
+    return isAccessToken(res)
+  }
 
   const hashtag = req.body.disLike;
 
   if (!hashtag) {
-    return res.status(400).send({ data: null, message: "쓰읍!" });
+    return failedResponse(res, 400, '해시태그를 입력해주세요.')
   }
 
   const selectedPost = await post.findOne({

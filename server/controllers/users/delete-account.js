@@ -1,5 +1,6 @@
 const { user } = require("../../models");
 const { accessTokenDecoded } = require('../modules/jwt')
+const { failedResponse } = require('../modules/response')
 
 module.exports = async (req, res) => {
   // 클라이언트 요청 -> cookie-parser를 이용하므로 cookies에 있는 토큰 받기
@@ -15,12 +16,9 @@ module.exports = async (req, res) => {
 
   const accessToken = req.cookies.accessToken;
   if (!accessToken) {
-    return res.status(400).send({
-      data: null,
-      message: "유효하지 않은 토큰",
-    });
+    return failedResponse(res, 400, "유효하지 않은 토큰")
   } else {
-    // const payload = jwt.verify(accessToken, ACCESS_SECRET);
+  
     // 모듈화
     const payload = accessTokenDecoded(accessToken)
     const { password } = req.body;
@@ -31,10 +29,7 @@ module.exports = async (req, res) => {
     });
 
     if (!userInfo) {
-      return res.status(400).send({
-        data: null,
-        message: "올바른 입력 값이 아닙니다."
-      });
+      return failedResponse(res, 400, "올바른 입력 값이 아닙니다.")
     }
 
     await user.destroy({

@@ -1,5 +1,7 @@
 const { user } = require("../../../models");
 const { generatedAccessToken, accessTokenDecoded } = require('../../modules/jwt')
+const { registerPW1, registerPW2 } = require('../../modules/register');
+const { failedResponse } = require("../../modules/response");
 
 module.exports = async (req, res) => {
   // 클라이언트 요청 -> cookies에 있는 accessToken 받아오기 (JWT인증방식)
@@ -27,27 +29,23 @@ module.exports = async (req, res) => {
 
   // 현재 비밀번호(old_password)와 DB에 있는 비밀번호 비교 -> DB데이터 검사
   if (userInfo.password !== old_password) {
-    return res.status(400).send({
-      data: null,
-      message: "비밀번호를 확인해 주십시오.",
-    });
+    return failedResponse(res, 400, '비밀번호를 확인해 주십시오.')
   }
-
   // 현재 비밀번호(old_password)와 JWT토큰에 있는 사용자 정보(payload)의 비밀번호 비교 -> JWT토큰 인증방식
   if (old_password !== password) {
-    return res.status(400).send({
-      data: null,
-      message: "현재 비밀번호가 틀렸습니다.",
-    });
+    return failedResponse(res, 400, "현재 비밀번호가 틀렸습니다.")
   }
-
   // 현재 비밀번호와 변경 할 비밀번호가 같으면 안되므로 클라이언트 - 서버에서 이중으로 검사를 한다.
   // 또한, 변경 할 비밀번호도 회원가입 당시에 했던 유효성 검증을 한다.
   if (old_password === new_password) {
-    return res.status(400).send({
-      data: null,
-      message: "현재 비밀번호와 바꿀 비밀번호가 같습니다. 다시 입력해주세요",
-    });
+    return failedResponse(res, 400, "현재 비밀번호와 바꿀 비밀번호가 같습니다. 다시 입력해주세요")
+  }
+  // 비밀번호 정규식 검증
+  if (!registerPW1(new_password)) {
+    return failedResponse(res, 400, "비밀번호는 영문, 숫자, 특수문자로 이루어진 8~16자 입니다")
+  }
+  if (registerPW2(new_password)) {
+    return failedResponse(res, 400, "같은 문자, 숫자는 2번만")
   }
 
   // 모든 검증이 끝난 후 비밀번호 변경 DB Sequelize함수 update() 실행

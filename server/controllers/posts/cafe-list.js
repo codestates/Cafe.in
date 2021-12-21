@@ -1,11 +1,13 @@
 const { post, dislikes_hash_tag, likes_hash_tag } = require("../../models");
 const { isAccessToken } = require('../modules/jwt')
-/*get요청 - 단순하게 카페 목록을 전체 불러오는 것 */
+
 module.exports = async (req, res) => {
   // JWT토큰 인증방식 -> 로그인에 성공한 모든 클라이언트는 cookies에 accessToken이 있다.
   // 없으면 접근불가 구현 -> 클라이언트에서 상태를 통해 변경하지만 서버에서 검증하는 부분
   const accessToken = req.cookies.accessToken;
-  isAccessToken(accessToken, res)
+  if(accessToken === null || !accessToken) {
+    return isAccessToken(res)
+  }
 
   // cafe-list는 모든 게시글을 뿌려주는 기능을 한다.
   // 모든 게시글에는 연관(조인)되어 있는 좋아요, 싫어요 해시태그가 있다.
