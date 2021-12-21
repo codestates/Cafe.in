@@ -3,6 +3,8 @@ import axios from "axios";
 import "./Form.css";
 import {  Button } from '../../globalStyles';
 import { emailCheck, passwordCheck } from "./RegExTest.js";
+import imgkakao from '../../images/kakao-login.png'
+import imggoogle from '../../images/google-login.png'
 
 const SignupForm = ({ handleSignup }) => {
   const [signupInfo, setSignupInfo] = useState({
@@ -85,6 +87,16 @@ const SignupForm = ({ handleSignup }) => {
           >
             Submit
           </Button>
+          <div class="box_btn block">
+            <a href="/">
+              <img className="btn-kakao-login" src={imgkakao} width="60" align="center"></img>
+            </a>
+             <span> </span>
+            <a href="/">
+               <img className="btn-google-login" src={imggoogle} width="60" align="center"></img>
+            </a>
+
+          </div>
         </form>
       </center>
     </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Button } from '../../globalStyles';
-import imgurl from '../../images/profile.svg'
+import imgurl from '../../images/profile.png'
+import { IconContext } from "react-icons/lib";
 
 import {
   MypageSec,
@@ -10,14 +11,16 @@ import {
   MypageColumn,
   TextWrapper,
   Name,
+  NameIcon,
+  NameIconUser,
   Id,
   Nickname,
+  Header,
   ImgWrapper,
   Img
 } from './MypageSection.elements';
 
 function MypageSection({
-  primary,
   lightBg,
   lightTopLine,
   lightText,
@@ -28,9 +31,11 @@ function MypageSection({
   start
 }) {
   return (
-    <>
+    <IconContext.Provider value={{ color: "#472d0c" }}>
       <MypageSec lightBg={lightBg}>
         <Container>
+        <Header className="header"> <NameIconUser/>Welcome Cafe In {id} ! 
+          </Header>
           <MypageRow imgStart={imgStart}>
           <MypageColumn>
               <ImgWrapper start={start}>
@@ -38,20 +43,21 @@ function MypageSection({
               </ImgWrapper>  
             </MypageColumn>
             <MypageColumn>
-              <TextWrapper>             
-                <Name lightText={lightText}> 이름  : {name}</Name>
-                <Id lightTopLine={lightTopLine}> 아이디 : {id}</Id>
-                <Nickname lightTextDesc={lightTextDesc}>닉네임 : {nickname}</Nickname> 
-              </TextWrapper> 
+              <TextWrapper>     
+                    
+                <Name lightText={lightText}><NameIcon/> Name :  {name}</Name>
+                <Id lightTopLine={lightTopLine}><NameIcon/>Id :  {id}</Id>
+                <Nickname lightTextDesc={lightTextDesc}><NameIcon/>Nickname :  {nickname}</Nickname> 
                 <Link to='/sign-up'>
-                  <Button>
+               <Button>
                     {buttonLabel1}
                   </Button>
                 </Link>
+              </TextWrapper> 
             </MypageColumn> 
           </MypageRow>
           <MypageSec2>
-        <Link to='/sign-up'>
+      <Link to='/sign-up'>
                   <Button>
                  {buttonLabel3}
                   </Button>
@@ -59,7 +65,7 @@ function MypageSection({
         </MypageSec2>
         </Container>
       </MypageSec>
-    </>
+    </IconContext.Provider >
   );
 }
 

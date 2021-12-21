@@ -2,6 +2,8 @@
 
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md'
+import imgkakao from '../../images/kakao-login.png'
+import imggoogle from '../../images/google-login.png'
 import { FaMugHot } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -36,7 +38,7 @@ export const ModalIcon = styled(FaMugHot)`
 
 export const ModalWrapper = styled.div`
   width: 800px;
-  height: 600px;
+  height: 530px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.4);
   /* background: #fff; */
   background: #D7AC87;
@@ -88,4 +90,9 @@ export const CloseModalButton = styled(MdClose)`
   height: 32px;
   padding: 0;
   z-index: 10;
+  &:hover {
+    transform: scale(1.06);
+    transition: all 0.3s ease-out;
+    color: #1c2237;
+  }
 `;

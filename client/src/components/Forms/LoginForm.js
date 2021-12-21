@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import {  Button } from '../../globalStyles';
 import axios from "axios";
+import imgkakao from '../../images/kakao-login.png'
+import imggoogle from '../../images/google-login.png'
 import "./Form.css";
 import { emailCheck, passwordCheck } from "./RegExTest.js";
 
@@ -56,6 +58,7 @@ const LoginForm = ({ handleLogin }) => {
             <span>이메일</span>
             <input  type="text" onChange={handleInputValue("email")} />
           </div>
+          <div></div>
           <div>
             <span>비밀번호</span>
             <input  type="password" onChange={handleInputValue("password")} />
@@ -69,14 +72,24 @@ const LoginForm = ({ handleLogin }) => {
             type="submit"
             onClick={handleLoginInfo}
           >
-            Submit
+            로그인
           </Button>
-
+          <div className="pw-sign-up"> 
+          <a href="/forget-pw">
+            <div className="forget-pw"> 비밀번호를 까먹으셨나요? 
+          </div>
+          </a>
+          <a href="/sign-up">
+          <div className="sign-up"> 회원가입을 안하셨나요? </div>
+          </a>
+          </div>
           <div class="box_btn block">
-            <a href="/list/API/login_kakao_sync.html?ks_type=" class="btn-kakao-login">
-              <span>
-                <p size="4"> 카카오 로그인</p>
-              </span>
+            <a href="/">
+              <img className="btn-kakao-login" src={imgkakao} width="60" align="center"></img>
+            </a>
+             <span> </span>
+            <a href="/">
+               <img className="btn-google-login" src={imggoogle} width="60" align="center"></img>
             </a>
 
           </div>

@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
   font-family: 'Nanum Myeongjo','Source Sans Pro', sans-serif;
+  text-decoration: none;
  } 
 `;
 
@@ -25,8 +26,9 @@ export const Container = styled.div`
 `;
 
 export const Button = styled.button`
-  margin: 0 10px;
+  margin: 0px 10px;
   border-radius: 40px;
+  box-shadow: 0 0px 7px #7A3F12;
   background: ${({ primary }) => (primary ? '#361a05' : '#9F814F')};
   white-space: nowrap;
   padding: ${({ big }) => (big ? '12px 64px' : '10px 20px')};

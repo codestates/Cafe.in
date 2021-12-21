@@ -52,7 +52,7 @@ const Navbar = ({ handleLoginSuccess, handleSignupSuccess }) => {
           <NavbarContainer>
             <NavLogo to="/main">
               <NavIcon />
-              Cafe In
+              Cafe In 
             </NavLogo>
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
