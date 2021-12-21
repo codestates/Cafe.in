@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { user } = require("../../models");
 const { generatedAccessToken } = require('../modules/jwt')
+const { failedResponse } = require('../modules/response')
 
 module.exports = async (req, res) => {
   // 클라이언트 요청 -> body에 user_email, password
@@ -17,10 +18,7 @@ module.exports = async (req, res) => {
     where: { user_email: user_email },
   });
   if (!userInfo) {
-    return res.status(400).send({
-      data: null,
-      message: "아이디를 잘못 쳤거나 가입을 안 했거나",
-    });
+    return failedResponse(res, 400, "아이디를 잘못 쳤거나 가입을 안 했거나")
   }
 
   // user_email이 확인이 되면 password 검사
@@ -28,10 +26,7 @@ module.exports = async (req, res) => {
     where: { user_email: userInfo.user_email, password },
   });
   if (!userInfo2) {
-    return res.status(400).send({
-      data: null,
-      message: "비번이 틀렸어요",
-    });
+    return failedResponse(res, 400, "비번이 틀렸어요")
   } else {
     // user_email과 password가 모두 있는 경우 -> 회원인 경우
     const { user_email, password, nickname, id, profile_img } = userInfo2;
