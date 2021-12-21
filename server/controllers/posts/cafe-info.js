@@ -1,4 +1,4 @@
-const { post, likes_hash_tag, dislikes_hash_tag } = require("../../models");
+const { post } = require("../../models");
 
 module.exports = async (req, res) => {
   const accessToken = req.cookies.accessToken;
@@ -9,25 +9,15 @@ module.exports = async (req, res) => {
     });
   }
 
-  const caffeInfo = await post.findOne({
+  const cafeInfo = await post.findOne({
     where: { id: req.params.id },
   });
+  const hashes = await cafeInfo.getLikesHash();
+  const disHashes = await cafeInfo.getDislikes_hash_tags();
 
-  const likeHash = await likes_hash_tag.findAll({
-    include: {
-      model: post,
-      where: { id: req.params.id },
-    },
-  });
+  //const dislikeHash = await cafeInfo.getDislikes_hash_tag();
 
-  const dislikeHash = await dislikes_hash_tag.findAll({
-    include: {
-      model: post,
-      where: { id: req.params.id },
-    },
-  });
-
-  return res.status(200).send({ data: { caffeInfo, likeHash, dislikeHash } });
+  return res.status(200).send({ data: { cafeInfo, hashes, disHashes } });
 };
 
 /*
@@ -43,7 +33,12 @@ module.exports = async (req, res) => {
     
 
 
-
+{
+    include: {
+      model: post,
+      where: { id: req.params.id },
+    },
+  }
 
 
 
