@@ -30,6 +30,7 @@ function App() {
         handleLoginSuccess={handleLoginSuccess}
         handleSignupSuccess={handleSignupSuccess}/>
       <Switch>
+        
       <Route path='/' exact component={Home} />
         <Route path='/main' exact component={MainPage} />
         <Route path='/sign-up' component={SignUp} />

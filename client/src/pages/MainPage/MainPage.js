@@ -1,15 +1,18 @@
 import React from 'react';
-import { homeObjOne, homeObjTwo } from './Data';
-import { InfoSection, MainSection } from '../../components';
+import { dummyData } from './Data';
+import { MainSection } from '../../components';
 
 function MainPage() {
+
+  if(dummyData.length !== 0){
   return (
     <>
       <MainSection />
       <MainSection />
       <MainSection />
+      <MainSection />
     </>
   );
-}
+}}
 
 export default MainPage;

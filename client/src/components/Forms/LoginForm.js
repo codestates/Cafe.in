@@ -71,6 +71,15 @@ const LoginForm = ({ handleLogin }) => {
           >
             Submit
           </Button>
+
+          <div class="box_btn block">
+            <a href="/list/API/login_kakao_sync.html?ks_type=" class="btn-kakao-login">
+              <span>
+                <p size="4"> 카카오 로그인</p>
+              </span>
+            </a>
+
+          </div>
         </form>
       </center>
     </div>
