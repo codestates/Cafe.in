@@ -106,8 +106,8 @@ const Navbar = ({
   const loginButton = (
     <>
       <NavItem>
-        <NavLinks>
-          <Button primary onClick={openLogin}>
+        <NavLinks to="/mypage">
+          <Button>
             My Page
           </Button>
         </NavLinks>

@@ -20,7 +20,8 @@ import {
   Img
 } from './MypageSection.elements';
 
-function MypageSection({
+const MypageSection =  (
+  { loginInfo, 
   lightBg,
   lightTopLine,
   lightText,
@@ -29,12 +30,12 @@ function MypageSection({
   buttonLabel1,buttonLabel2,buttonLabel3,
   imgStart,
   start
-}) {
+}) => {
   return (
     <IconContext.Provider value={{ color: "#472d0c" }}>
       <MypageSec lightBg={lightBg}>
         <Container>
-        <Header className="header"> <NameIconUser/>Welcome Cafe In {id} ! 
+        <Header className="header"> <NameIconUser/>Welcome Cafe In {loginInfo.email} ! 
           </Header>
           <MypageRow imgStart={imgStart}>
           <MypageColumn>
@@ -46,7 +47,7 @@ function MypageSection({
               <TextWrapper>     
                     
                 <Name lightText={lightText}><NameIcon/> Name :  {name}</Name>
-                <Id lightTopLine={lightTopLine}><NameIcon/>Id :  {id}</Id>
+                <Id lightTopLine={lightTopLine}><NameIcon/>Id :  {loginInfo.email}</Id>
                 <Nickname lightTextDesc={lightTextDesc}><NameIcon/>Nickname :  {nickname}</Nickname> 
                 <Link to='/sign-up'>
                <Button>
