@@ -60,6 +60,11 @@ const Navbar = ({
     setClickedMenu("login");
     setShowModal((showModal) => !showModal);
   };
+  const openLogout = () => {
+    setClickedMenu("logout");
+    setShowModal((showModal) => !showModal);
+  }
+
 
   // 로그인 때 보이는 JSX를 변수에 넣기
   // 로그인 상태 아닐 때 보이는 우측 버튼 두 개
@@ -115,7 +120,7 @@ const Navbar = ({
 
       <NavItemBtn>
         <NavBtnLink>
-          <Button onClick={openSignup}>Log out</Button>
+          <Button onClick={openLogout}>Log out</Button>
         </NavBtnLink>
       </NavItemBtn>
     </>
@@ -143,6 +148,8 @@ const Navbar = ({
             setShowModal={setShowModal}
             handleLoginSuccess={handleLoginSuccess}
             handleSignupSuccess={handleSignupSuccess}
+            isLogin={isLogin}
+            setIsLogin={setIsLogin}
           />
         </Nav>
       </IconContext.Provider>

@@ -12,13 +12,16 @@ import {
 } from "./Modal.elements";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+import LogoutForm from "./LogoutForm";
 
 const Modal = ({
   clickedMenu,
   showModal,
   setShowModal,
   handleLoginSuccess,
-  handleSignupSuccess
+  handleSignupSuccess,
+  isLogin,
+  setIsLogin
 }) => {
   const modalRef = useRef();
   // 쓸데없는 기능 : 팝업창 위에서 아래로 내려오는 animation
@@ -62,6 +65,22 @@ const Modal = ({
     setShowModal(false);
     handleSignupSuccess(signupInfo);
   };
+  // 로그아웃 handler
+  const handleLogout = (isLogout) => {
+    setShowModal(false);
+    setIsLogin(false);
+  }
+
+  const innerForm = () => {
+    console.log('clickedMenu', clickedMenu);
+    if (clickedMenu === 'login') {
+      return <LoginForm handleLogin={handleLogin}/>
+    } else if (clickedMenu === 'signup') {
+      return <SignupForm handleSignup={handleSignup} />
+    } else if (clickedMenu === 'logout') {
+      return <LogoutForm handleLogout={handleLogout} setShowModal={setShowModal} />
+    }
+  }
 
   return (
     <>
@@ -75,11 +94,7 @@ const Modal = ({
             </ModalLogo>
 
             <ModalContent>
-              {clickedMenu === "login" ? (
-                <LoginForm handleLogin={handleLogin}/>
-              ) : (
-                <SignupForm handleSignup={handleSignup} />
-              )}
+              {innerForm()}
             </ModalContent>
 
             <CloseModalButton
