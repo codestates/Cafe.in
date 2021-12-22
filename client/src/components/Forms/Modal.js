@@ -13,6 +13,8 @@ import {
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import LogoutForm from "./LogoutForm";
+import PwdChangeForm from "./PwdChangeForm";
+import DeleteAccountForm from "./DeleteAccountForm";
 
 const Modal = ({
   clickedMenu,
@@ -70,15 +72,19 @@ const Modal = ({
     setShowModal(false);
     setIsLogin(false);
   }
+  
 
   const innerForm = () => {
-    console.log('clickedMenu', clickedMenu);
     if (clickedMenu === 'login') {
       return <LoginForm handleLogin={handleLogin}/>
     } else if (clickedMenu === 'signup') {
       return <SignupForm handleSignup={handleSignup} />
     } else if (clickedMenu === 'logout') {
       return <LogoutForm handleLogout={handleLogout} setShowModal={setShowModal} />
+    } else if (clickedMenu === 'pwdchange') {
+      return <PwdChangeForm setShowModal={setShowModal} />
+    } else if (clickedMenu === 'delaccount') {
+      return <DeleteAccountForm setShowModal={setShowModal} />
     }
   }
 
