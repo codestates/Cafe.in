@@ -31,6 +31,7 @@ const MypageSection =  (
   imgStart,
   start
 }) => {
+  // console.log(loginInfo)
   return (
     <IconContext.Provider value={{ color: "#472d0c" }}>
       <MypageSec lightBg={lightBg}>
@@ -46,9 +47,8 @@ const MypageSection =  (
             <MypageColumn>
               <TextWrapper>     
                     
-                <Name lightText={lightText}><NameIcon/> Name :  {name}</Name>
-                <Id lightTopLine={lightTopLine}><NameIcon/>Id :  {loginInfo.email}</Id>
-                <Nickname lightTextDesc={lightTextDesc}><NameIcon/>Nickname :  {nickname}</Nickname> 
+                <Id lightTopLine={lightTopLine}><NameIcon/>E-mail :  {loginInfo.email}</Id>
+                <Nickname lightTextDesc={lightTextDesc}><NameIcon/>Nickname :  {loginInfo.nickname}</Nickname> 
                 <Link to='/sign-up'>
                <Button>
                     {buttonLabel1}

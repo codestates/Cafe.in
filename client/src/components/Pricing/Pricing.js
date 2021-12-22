@@ -15,6 +15,9 @@ function Pricing() {
 
   // axios 요청으로 JSON을 받아와서 array+object형태로 바꾼다.
   // 여기서는 dummy data 이용
+
+  
+
   const { lat: currLat, long: currLong} = currentLocation;
 
   const priceMap = dummyData.map(({id,title, title_img, lat, long, likes_hash_tags}) => {
