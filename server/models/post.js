@@ -1,3 +1,4 @@
+const { STRING } = require("sequelize");
 const Sequelize = require("sequelize");
 
 module.exports = class post extends Sequelize.Model {
@@ -5,8 +6,8 @@ module.exports = class post extends Sequelize.Model {
     return super.init(
       {
         title_img: {
-          type: Sequelize.BLOB,
-          allowNull: false,
+          type: Sequelize.STRING(255),
+          allowNull: STRING(255),
         },
         content_img: {
           type: Sequelize.BLOB,

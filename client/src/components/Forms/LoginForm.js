@@ -64,7 +64,7 @@ const LoginForm = ({ handleLogin }) => {
             handleLogin(payload)
             // setLoginInfo() -> 상태변화 오류
             
-            // =================
+            // ======================
             // const a = res.data.data
             // delete a.profile_img
             // console.log(a)

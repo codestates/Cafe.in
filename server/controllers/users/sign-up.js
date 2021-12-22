@@ -1,6 +1,8 @@
 const { user } = require("../../models");
 const { registerEmail, registerPW1, registerPW2, registerNickname } = require('../modules/register')
 const { failedResponse } = require('../modules/response')
+const { transporter, NODEMAILER_USER } = require('../modules/mailer')
+
 module.exports = async (req, res) => {
   // 클라이언트 요청 -> body에 user_email, password, nickname, profile_img(Optional)
   // 필수 데이터 구조분해 할당으로 받기
@@ -88,6 +90,17 @@ module.exports = async (req, res) => {
     }
 
     await user.create(payload)
+
+    const mailInfo = await transporter.sendMail({
+      from: `"Team Caffeine" <${NODEMAILER_USER}>`,
+      to: user_email,
+      subject: `환영합니다. ${nickname}님 Team Caffeine 입니다.`,
+      text: `여러분들을 위한 카페리스트가 준비 되어 있습니다.
+            로그인 입력 코드 기능(advanced) -> 다음 기회에 구현`
+    })
+
+    // ghbf wkiw yenu xssb
+    // ghbf wkiw yenu xssb
 
     return res.status(201).send({
       data: payload,

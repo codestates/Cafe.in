@@ -13,7 +13,7 @@ const PORT = process.env.PORT
 
 const Router = require("./router");
 
-sequelize.sync({ force: false }).then(() => console.log("DB연결 성공"));
+sequelize.sync({ force: true }).then(() => console.log("DB연결 성공"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

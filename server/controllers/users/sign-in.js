@@ -3,6 +3,7 @@ const { user } = require("../../models");
 const { generatedAccessToken } = require('../modules/jwt')
 const { failedResponse } = require('../modules/response')
 
+
 module.exports = async (req, res) => {
   // 클라이언트 요청 -> body에 user_email, password
   // 필수 데이터 구조분해 할당으로 받기
@@ -52,6 +53,7 @@ module.exports = async (req, res) => {
     // body.data.payload에 사용자 정보를 보낸다.
 
     // 클라이언트 단에서는 payload과 accessToken을 이용해 데이터를 핸들링하면 된다.
+
     return res
       .status(200)
       .cookie("accessToken", accessToken)
