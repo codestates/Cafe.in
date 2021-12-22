@@ -6,11 +6,14 @@ const cors = require("cors");
 //const session = require("express-session");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const { sequelize } = require("./models");
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT
 
 const Router = require("./router");
+
+sequelize.sync({ force: false }).then(() => console.log("DB연결 성공"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -21,6 +24,7 @@ app.use(
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })
 );
+
 app.use(cookieParser());
 app.use("/", Router);
 
@@ -31,5 +35,5 @@ if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
 
   https
     .createServer(credentials, app)
-    .listen(PORT, () => console.log(`${PORT}에서 실행 중`));
-} else app.listen(PORT, () => console.log("http 중"));
+    .listen(PORT, () => console.log(`서버 구동(https): PORT번호: ${PORT}`));
+} else app.listen(PORT, () => console.log(`서버 구동(http): PORT번호: ${PORT}`));

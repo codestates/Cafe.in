@@ -1,13 +1,28 @@
+
+import axios from "axios";
 import React, { useState } from "react";
+import { Link, useHistory } from 'react-router-dom';
 import {  Button } from '../../globalStyles';
 import "./Form.css";
 
 const LogoutForm = ({ handleLogout, setShowModal }) => {
   const [isLogout, setIsLogout] = useState(false);
 
+  const history = useHistory();
+
   const handleOK = () => {
-    setIsLogout(true);
-    handleLogout(isLogout);
+    
+    axios.post(
+      'http://localhost:8080/users/sign-out',
+      null,
+      { withCredentials: true }
+    )
+      .then((res) => {
+        setIsLogout(true);
+        handleLogout(isLogout);
+        history.push('/')
+      })
+
   };
   const handleCancel = () => {
     setShowModal(false);

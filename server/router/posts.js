@@ -1,13 +1,17 @@
-// const express = require("express");
-// const router = express.Router();
-// const controllers = require("../controllers/posts");
+const express = require("express");
+const router = express.Router();
+const controllers = require("../controllers");
 
-// router.get("/cafe-list");
+router.get("/cafe-list", controllers.cafe_list);
 
-// router.get("/cafe-info");
+router.get("/cafe-list/:id", controllers.cafe_list_likehash);
 
-// router.post("/like-hashtag");
+router.get("/cafe-info/:id", controllers.cafe_info);
+
+router.post("/like-hashtag/:id", controllers.like_hashtag);
+
+router.post("/dislike-hashtag/:id", controllers.dislike_hashtag);
 
 // router.post("/dislike-hashtag");
 
-// module.exports = router;
+module.exports = router;
