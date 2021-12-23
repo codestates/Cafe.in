@@ -92,7 +92,7 @@ module.exports = async (req, res) => {
     await user.create(payload)
 
     const mailInfo = await transporter.sendMail({
-      from: `"Team Caffeine" <${NODEMAILER_USER}>`,
+      from: `"Team Caffeine" <${NODEMAILER_USER || 1234}>`,
       to: user_email,
       subject: `환영합니다. ${nickname}님 Team Caffeine 입니다.`,
       text: `여러분들을 위한 카페리스트가 준비 되어 있습니다.

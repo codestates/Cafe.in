@@ -11,8 +11,8 @@ module.exports = {
         port: 587,
         secure: false,
         auth: {
-            user: NODEMAILER_USER,
-            pass: NODEMAILER_PASS
+            user: NODEMAILER_USER || 1234,
+            pass: NODEMAILER_PASS || 1234
         }
     }),
     from: NODEMAILER_USER,
