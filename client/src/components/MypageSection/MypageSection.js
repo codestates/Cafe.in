@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Button } from '../../globalStyles';
 import imgurl from '../../images/profile.png'
 import { IconContext } from "react-icons/lib";
+import Modal from "../Forms/Modal";
 
 import {
   MypageSec,
@@ -31,7 +32,17 @@ const MypageSection =  (
   imgStart,
   start
 }) => {
-  // console.log(loginInfo)
+  const [showModal, setShowModal] = useState(false);
+  const [clickedMenu, setClickedMenu] = useState(null);
+  const openPwdChange = () => {
+    setClickedMenu("pwdchange");
+    setShowModal((showModal) => !showModal);
+  };
+  const openDelAccount = () => {
+    setClickedMenu("delaccount");
+    setShowModal((showModal) => !showModal);
+  }
+
   return (
     <IconContext.Provider value={{ color: "#472d0c" }}>
       <MypageSec lightBg={lightBg}>
@@ -47,25 +58,34 @@ const MypageSection =  (
             <MypageColumn>
               <TextWrapper>     
                     
-                <Id lightTopLine={lightTopLine}><NameIcon/>E-mail :  {loginInfo.email}</Id>
+                <Id lightTopLine={lightTopLine}><NameIcon/>Id :  {loginInfo.email}</Id>
                 <Nickname lightTextDesc={lightTextDesc}><NameIcon/>Nickname :  {loginInfo.nickname}</Nickname> 
-                <Link to='/sign-up'>
-               <Button>
+                
+               <Button onClick={openPwdChange}>
                     {buttonLabel1}
                   </Button>
-                </Link>
+             
               </TextWrapper> 
             </MypageColumn> 
           </MypageRow>
           <MypageSec2>
-      <Link to='/sign-up'>
-                  <Button>
+    
+                  <Button onClick={openDelAccount}>
                  {buttonLabel3}
                   </Button>
-                </Link>
+   
         </MypageSec2>
         </Container>
       </MypageSec>
+
+      <Modal
+            clickedMenu={clickedMenu}
+            showModal={showModal}
+            setShowModal={setShowModal}
+            // isLogin={isLogin}
+            // setIsLogin={setIsLogin}
+          />
+
     </IconContext.Provider >
   );
 }

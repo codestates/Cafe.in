@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useHistory } from 'react-router-dom';
@@ -6,6 +7,7 @@ import "./Form.css";
 
 const LogoutForm = ({ handleLogout, setShowModal }) => {
   const [isLogout, setIsLogout] = useState(false);
+
   const history = useHistory();
 
   const handleOK = () => {
@@ -20,6 +22,7 @@ const LogoutForm = ({ handleLogout, setShowModal }) => {
         handleLogout(isLogout);
         history.push('/')
       })
+
   };
   const handleCancel = () => {
     setShowModal(false);

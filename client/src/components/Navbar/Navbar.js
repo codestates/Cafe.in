@@ -132,7 +132,7 @@ const Navbar = ({
         <Nav>
           <NavbarContainer>
             <SimpleDiv>
-              <NavLogo to="/main">
+              <NavLogo to="/">
                 <NavIcon />
                 Cafe In
               </NavLogo>
