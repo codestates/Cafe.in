@@ -26,13 +26,13 @@ function MainSection() {
   return (
     <IconContext.Provider value={{ color: '#FAD79B', size: 64 }}>
       <MainSectionSection>
-        <MainSectionWrapper>
-          <MainSectionContainer > 
+        {/* <MainSectionWrapper>
+          <MainSectionContainer >  */}
           
           {priceMap}
       
-          </MainSectionContainer>
-        </MainSectionWrapper>
+          {/* </MainSectionContainer>
+        </MainSectionWrapper> */}
       </MainSectionSection>
     </IconContext.Provider>
   );

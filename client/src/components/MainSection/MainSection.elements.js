@@ -2,15 +2,20 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const MainSectionSection = styled.div`
-  padding: 100px 0 0px;
+  /* padding: 100px 0 0px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; 
+  background: #D7AC87; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  grid-gap: 5px;
+
   background: #D7AC87;
 `;
 
 export const MainSectionWrapper = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
@@ -20,8 +25,10 @@ export const MainSectionWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+  } */
 `;
+
+
 
 export const MainSectionHeading = styled.h1`
   color: #fff;

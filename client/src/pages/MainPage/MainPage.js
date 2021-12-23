@@ -8,9 +8,6 @@ function MainPage() {
   return (
     <>
       <MainSection />
-      <MainSection />
-      <MainSection />
-      <MainSection />
     </>
   );
 }}
