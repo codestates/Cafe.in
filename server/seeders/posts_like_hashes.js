@@ -28,6 +28,30 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        hash_tag_id: 3,
+        post_id: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        hash_tag_id: 2,
+        post_id: 5,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        hash_tag_id: 1,
+        post_id: 6,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        hash_tag_id: 4,
+        post_id: 7,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 

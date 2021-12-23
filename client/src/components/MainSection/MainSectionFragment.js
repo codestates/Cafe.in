@@ -9,35 +9,51 @@ import {
   MainSectionCardLength,
   MainSectionCardFeatures,
   ImgWrapper,
-  Img
+  Img,
+  HashtagSelect,
 } from "./MainSection.elements";
+import { distanceCalc } from "./DistCalculator.js";
+import Hashtag from "./Hashtag";
 
-const MainSectionFragment = ({ id, title, title_img, dist, likes_hash_tags }) => {
-
-  const hashtags = likes_hash_tags.map((hashtag) => {
-    return <> {hashtag}<br/> </>
-  });
+const MainSectionFragment = ({
+  title,
+  title_img,
+  likes_hash_tags,
+  mainSearchHandle,
+  lat,
+  long,
+}) => {
+  let dist = Math.round((distanceCalc(lat, long) + Number.EPSILON) * 100) / 100;
 
   return (
-    <MainSectionContainer > 
-    <MainSectionCard>
-      <MainSectionCardInfo>
-        <MainSectionCardIcon>
-          <ImgWrapper>
-            <Img src={title_img} alt={title} />
-          </ImgWrapper>
-        </MainSectionCardIcon>
-        <MainSectionCardPlan>{title}</MainSectionCardPlan>
-        <MainSectionCardExp></MainSectionCardExp>
-        <MainSectionCardLength>{dist} km</MainSectionCardLength>
-        <MainSectionCardFeatures>
-          {hashtags}
-        </MainSectionCardFeatures>
-      </MainSectionCardInfo>
-    </MainSectionCard> 
-    </MainSectionContainer > 
+    <MainSectionContainer>
+      <MainSectionCard>
+        <MainSectionCardInfo>
+          <MainSectionCardIcon>
+            <ImgWrapper>
+              <Img src={title_img} alt="타이틀 이미지" />
+            </ImgWrapper>
+          </MainSectionCardIcon>
+          <MainSectionCardPlan>{title}</MainSectionCardPlan>
+          <MainSectionCardExp></MainSectionCardExp>
+          <MainSectionCardLength>{dist} km</MainSectionCardLength>
+          <MainSectionCardFeatures>
+            {likes_hash_tags.map((fill) => {
+              return (
+                <HashtagSelect>
+                  <Hashtag
+                    text={fill.name}
+                    id={fill.id}
+                    mainSearchHandle={mainSearchHandle}
+                  />
+                </HashtagSelect>
+              );
+            })}
+          </MainSectionCardFeatures>
+        </MainSectionCardInfo>
+      </MainSectionCard>
+    </MainSectionContainer>
   );
-
 };
 
 export default MainSectionFragment;

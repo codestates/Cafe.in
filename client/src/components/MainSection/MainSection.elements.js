@@ -1,34 +1,13 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const MainSectionSection = styled.div`
-  /* padding: 100px 0 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; 
-  background: #D7AC87; */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
   grid-gap: 5px;
 
-  background: #D7AC87;
+  background: #d7ac87;
 `;
-
-export const MainSectionWrapper = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-
-  @media screen and (max-width: 960px) {
-    margin: 0 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  } */
-`;
-
-
 
 export const MainSectionHeading = styled.h1`
   color: #fff;
@@ -40,7 +19,7 @@ export const MainSectionBottom = styled.h2`
   color: #fff;
   font-size: 24px;
   font-weight: light;
-  margin-top:100px;
+  margin-top: 100px;
 `;
 
 export const MainSectionContainer = styled.div`
@@ -65,7 +44,7 @@ export const MainSectionCard = styled(Link)`
   width: 350px;
   height: 480px;
   border-radius: 20x;
-  margin : 40px;
+  margin: 40px;
   &:hover {
     transform: scale(1.06);
     transition: all 0.3s ease-out;
@@ -85,7 +64,7 @@ export const MainSectionCardInfo = styled.div`
   height: 500px;
   padding: 24px;
   align-items: center;
-  color:#FFE4B5;
+  color: #ffe4b5;
 `;
 
 export const MainSectionCardIcon = styled.div`
@@ -93,13 +72,13 @@ export const MainSectionCardIcon = styled.div`
 `;
 
 export const MainSectionCardPlan = styled.h3`
-  color:#FFE4B5;
+  color: #ffe4b5;
   font-size: 23px;
 
   &:hover {
     transform: scale(1.09);
     transition: all 0.3s ease-out;
-    color: #9F814F;
+    color: #9f814f;
   }
 `;
 
@@ -108,31 +87,24 @@ export const MainSectionCardExp = styled.h4`
 `;
 
 export const MainSectionCardLength = styled.p`
-  color:#B4845F;
+  color: #b4845f;
   font-size: 18px;
   margin-bottom: 0px;
 
   &:hover {
     transform: scale(1.09);
     transition: all 0.3s ease-out;
-    color:#FFE4B5;
+    color: #ffe4b5;
   }
 `;
 
 export const MainSectionCardFeatures = styled.ul`
-
   margin: 10px 0 0px;
   list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #B4845F;
-
-  &:hover {
-    transform: scale(1.09);
-    transition: all 0.3s ease-out;
-    color: #FFE4B5;
-  }
+  color: #b4845f;
 `;
 
 export const MainSectionCardFeature = styled.li`
@@ -145,11 +117,19 @@ export const ImgWrapper = styled.div`
 `;
 
 export const Img = styled.img`
-  border-radius:10px;
+  border-radius: 10px;
   padding-right: 0;
   border: 0;
   max-width: 100%;
   vertical-align: middle;
   display: inline-block;
   height: 280px;
+`;
+
+export const HashtagSelect = styled.div`
+  &:hover {
+    transform: scale(1.09);
+    transition: all 0.3s ease-out;
+    color: #ffe4b5;
+  }
 `;
