@@ -72,6 +72,10 @@ const Modal = ({
     setShowModal(false);
     setIsLogin(false);
   }
+
+  // const handleDeleteAccount = () => {
+  //   setIsLogin(false)
+  // }
   
 
   const innerForm = () => {
@@ -84,7 +88,7 @@ const Modal = ({
     } else if (clickedMenu === 'pwdchange') {
       return <PwdChangeForm setShowModal={setShowModal} />
     } else if (clickedMenu === 'delaccount') {
-      return <DeleteAccountForm setShowModal={setShowModal} />
+      return <DeleteAccountForm handleLogout={handleLogout} setShowModal={setShowModal} />
     }
   }
 

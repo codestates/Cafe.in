@@ -17,7 +17,7 @@ function MainSection() {
 
   const priceMap = dummyData.map(({id,title, title_img, lat, long, likes_hash_tags}) => {
     let dist = Math.round((distanceCalc(currLat, currLong, lat, long) + Number.EPSILON) * 100) / 100;
-    console.log('dist', dist);
+    // console.log('dist', dist);
     return <MainSectionFragment id={id} title={title} title_img={title_img} dist={dist} likes_hash_tags={likes_hash_tags} />
   })
 

@@ -1,16 +1,19 @@
+
 import axios from "axios";
 import React, { useState } from "react";
+import { Link, useHistory } from 'react-router-dom';
 import { Button } from "../../globalStyles";
-import { passwordCheck1, passwordCheck2 } from "./RegExTest.js";
 import "./Form.css";
 
-const DeleteAccountForm = ({ setShowModal }) => {
+const DeleteAccountForm = ({ handleLogout, setShowModal }) => {
+  const [isLogout, setIsLogout] = useState(false)
   const [deleteInfo, setDeleteInfo] = useState({
     password: "",
     confirmText: "delete",
     confirmTextUsrInput: ""
   });
 
+  const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputValue = (key) => (e) => {
@@ -31,13 +34,28 @@ const DeleteAccountForm = ({ setShowModal }) => {
       setErrorMessage("문구가 일치하지 않습니다");
       return;
     }
+
+    axios.post(
+      'http://localhost:8080/users/delete-account',
+      { password: password },
+      { 'Content-Type': 'application/json', withCredentials: true }
+    )
+      .then(function(res) {
+        setIsLogout(true)
+        handleLogout(isLogout)
+        history.push('/')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
     setShowModal(false);
   };
   return (
     <div>
       <center>
         <h2>회원탈퇴</h2>
-        <form onSubmit={(e) => e.preventDefault()}>
+        {/* <form onSubmit={(e) => e.preventDefault()}> */}
           <div>
             <div>
               <span>본인 확인을 위해 비밀번호를 입력해주세요.</span>
@@ -53,6 +71,7 @@ const DeleteAccountForm = ({ setShowModal }) => {
             <Button
               primary
               className="btn btn-delete"
+              type="submit"
               onClick={handleDeleteInfo}
             >
               탈퇴하기
@@ -66,7 +85,7 @@ const DeleteAccountForm = ({ setShowModal }) => {
               취소
             </Button>
           </div>
-        </form>
+        {/* </form> */}
       </center>
     </div>
   );

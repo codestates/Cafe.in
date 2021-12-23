@@ -5,6 +5,7 @@ import {  Button } from '../../globalStyles';
 import { emailCheck, passwordCheck } from "./RegExTest.js";
 import imgkakao from '../../images/kakao-login.png'
 import imggoogle from '../../images/google-login.png'
+const { passwordCheck1, passwordCheck2 } = require('../Forms/RegExTest')
 
 const PwdChangeForm = ({ setShowModal }) => {
   const [pwdInfo, setPwdInfo] = useState({
@@ -23,7 +24,7 @@ const PwdChangeForm = ({ setShowModal }) => {
     setPwdInfo({ ...pwdInfo, [key]: e.target.value });
   };
 
-  const handleSignupInfo = () => {
+  const handleChangePWInfo = () => {
     const { oldPassword, newPassword, newPassword2 } = pwdInfo;
     if (!oldPassword) {
       setErrorMessage('현재 비밀번호를 입력하세요');
@@ -36,7 +37,18 @@ const PwdChangeForm = ({ setShowModal }) => {
     else if (newPassword !== newPassword2 ) {
       setErrorMessage('비밀번호가 일치하지 않습니다');
       return;
+    }else if (!passwordCheck1){
+      setErrorMessage("패스워드는 영문/숫자/특수문자 혼합 8~16글자 사이입니다.");
+      return;
     }
+
+    axios.patch(
+      'http://localhost:8080/users/mypage/password',
+      { old_password: oldPassword, new_password: newPassword },
+      { 'Content-Type': 'application/json', withCredentials: true }
+    )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.response.data.message))
    
     setShowModal(false);
   }
@@ -66,13 +78,13 @@ const PwdChangeForm = ({ setShowModal }) => {
           <Button primary
             className="btn btn-login"
             type="submit"
-            onClick={handleSignupInfo}
+            onClick={handleChangePWInfo}
           >
             비밀번호 변경
           </Button>
           <Button primary
             className="btn btn-login"
-            type="submit"
+            // type="submit"
             onClick={handleCancel}
           >
             취소

@@ -5,8 +5,10 @@ const jwt = require('jsonwebtoken')
 const { sign, verify } = require('jsonwebtoken')
 const ACCESS_SECRET = process.env.ACCESS_SECRET
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN
-const accessSignOptional = { algorithm: 'HS256', expiresIn: '1h' }
-const refreshSignOptional = { algorithm: 'HS256', expiresIn: '72h' }
+// const accessSignOptional = { algorithm: 'HS256', expiresIn: '1h' }
+// const refreshSignOptional = { algorithm: 'HS256', expiresIn: '72h' }
+const accessSignOptional = { algorithm: 'HS256' }
+const refreshSignOptional = { algorithm: 'HS256' }
 
 module.exports = {
     generatedAccessToken: (payload) => {

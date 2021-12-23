@@ -38,6 +38,8 @@ module.exports = async (req, res) => {
 
     // 삭제를 했기 때문에 data값을 null로 전송한다.
     // 성공을 하면 따로 클라이언트 단에서 데이터 핸들링 할 필요가 없다.
+    res.clearCookie("accessToken", { path: "/" });
+
     return res.status(200).send({
       data: null,
       message: "삭제완료",
