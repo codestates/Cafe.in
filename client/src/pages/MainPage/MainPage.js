@@ -5,6 +5,7 @@ import axios from "axios";
 
 function MainPage() {
   const [main, setMain] = useState(null);
+  const [list, setList] = useState(false);
 
   useEffect(() => {
     axios
@@ -14,7 +15,7 @@ function MainPage() {
       .then((res) => {
         setMain(res.data.data);
       });
-  }, []);
+  }, [list]);
 
   //여기가 로그인 후 메인 페이지
   const mainSearchHandle = (data) => {
@@ -23,6 +24,7 @@ function MainPage() {
 
   return (
     <>
+      <button onClick={() => setList((prev) => !prev)}>검색옵션 초기화</button>
       <MainSection main={main} mainSearchHandle={mainSearchHandle} />
     </>
   );

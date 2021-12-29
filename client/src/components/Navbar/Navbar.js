@@ -22,6 +22,7 @@ import {
 import Modal from "../Forms/Modal";
 import DropDownMenu from "./DropdownMenu";
 import { regionData } from "./RegionDummyData";
+import { useHistory } from "react-router-dom";
 
 const Navbar = ({
   handleLoginSuccess,
@@ -63,8 +64,9 @@ const Navbar = ({
   const openLogout = () => {
     setClickedMenu("logout");
     setShowModal((showModal) => !showModal);
-  }
+  };
 
+  //window.location.replace("/") 를 사용하면 새로고침하면서 메인페이지 이동
 
   // 로그인 때 보이는 JSX를 변수에 넣기
   // 로그인 상태 아닐 때 보이는 우측 버튼 두 개
@@ -112,9 +114,7 @@ const Navbar = ({
     <>
       <NavItem>
         <NavLinks to="/mypage">
-          <Button>
-            My Page
-          </Button>
+          <Button>My Page</Button>
         </NavLinks>
       </NavItem>
 
