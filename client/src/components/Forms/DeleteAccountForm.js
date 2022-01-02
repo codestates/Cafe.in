@@ -69,7 +69,7 @@ const DeleteAccountForm = ({ handleLogout, setShowModal }) => {
               다음 문구를 똑같이 입력해주세요. "{deleteInfo.confirmText}"
             </span>
             <input
-              type="password"
+              type="text"
               onChange={handleInputValue("confirmTextUsrInput")}
             />
           </div>

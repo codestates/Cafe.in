@@ -56,16 +56,27 @@ export const MapIcon = styled(FaRegMap)`
   font-size: 2.2rem;
 `;
 
+export const DropDownDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DropDownSpan = styled.span`
+  font-size: 1rem;
+  font-weight: 600;
+`;
+
 export const InputText = styled.input`
-  width: 160px;
+  width: 180px;
   text-decoration: none;
   text-align: center;
   outline: none;
-  padding: 6px 6px;
+  margin: 4px 0px 0px 0px;
+  padding: 0px 0px;
   border: 2px solid #996611;
   font-size: 18px;
   border-radius: 5px;
-  height: 50px;
+  height: 40px;
 `;
 
 export const MenuGrid = styled.div`

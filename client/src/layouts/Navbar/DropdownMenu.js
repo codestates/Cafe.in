@@ -15,9 +15,9 @@ const DropDownMenu = ({ regionData, currLoc, setCurrLoc }) => {
 
   const allList = regionData.map((data) => {
     if (data[0] === 0) {
-      return <MenuHeadings>{data[1]}</MenuHeadings>
+      return <MenuHeadings key={data[2]}>{data[1]}</MenuHeadings>
     } else if (data[0] === 1) {
-      return <MenuLinks onClick={()=>handleSelect(data[1])}>{data[1]}</MenuLinks>
+      return <MenuLinks key={data[2]} onClick={()=>handleSelect(data[1])}>{data[1]}</MenuLinks>
     }
   })
 

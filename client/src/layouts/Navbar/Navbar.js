@@ -18,10 +18,12 @@ import {
   MapIcon,
   InputText,
   MainDropDown,
+  DropDownDiv,
+  DropDownSpan,
 } from "./Dropdown.elements";
 import ModalContainer from "../../components/ModalContainer/ModalContainer";
 import DropDownMenu from "./DropdownMenu";
-import { regionData } from "./RegionDummyData";
+import { regionData } from "./DropDownDummyData";
 
 const Navbar = ({
   handleLoginSuccess,
@@ -74,12 +76,13 @@ const Navbar = ({
   const dropDownBar = (
     <>
       <MapButtonLink>
-        <SimpleDiv>
+        {/* <SimpleDiv>
           <MapIcon />
-        </SimpleDiv>
-        <SimpleDiv>
+        </SimpleDiv> */}
+        <DropDownDiv>
+          <DropDownSpan>현재 보고 계신 지역</DropDownSpan>
           <InputText value={currLoc} disabled />
-        </SimpleDiv>
+        </DropDownDiv>
         <MainDropDown id="dropbox">
           <DropDownMenu
             regionData={regionData}
@@ -120,7 +123,7 @@ const Navbar = ({
                 <NavIcon />
                 Cafe In
               </NavLogo>
-              {isLogin ? dropDownBar : null}
+              {dropDownBar}
             </SimpleDiv>
 
             <NavMenu>{isLogin ? loginButton : notLoginButton}</NavMenu>
