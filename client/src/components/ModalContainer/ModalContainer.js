@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import ReactDOM from 'react-dom';
 import { useSpring, animated } from "react-spring";
 import { Link } from "react-router-dom";
 import { ModalContainer as Styled } from "./ModalContainer.styled";
@@ -84,13 +85,13 @@ const ModalContainer = ({
     }
   }
 
-  return (
+  return ReactDOM.createPortal(
     <>
-      {showModal ? (
+      {showModal && (
         <Styled.Background ref={modalRef} onClick={closeModal}>
           {/* <animated.div style={animation}> */}
           <Styled.ModalWrapper showModal={showModal}>
-            <Styled.ModalLogo>
+            <Styled.ModalLogo to='/'>
               <Styled.ModalIcon />
               Cafe In
             </Styled.ModalLogo>
@@ -106,8 +107,9 @@ const ModalContainer = ({
           </Styled.ModalWrapper>
           {/* </animated.div> */}
         </Styled.Background>
-      ) : null}
-    </>
+      )}
+    </>,
+    document.querySelector('#modal')
   );
 };
 

@@ -44,12 +44,12 @@ const MypageSection = ({loginInfo, setIsLogin, mypageObjOne}) => {
                   Nickname : {loginInfo.nickname}
                 </Styled.Nickname>
 
-                <Button onClick={mypageObjOne.openPwdChange}>{mypageObjOne.buttonLabel1}</Button>
+                <Button onClick={openPwdChange}>{mypageObjOne.buttonLabel1}</Button>
               </Styled.TextWrapper>
             </Styled.MypageColumn>
           </Styled.MypageRow>
           <Styled.MypageSec2>
-            <Button onClick={mypageObjOne.openDelAccount}>{mypageObjOne.buttonLabel3}</Button>
+            <Button onClick={openDelAccount}>{mypageObjOne.buttonLabel3}</Button>
           </Styled.MypageSec2>
         </Container>
       </Styled.MypageSec>

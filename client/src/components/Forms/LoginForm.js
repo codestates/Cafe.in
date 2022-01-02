@@ -98,7 +98,7 @@ const LoginForm = ({ handleLogin }) => {
           <Button
             primary
             className="btn btn-login"
-            type="submit"
+            type="button"
             onClick={handleLoginInfo}
           >
             로그인

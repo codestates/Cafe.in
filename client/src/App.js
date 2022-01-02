@@ -13,11 +13,11 @@ const App = () => {
   const handleLoginSuccess = (loginInfo) => {
     setIsLogin(true);
     setLoginInfo(loginInfo);
-    console.log("Login SUCCESS!", loginInfo);
+    // console.log("Login SUCCESS!", loginInfo);
   };
 
   const handleSignupSuccess = (signupInfo) => {
-    console.log("Signup Success", signupInfo);
+    // console.log("Signup Success", signupInfo);
   };
 
   return (
