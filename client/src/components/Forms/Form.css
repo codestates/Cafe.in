@@ -77,3 +77,28 @@ input[type="password"] {
 .box_btn {
   margin-top: 10px;
 }
+
+/* 요거 styled component로 바꿔볼까 말까 */
+/* import styled from "styled-components";
+
+export const FormStyle = styled.form`
+  > * {
+    box-sizing: border-box;
+    > div > span:first-child {
+      display: inline-block;
+      min-width: 20ch;
+      text-align: right;
+      padding: 0 1ch;
+    }
+  }
+`;
+
+export const FormInput = styled.input.attrs(
+  ({type}) =>(({type: 'submit' || 'tel' || 'email' || 'password'})))`
+  border-radius: 10px;
+  border-color: rgb(97, 60, 33);
+  width: 300px;
+  font-size: 1.1rem;
+  padding: 0.4rem;
+  margin: 0.4rem;
+`; */

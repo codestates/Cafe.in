@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import "./Form.css";
 import {  Button } from '../../GlobalStyle';
 import { emailCheck, passwordCheck1, passwordCheck2 } from "../../utils/RegExTest.js";
@@ -89,18 +89,18 @@ const SignupForm = ({ handleSignup }) => {
           <div />
           <Button primary
             className="btn btn-login"
-            type="submit"
+            type="button"
             onClick={handleSignupInfo}
           >
             Submit
           </Button>
           <div className="box_btn block">
             <a href="/">
-              <img className="btn-kakao-login" src={imgkakao} width="60" align="center"></img>
+              <img className="btn-kakao-login" src={imgkakao} width="60" align="center" alt="kakao-logo"></img>
             </a>
              <span> </span>
             <a href="/">
-               <img className="btn-google-login" src={imggoogle} width="60" align="center"></img>
+               <img className="btn-google-login" src={imggoogle} width="60" align="center" alt="google-logo"></img>
             </a>
 
           </div>

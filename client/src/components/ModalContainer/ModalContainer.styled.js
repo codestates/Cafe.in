@@ -5,9 +5,7 @@ import imggoogle from '../../assets/images/google-login.png'
 import { FaMugHot } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-export const ModalContainer = {};
-
-ModalContainer.Background = styled.div`
+export const Background = styled.div`
   width: 100%;
   height: 100%;
   
@@ -21,7 +19,7 @@ ModalContainer.Background = styled.div`
   left: 0px;
 `;
 
-ModalContainer.ModalLogo = styled(Link)`
+export const ModalLogo = styled(Link)`
   color: #361a05;
   cursor: pointer;
   text-decoration: none;
@@ -33,12 +31,12 @@ ModalContainer.ModalLogo = styled(Link)`
   margin: 0 0 1em 0;
 `;
 
-ModalContainer.ModalIcon = styled(FaMugHot)`
+export const ModalIcon = styled(FaMugHot)`
   /* margin-right: 0.9em; */
   margin: 0 0.5em 0 0;
 `;
 
-ModalContainer.ModalWrapper = styled.div`
+export const ModalWrapper = styled.div`
   /* width: 800px;
   height: 530px; */
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.6);
@@ -54,7 +52,7 @@ ModalContainer.ModalWrapper = styled.div`
   border-radius: 10px;
 `;
 
-ModalContainer.ModalImg = styled.img`
+export const ModalImg = styled.img`
 
   height: 100%;
   border-radius: 10px 0 0 10px;
@@ -66,7 +64,7 @@ ModalContainer.ModalImg = styled.img`
   max-height: 200px;
 `;
 
-ModalContainer.ModalContent = styled.div`
+export const ModalContent = styled.div`
   padding-top: 40px;
   display: flex;
   flex-direction: column;
@@ -85,7 +83,7 @@ ModalContainer.ModalContent = styled.div`
   }
 `;
 
-ModalContainer.CloseModalButton = styled(MdClose)`
+export const CloseModalButton = styled(MdClose)`
   cursor: pointer;
   position: absolute;
   top: 20px;

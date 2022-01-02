@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import ReactDOM from 'react-dom';
 import { useSpring, animated } from "react-spring";
-import { Link } from "react-router-dom";
-import { ModalContainer as Styled } from "./ModalContainer.styled";
+// import { Link } from "react-router-dom";
+import * as Styled from "./ModalContainer.styled";
 import LoginForm from "../Forms/LoginForm";
 import SignupForm from "../Forms/SignupForm";
 import LogoutForm from "../Forms/LogoutForm";
@@ -65,11 +65,6 @@ const ModalContainer = ({
     setShowModal(false);
     setIsLogin(false);
   }
-
-  // const handleDeleteAccount = () => {
-  //   setIsLogin(false)
-  // }
-  
 
   const innerForm = () => {
     if (clickedMenu === 'login') {

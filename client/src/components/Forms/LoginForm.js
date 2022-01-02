@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../../GlobalStyle";
-import axios from "axios";
+// import axios from "axios";
 import imgkakao from "../../assets/images/kakao-login.png";
 import imggoogle from "../../assets/images/google-login.png";
 import "./Form.css";
@@ -42,7 +42,7 @@ const LoginForm = ({ handleLogin }) => {
     }
 
     //! 서버 연동시 아래는 주석 처리
-    handleLogin(loginInfo);  
+    handleLogin(loginInfo);
 
     //! 아래 주석은 지우지 마세요 => 서버 연동시 구현
     // axios
@@ -103,14 +103,14 @@ const LoginForm = ({ handleLogin }) => {
           >
             로그인
           </Button>
-          <div className="pw-sign-up">
+          {/* <div className="pw-sign-up">
             <a href="/forget-pw">
               <div className="forget-pw"> 비밀번호를 까먹으셨나요?</div>
             </a>
             <a href="/sign-up">
               <div className="sign-up"> 회원가입을 안하셨나요? </div>
             </a>
-          </div>
+          </div> */}
           <div className="box_btn block">
             <a href="/">
               <img
@@ -118,6 +118,7 @@ const LoginForm = ({ handleLogin }) => {
                 src={imgkakao}
                 width="60"
                 align="center"
+                alt="kakao-logo"
               ></img>
             </a>
             <span> </span>
@@ -127,6 +128,7 @@ const LoginForm = ({ handleLogin }) => {
                 src={imggoogle}
                 width="60"
                 align="center"
+                alt="google-logo"
               ></img>
             </a>
           </div>
