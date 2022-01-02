@@ -59,7 +59,7 @@ const PwdChangeForm = ({ setShowModal }) => {
       <center>
         <h2>비밀번호 변경</h2>
         <form onSubmit={(e) => e.preventDefault()}>
-          <div className="longerdiv">
+          <div>
             <span>현재 비밀번호 확인</span>
             <input type="password" value={pwdInfo.oldPassword} onChange={handleInputValue("oldPassword")} />
           </div>

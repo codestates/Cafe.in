@@ -1,5 +1,5 @@
 // 참고 : https://www.geodatasource.com/developers/javascript
-// 소수점 5째자리면 1meter 해상도
+// 소수점 5째자리면 1미터(0.001km) 해상도
 
 const distanceCalc = (lat1, lon1, lat2, lon2) => {
 	if ((lat1 === lat2) && (lon1 === lon2)) {

@@ -1,26 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { IconContext } from "react-icons/lib";
 import { Button } from "../../GlobalStyle";
-import {
-  Nav,
-  NavbarContainer,
-  NavLogo,
-  NavIcon,
-  NavMenu,
-  NavItem,
-  NavItemBtn,
-  NavLinks,
-  NavBtnLink,
-} from "./Navbar.elements";
-import {
-  MapButtonLink,
-  SimpleDiv,
-  MapIcon,
-  InputText,
-  MainDropDown,
-  DropDownDiv,
-  DropDownSpan,
-} from "./Dropdown.elements";
+import * as N from "./Navbar.styled";
+import * as D from "./Dropdown.styled";
 import ModalContainer from "../../components/ModalContainer/ModalContainer";
 import DropDownMenu from "./DropdownMenu";
 import { regionData } from "./DropDownDummyData";
@@ -31,7 +13,6 @@ const Navbar = ({
   isLogin,
   setIsLogin,
 }) => {
-
   // 지역 데이터
   const [currLoc, setCurrLoc] = useState("신논현역");
 
@@ -49,87 +30,84 @@ const Navbar = ({
   const openLogout = () => {
     setClickedMenu("logout");
     setShowModal((showModal) => !showModal);
-  }
-
+  };
 
   // 로그인 때 보이는 JSX를 변수에 넣기
   // 로그인 상태 아닐 때 보이는 우측 버튼 두 개
   const notLoginButton = (
     <>
-      <NavItem>
-        <NavBtnLink>
+      <N.NavItem>
+        <N.NavBtnLink>
           <Button onClick={openLogin}>로그인</Button>
-        </NavBtnLink>
-      </NavItem>
+        </N.NavBtnLink>
+      </N.NavItem>
 
-      <NavItemBtn>
-        <NavBtnLink>
+      <N.NavItemBtn>
+        <N.NavBtnLink>
           <Button primary onClick={openSignup}>
             회원가입
           </Button>
-        </NavBtnLink>
-      </NavItemBtn>
+        </N.NavBtnLink>
+      </N.NavItemBtn>
     </>
   );
 
   // dropdown bar
   const dropDownBar = (
     <>
-      <MapButtonLink>
-        {/* <SimpleDiv>
-          <MapIcon />
-        </SimpleDiv> */}
-        <DropDownDiv>
-          <DropDownSpan>현재 보고 계신 지역</DropDownSpan>
-          <InputText value={currLoc} disabled />
-        </DropDownDiv>
-        <MainDropDown id="dropbox">
+      <D.MapButtonLink>
+        {/* <D.SimpleDiv>
+          <D.MapIcon />
+        </D.SimpleDiv> */}
+        <D.DropDownDiv>
+          <D.DropDownSpan>현재 보고 계신 지역</D.DropDownSpan>
+          <D.InputText value={currLoc} disabled />
+        </D.DropDownDiv>
+        <D.MainDropDown id="dropbox">
           <DropDownMenu
             regionData={regionData}
             currLoc={currLoc}
             setCurrLoc={setCurrLoc}
           />
-        </MainDropDown>
-      </MapButtonLink>
+        </D.MainDropDown>
+      </D.MapButtonLink>
     </>
   );
 
   // 로그인되면 보일 우측 버튼 2개
   const loginButton = (
     <>
-      <NavItem>
-        <NavLinks to="/mypage">
-          <Button>
-            My Page
-          </Button>
-        </NavLinks>
-      </NavItem>
+      <N.NavItem>
+        <N.NavLinks to="/mypage">
+          <Button>My Page</Button>
+        </N.NavLinks>
+      </N.NavItem>
 
-      <NavItemBtn>
-        <NavBtnLink>
+      <N.NavItemBtn>
+        <N.NavBtnLink>
           <Button onClick={openLogout}>Log out</Button>
-        </NavBtnLink>
-      </NavItemBtn>
+        </N.NavBtnLink>
+      </N.NavItemBtn>
     </>
   );
 
   return (
     <>
       <IconContext.Provider value={{ color: "#472d0c" }}>
-        <Nav>
-          <NavbarContainer>
-            <SimpleDiv>
-              <NavLogo to="/">
-                <NavIcon />
+        <N.Nav>
+          <N.NavbarContainer>
+            <D.SimpleDiv>
+              <N.NavLogo to="/">
+                <N.NavIcon />
                 Cafe In
-              </NavLogo>
+              </N.NavLogo>
               {dropDownBar}
-            </SimpleDiv>
+            </D.SimpleDiv>
 
-            <NavMenu>{isLogin ? loginButton : notLoginButton}</NavMenu>
-          </NavbarContainer>
+            <N.NavMenu>{isLogin ? loginButton : notLoginButton}</N.NavMenu>
+          </N.NavbarContainer>
 
-          <ModalContainer 
+          <ModalContainer
             clickedMenu={clickedMenu}
             showModal={showModal}
             setShowModal={setShowModal}
@@ -138,7 +116,7 @@ const Navbar = ({
             isLogin={isLogin}
             setIsLogin={setIsLogin}
           />
-        </Nav>
+        </N.Nav>
       </IconContext.Provider>
     </>
   );

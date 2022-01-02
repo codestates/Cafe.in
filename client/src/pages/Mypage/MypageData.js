@@ -15,5 +15,3 @@ export const mypageObjOne = {
   img: require('../../assets/images/profile.png'),
   alt: ''
 };
-
-/* user id , name , email , phone , profession */
