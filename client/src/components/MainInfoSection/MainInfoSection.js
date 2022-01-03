@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Button } from "../../GlobalStyle";
+import { ReactComponentElement } from "react";
 import { MainInfoSection as Styled } from "./MainInfoSection.styled";
 import imgurl from "../../assets/images/svg-1.svg";
 
@@ -11,7 +12,7 @@ const MainInfoSection = ({ homeObjOne }) => {
           <Styled.InfoRow imgStart={homeObjOne.imgStart}>
             <Styled.InfoColumn>
               <Styled.ImgWrapper start={homeObjOne.start}>
-                <Styled.Img src={imgurl} />
+                <Styled.Img src={imgurl} alt="main-logo" />
               </Styled.ImgWrapper>
             </Styled.InfoColumn>
             <Styled.InfoColumn>

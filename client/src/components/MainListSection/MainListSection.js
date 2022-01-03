@@ -29,7 +29,7 @@ const MainListSection = () => {
 
   const listMap = dummyData.map(({id, title, title_img, lat, long, likes_hash_tags}) => {
     let dist = Math.round((distanceCalc(currLat, currLong, lat, long) + Number.EPSILON) * 100) / 100;
-    return <MainListFragment key={id} title={title} title_img={title_img} dist={dist} likes_hash_tags={likes_hash_tags} />
+    return <MainListFragment key={id} id={id} title={title} title_img={title_img} dist={dist} likes_hash_tags={likes_hash_tags} />
   })
 
   

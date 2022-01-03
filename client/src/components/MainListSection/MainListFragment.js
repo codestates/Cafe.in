@@ -4,6 +4,7 @@ import { distanceCalc } from "../../utils/DistCalculator";
 // import Hashtag from "./Hashtag";
 
 const MainListFragment = ({
+  id,
   title,
   title_img,
   dist,
@@ -15,7 +16,7 @@ const MainListFragment = ({
 
   return (
     <Styled.MainSectionContainer>
-      <Styled.MainSectionCard>
+      <Styled.MainSectionCard to={`cafeinfo/${id}`}>
         <Styled.MainSectionCardInfo>
           <Styled.MainSectionCardIcon>
             <Styled.ImgWrapper>

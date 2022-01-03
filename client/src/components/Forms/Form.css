@@ -78,6 +78,10 @@ input[type="password"] {
   margin-top: 10px;
 }
 
+.logout-container {
+  padding: 30px 50px 30px 50px;
+}
+
 /* 요거 styled component로 바꿔볼까 말까 */
 /* import styled from "styled-components";
 

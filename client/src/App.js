@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import GlobalStyle from "./GlobalStyle";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import { Navbar, Footer } from "./layouts";
+import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import MyPage from "./pages/Mypage/Mypage";
+import CafeInfo from "./pages/CafeInfo/CafeInfo";
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -21,7 +22,7 @@ const App = () => {
   };
 
   return (
-    <Router>
+    <>
       <GlobalStyle />
       <ScrollToTop />
 
@@ -32,22 +33,17 @@ const App = () => {
         setIsLogin={setIsLogin}
       />
 
-      <Switch>
+      <Routes>
+        <Route path="/" element={<MainPage isLogin={isLogin} />} />
         <Route
-          path="/"
-          exact
-          render={(props) => <MainPage isLogin={isLogin} {...props} />}
+          path="mypage"
+          element={<MyPage loginInfo={loginInfo} setIsLogin={setIsLogin} />}
         />
-        <Route
-          path="/mypage"
-          render={(props) => (
-            <MyPage loginInfo={loginInfo} setIsLogin={setIsLogin} {...props} />
-          )}
-        />
-      </Switch>
+        <Route path="cafeinfo/:id" element={<CafeInfo />} />
+      </Routes>
 
       <Footer />
-    </Router>
+    </>
   );
 };
 
