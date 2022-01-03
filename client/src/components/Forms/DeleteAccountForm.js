@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../GlobalStyle";
 import "./Form.css";
 
@@ -12,7 +12,7 @@ const DeleteAccountForm = ({ handleLogout, setShowModal }) => {
     confirmTextUsrInput: "",
   });
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputValue = (key) => (e) => {
@@ -36,7 +36,7 @@ const DeleteAccountForm = ({ handleLogout, setShowModal }) => {
 
     // ! 서버 연동시 주석 처리
     handleLogout(true);
-    history.push("/");
+    navigate("/");
 
     // ! 서버연동시 주석 해제
     // axios.post(

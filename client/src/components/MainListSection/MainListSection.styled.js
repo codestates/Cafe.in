@@ -36,7 +36,7 @@ export const MainSectionContainer = styled.div`
   }
 `;
 
-export const MainSectionCard = styled.div`
+export const MainSectionCard = styled(Link)`
   background: #472d0c;
   box-shadow: 0 6px 20px rgba(56, 125, 255, 0.2);
   text-decoration: none;

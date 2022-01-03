@@ -49,10 +49,10 @@ const dummyData = [
   },
   {
     id:7,
-    title: "스타벅스 강남삼성타운점",
-    title_img: "https://lh5.googleusercontent.com/p/AF1QipNhbS32tIwGlZIAH8Fx98zSCcGr8Q_nWOibyMY2=w449-h240-k-no",
-    lat: 37.49576,
-    long: 127.02763,
+    title: "폴바셋 서초본점",
+    title_img: "https://lh5.googleusercontent.com/p/AF1QipP5vNgWazhI3CYv6Gr5dceqShpVXo7LtoVlYA72=w408-h306-k-no",
+    lat: 37.49238,
+    long: 127.02666,
     likes_hash_tags: ["#조용함", "#인테리어", "#강남핫플"]
   },
   { 

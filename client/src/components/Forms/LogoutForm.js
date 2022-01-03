@@ -1,20 +1,20 @@
 
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {  Button } from '../../GlobalStyle';
 import "./Form.css";
 
 const LogoutForm = ({ handleLogout, setShowModal }) => {
   const [isLogout, setIsLogout] = useState(false);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleOK = () => {
     //! 서버와 연동시 다음 세 줄은 주석처리
     setIsLogout(true);
     handleLogout(isLogout);
-    history.push('/');
+    navigate('/');
 
     //! 지우지 마세요. 서버랑 연동시 다시 주석 해제
     // axios.post(
@@ -25,7 +25,7 @@ const LogoutForm = ({ handleLogout, setShowModal }) => {
     //   .then((res) => {
     //     setIsLogout(true);
     //     handleLogout(isLogout);
-    //     history.push('/')
+    //     navigate('/');
     //   })
   };
   const handleCancel = () => {
@@ -33,7 +33,7 @@ const LogoutForm = ({ handleLogout, setShowModal }) => {
   };
 
   return (
-    <div>
+    <div className="logout-container">
       <center>
         <h2>Are you sure?</h2>
           <div>
