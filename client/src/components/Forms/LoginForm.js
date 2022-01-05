@@ -72,22 +72,22 @@ const LoginForm = ({ handleLogin }) => {
   return (
     <div>
       <center>
-        <h2>로그인</h2>
+        <h2 className="header">로그인</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <div>
-            <span>이메일</span>
             <input
               type="text"
               onChange={handleInputValue("email")}
+              placeholder='아이디를 입력하세요.'
               value={loginInfo.email}
             />
           </div>
           <div></div>
           <div>
-            <span>비밀번호</span>
             <input
               type="password"
               onChange={handleInputValue("password")}
+              placeholder='비밀번호를 입력하세요.'
               value={loginInfo.password}
             />
           </div>
@@ -96,7 +96,6 @@ const LoginForm = ({ handleLogin }) => {
 
           <div />
           <Button
-            primary
             className="btn btn-login"
             type="button"
             onClick={handleLoginInfo}

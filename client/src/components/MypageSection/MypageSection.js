@@ -26,7 +26,6 @@ const MypageSection = ({ loginInfo, setIsLogin, mypageObjOne }) => {
             <Container>
               <Styled.Header className="header">
                 {" "}
-                <Styled.NameIconUser />
                 Welcome Cafe In {loginInfo.email} !
               </Styled.Header>
               <Styled.MypageRow imgStart={mypageObjOne.imgStart}>
@@ -45,9 +44,10 @@ const MypageSection = ({ loginInfo, setIsLogin, mypageObjOne }) => {
                       <Styled.NameIcon />
                       Nickname : {loginInfo.nickname}
                     </Styled.Nickname>
-
-                    <Button onClick={openPwdChange}>
+                    <Button primary onClick={openPwdChange}>
                       {mypageObjOne.buttonLabel1}
+                    </Button>
+                    <Button primary> 프로필변경
                     </Button>
                   </Styled.TextWrapper>
                 </Styled.MypageColumn>

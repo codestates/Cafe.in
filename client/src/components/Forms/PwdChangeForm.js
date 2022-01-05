@@ -57,33 +57,30 @@ const PwdChangeForm = ({ setShowModal }) => {
   return (
     <div>
       <center>
-        <h2>비밀번호 변경</h2>
+        <h2 className="header" >비밀번호 변경</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <div>
-            <span>현재 비밀번호 확인</span>
-            <input type="password" value={pwdInfo.oldPassword} onChange={handleInputValue("oldPassword")} />
+            <input type="password" placeholder='비밀번호를 입력하세요' value={pwdInfo.oldPassword} onChange={handleInputValue("oldPassword")} />
           </div>
           <div>
-            <span>새 비밀번호</span>
-            <input type="password" onChange={handleInputValue("newPassword")} />
+            <input type="password" placeholder='새 비밀번호'　onChange={handleInputValue("newPassword")} />
           </div>
           <div>
-            <span>새 비밀번호 재입력</span>
-            <input type="password" onChange={handleInputValue("newPassword2")} />
+            <input type="password" placeholder='새 비밀번호 재입력'　onChange={handleInputValue("newPassword2")} />
           </div>
 
           <div className="error-message">{errorMessage}</div>
 
           <div />
           <div>
-          <Button primary
+          <Button 
             className="btn btn-login"
             type="submit"
             onClick={handleChangePWInfo}
           >
             비밀번호 변경
           </Button>
-          <Button primary
+          <Button 
             className="btn btn-login"
             // type="submit"
             onClick={handleCancel}

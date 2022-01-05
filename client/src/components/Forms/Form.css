@@ -9,27 +9,70 @@ form > div > span:first-child {
   padding: 0 1ch;
 }
 
+.header{
+  color:  #E6C17B;
+  text-shadow : 1px 1px 1px #CCCCCC;
+  font-size: 1.8rem;
+  align-items: center;
+  text-align: center;
+
+}
+
 input[type="text"],
 input[type="tel"],
 input[type="email"],
 input[type="password"] {
-  border-radius: 10px;
-  border-color: rgb(97, 60, 33);
+  border-radius: 17px;
+  border-color: #6776ed;
+  border: 3px solid #E6C17B;
+  outline: none;
   width: 300px;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   padding: 0.4rem;
   margin: 0.4rem;
 }
 
 .btn {
-  font-size: 1.3rem;
+  font-size: 1rem;
   padding: 0.5rem;
-  margin: 0.2rem 0;
+  text-shadow: #CCCCCC;
+
 }
 
 .btn-kakao-login,
 .btn-google-login {
-  margin: 4px 4px 10px 10px;
+  filter: drop-shadow( 0px 0px 4px #CCCCCC);
+  margin: 14px 40px 0px 40px;
+}
+
+.verify{
+  color:  #E6C17B;
+  text-shadow : 1px 1px 1px #CCCCCC;
+  font-size: 1.8rem;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 10px;
+  
+}
+
+.log-out{
+  color:  #E6C17B;
+  text-shadow : 1px 1px 1px #CCCCCC;
+  font-size: 1.4rem;
+  align-items: center;
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 20px;
+
+}
+
+.confirm {
+  color: #ff7383;
+  text-shadow : 1px 1px 1px #CCCCCC;
+  font-size: 1.4rem;
+  align-items: center;
+  text-align: center;
+
 }
 
 .forget-pw {
@@ -37,7 +80,6 @@ input[type="password"] {
   font-size: 14px;
   display: flex;
   align-items: center;
-  color: #361a05;
   text-align: left;
 }
 
@@ -47,7 +89,6 @@ input[type="password"] {
   display: flex;
   text-align: left;
   font-size: 14px;
-  color: #361a05;
   text-align: left;
 }
 
@@ -57,15 +98,16 @@ input[type="password"] {
   text-align: left;
 }
 
+
 .error-message {
   /* color: #721c24; */
   /* background-color: rgb(237, 167, 130); */
   /* border-color: #f5c6cb; */
   height: 2em;
-  color: rgb(216, 74, 74);
+  color: rgb(172, 44, 44);
   position: relative;
   padding: 0.75rem 1.25rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.8rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }

@@ -65,23 +65,27 @@ const SignupForm = ({ handleSignup }) => {
   return (
     <div>
       <center>
-        <h2>회원가입</h2>
+        <h2 className="verify">회원가입</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <div>
-            <span>이메일</span>
-            <input type="text" onChange={handleInputValue("email")} />
+            <input type="text"
+            placeholder='이메일을 입력해주세요'
+            onChange={handleInputValue("email")} />
           </div>
           <div>
-            <span>별명</span>
-            <input type="text" onChange={handleInputValue("nickname")} />
+            <input type="text"
+                placeholder='별명을 입력해주세요'
+                onChange={handleInputValue("nickname")} />
           </div>
           <div>
-            <span>비밀번호</span>
-            <input type="password" onChange={handleInputValue("password")} />
+            <input type="password" 
+                 placeholder='비밀번호를 입력해주세요'
+                 onChange={handleInputValue("password")} />
           </div>
           <div>
-            <span>비밀번호 확인</span>
-            <input type="password" onChange={handleInputValue("confirmPwd")} />
+            <input type="password" 
+            placeholder='비밀번호 재입력'
+            onChange={handleInputValue("confirmPwd")} />
           </div>
 
           <div className="error-message">{errorMessage}</div>
@@ -92,7 +96,7 @@ const SignupForm = ({ handleSignup }) => {
             type="button"
             onClick={handleSignupInfo}
           >
-            Submit
+            확인
           </Button>
           <div className="box_btn block">
             <a href="/">

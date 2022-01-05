@@ -3,11 +3,10 @@ import { FaRegMap } from 'react-icons/fa';
 
 export const MapButtonContainer = styled.div`
   display: flex;
-  min-width: 300px;
+  min-width: 200px;
   padding: 0px;
   align-self: center;
   position: relative;
-  color: #000;
 `
 export const SimpleDiv = styled.div`
   margin: 0;
@@ -20,8 +19,8 @@ export const SimpleDiv = styled.div`
 export const MainDropDown = styled.div`
   /* background-color: #333333; */
   background: #EECCAA;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   display: none;
   position: absolute;  // MapIconContainer위치 기준으로 absolute하다.
   left: 0; // 지도 Icon 왼쪽에서부터 위치
@@ -63,7 +62,10 @@ export const DropDownDiv = styled.div`
 
 export const DropDownSpan = styled.span`
   font-size: 1rem;
-  font-weight: 600;
+  text-align:center;
+  font-weight: 480;
+  color: #aaaaaa;
+ 
 `;
 
 export const InputText = styled.input`
@@ -73,9 +75,9 @@ export const InputText = styled.input`
   outline: none;
   margin: 4px 0px 0px 0px;
   padding: 0px 0px;
-  border: 2px solid #996611;
-  font-size: 18px;
-  border-radius: 5px;
+  border: 3px solid #E6C17B;
+  font-size: 17px;
+  border-radius: 20px;
   height: 40px;
 `;
 

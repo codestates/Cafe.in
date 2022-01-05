@@ -6,7 +6,7 @@ import { Container } from '../../GlobalStyle';
 export const MypageSec = styled.div`
   color: #D7AC87;
   padding: 100px 0;
-  background: ${({ lightBg }) => ('#D7AC87')};
+  background: ${({ lightBg }) => ('#FDF5E6')};
 `;
 
 export const MypageRow = styled.div`
@@ -46,6 +46,7 @@ export const TextWrapper = styled.div`
   }
 `;
 
+
 export const ImgWrapper = styled.div`
 
   max-width: 555px;
@@ -59,13 +60,15 @@ export const Img = styled.img`
   padding-right: 0;
   border: 0;
   max-width: 100%;
-  vertical-align: middle;
-  display: inline-block;
+  text-align: center;
+  justify-content: center;
+  display: flex;
   max-height: 200px;
+  
 `;
 
 export const Id = styled.div`
-  color: ${({ lightTopLine }) => (lightTopLine ? '#361a05' : '#fff')};
+  color: ${({ lightTopLine }) => (lightTopLine ?  '#E6C17B' : '#7b95f2')};
   font-size: 18px;
   line-height: 1.8;
   font-weight: 600;
@@ -74,39 +77,24 @@ export const Id = styled.div`
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #635949;
+      color: #7b95f2;
       transition: 200ms ease-in;
   }
 `;
 
-export const Name = styled.h1`
-  margin-bottom: 14px;
-  font-size: 18px;
-  line-height: 1.8;
-  font-weight: 600;
-  color: ${({ lightText }) => (lightText ? '#361a05' : '#fff')};
-
-  text-decoration: none;
-  margin-bottom: 0.5rem;
-
-  &:hover {
-      color: #635949;
-      transition: 200ms ease-in;
-  }
-`
 
 export const Nickname = styled.p`
   font-size: 18px;
   line-height: 1.8;
   font-weight: 600;
   padding-bottom: 30px;
-  color: ${({ lightTextDesc }) => (lightTextDesc ? '#361a05' : '#fff')};
+  color: ${({ lightTextDesc }) => (lightTextDesc ?  '#E6C17B' : '#7b95f2')};
 
   text-decoration: none;
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #635949;
+      color: #7b95f2;
       transition: 200ms ease-in;
   }
   `;
@@ -127,14 +115,14 @@ export const MypageSec2 = styled.div`
 
 
 export const Header = styled.div`
-  color : #361a05;
+  color :  #7b95f2;
   font-size:30px;
   font-weight: 600;
   margin-bottom:20px;
   text-align:center;
 
   &:hover {
-      color: #635949;
+      color: #E6C17B;
       transition: 200ms ease-in;
   }
 
@@ -144,10 +132,14 @@ export const NameIcon = styled(FaMugHot)`
 
   margin-right: 0.9em;
   margin-left:0.9em;
+  fill: #E6C17B;
 `;
 
 
 export const NameIconUser = styled(FaUserEdit)`
-  margin-right: 0.6em;
-  margin-left:0.3em;
+  padding-right: 0;
+  border: 0;
+  justify-content: middle;
+  height: 10%;
+  width: 10%;
 `;

@@ -2,7 +2,11 @@ import React from "react";
 import { Container, Button } from "../../GlobalStyle";
 import { ReactComponentElement } from "react";
 import { MainInfoSection as Styled } from "./MainInfoSection.styled";
-import imgurl from "../../assets/images/svg-1.svg";
+import imgurl from '../../assets/images/png4.png';
+import imgurl2 from '../../assets/images/png1.png';
+import imgurl3 from '../../assets/images/png2.png';
+import hashtag from '../../assets/images/hashtag.svg';
+
 
 const MainInfoSection = ({ homeObjOne }) => {
   return (
@@ -10,26 +14,23 @@ const MainInfoSection = ({ homeObjOne }) => {
       <Styled.InfoSec lightBg={homeObjOne.lightBg}>
         <Container>
           <Styled.InfoRow imgStart={homeObjOne.imgStart}>
-            <Styled.InfoColumn>
-              <Styled.ImgWrapper start={homeObjOne.start}>
-                <Styled.Img src={imgurl} alt="main-logo" />
-              </Styled.ImgWrapper>
-            </Styled.InfoColumn>
-            <Styled.InfoColumn>
               <Styled.TextWrapper>
                 <Styled.TopLine lightTopLine={homeObjOne.lightTopLine}>
                   {homeObjOne.topLine}
                 </Styled.TopLine>
-                <Styled.Heading lightText={homeObjOne.lightText}>
+                <Styled.Img4 src={hashtag} alt="main-logo" /> <Styled.Heading lightText={homeObjOne.lightText}>
                   {homeObjOne.headline}
                 </Styled.Heading>
                 <Styled.Subtitle lightTextDesc={homeObjOne.lightTextDesc}>
                   {homeObjOne.description}
                 </Styled.Subtitle>
-                <Button big fontBig primary={homeObjOne.primary}>
-                  {homeObjOne.buttonLabel}
-                </Button>
               </Styled.TextWrapper>
+              <Styled.InfoColumn>
+              <Styled.ImgWrapper start={homeObjOne.start}>
+                <Styled.Img src={imgurl} alt="main-logo" />
+                <Styled.Img2 src={imgurl2} />
+                <Styled.Img3 src={imgurl3} />
+              </Styled.ImgWrapper>
             </Styled.InfoColumn>
           </Styled.InfoRow>
         </Container>

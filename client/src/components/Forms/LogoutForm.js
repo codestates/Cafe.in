@@ -35,17 +35,17 @@ const LogoutForm = ({ handleLogout, setShowModal }) => {
   return (
     <div className="logout-container">
       <center>
-        <h2>Are you sure?</h2>
+        <h2 className="log-out">로그아웃 하시겠습니까？</h2>
           <div>
-          <Button primary
+          <Button
             className="btn btn-login"
             type="submit"
             onClick={handleOK}
           >
-            OK
+            확인
           </Button>
           
-          <Button primary
+          <Button 
             className="btn btn-login"
             type="submit"
             onClick={handleCancel}

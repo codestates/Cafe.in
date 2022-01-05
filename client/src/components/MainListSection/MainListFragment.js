@@ -18,14 +18,11 @@ const MainListFragment = ({
     <Styled.MainSectionContainer>
       <Styled.MainSectionCard to={`cafeinfo/${id}`}>
         <Styled.MainSectionCardInfo>
-          <Styled.MainSectionCardIcon>
             <Styled.ImgWrapper>
               <Styled.Img src={title_img} alt="타이틀 이미지" />
             </Styled.ImgWrapper>
-          </Styled.MainSectionCardIcon>
           <Styled.MainSectionCardPlan>{title}</Styled.MainSectionCardPlan>
-          <Styled.MainSectionCardExp></Styled.MainSectionCardExp>
-          <Styled.MainSectionCardLength>{dist} km</Styled.MainSectionCardLength>
+       <Styled.MainSectionCardLength>{dist} km</Styled.MainSectionCardLength>
           
             {hashtags}
 

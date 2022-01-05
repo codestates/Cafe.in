@@ -4,6 +4,8 @@ import * as Styled from "./MainListSection.styled";
 import MainListFragment from "./MainListFragment";
 import { dummyData, currentLocation } from "./MainListDummyData";
 import { distanceCalc } from "../../utils/DistCalculator";
+import imgurl7 from '../../assets/images/png7.png';
+import imgurl8 from '../../assets/images/menu.png';
 
 const MainListSection = () => {
   
@@ -34,8 +36,9 @@ const MainListSection = () => {
 
   
   return (
-    <IconContext.Provider value={{ color: "#FAD79B", size: 64 }}>
-      <Styled.MainSectionSection>
+    <IconContext.Provider>
+            <Styled.MainSectionSection>
+            <Styled.Img8 src={imgurl8} />
         {listMap}
 
         {/* {main === null ? (
@@ -55,6 +58,7 @@ const MainListSection = () => {
             );
           })
         )} */}
+        
       </Styled.MainSectionSection>
     </IconContext.Provider>
   );

@@ -79,13 +79,13 @@ const Navbar = ({
     <>
       <N.NavItem>
         <N.NavLinks to="/mypage">
-          <Button>My Page</Button>
+          <Button>마이페이지</Button>
         </N.NavLinks>
       </N.NavItem>
 
       <N.NavItemBtn>
         <N.NavBtnLink>
-          <Button onClick={openLogout}>Log out</Button>
+          <Button onClick={openLogout}>로그아웃</Button>
         </N.NavBtnLink>
       </N.NavItemBtn>
     </>
@@ -100,8 +100,11 @@ const Navbar = ({
               <N.NavLogo to="/">
                 <N.NavIcon />
                 Cafe In
-              </N.NavLogo>
-              {dropDownBar}
+                </N.NavLogo>   
+                <N.NavLogo2 to="/">
+                <N.NavIcon2/>
+                </ N.NavLogo2>
+                {dropDownBar}
             </D.SimpleDiv>
 
             <N.NavMenu>{isLogin ? loginButton : notLoginButton}</N.NavMenu>

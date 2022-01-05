@@ -57,27 +57,28 @@ const DeleteAccountForm = ({ handleLogout, setShowModal }) => {
   return (
     <div>
       <center>
-        <h2>회원탈퇴</h2>
+        <h2 className="verify">회원탈퇴</h2>
         {/* <form onSubmit={(e) => e.preventDefault()}> */}
         <div>
           <div>
-            <span>본인 확인을 위해 비밀번호를 입력해주세요.</span>
-            <input type="password" onChange={handleInputValue("password")} />
+            <input type="password" placeholder='본인 확인을 위해 비밀번호를 입력해주세요.'  onChange={handleInputValue("password")} />
           </div>
-          <div>
-            <span>
-              다음 문구를 똑같이 입력해주세요. "{deleteInfo.confirmText}"
-            </span>
+            <div>
             <input
               type="text"
+              placeholder='다음 문구를 똑같이 입력해주세요' 
               onChange={handleInputValue("confirmTextUsrInput")}
             />
           </div>
+          <div>
+            <span className="confirm">
+              {deleteInfo.confirmText}
+            </span>
+            </div>
         </div>
         <div className="error-message">{errorMessage}</div>
         <div>
           <Button
-            primary
             className="btn btn-delete"
             type="submit"
             onClick={handleDeleteInfo}
@@ -85,7 +86,6 @@ const DeleteAccountForm = ({ handleLogout, setShowModal }) => {
             탈퇴하기
           </Button>
           <Button
-            primary
             className="btn btn-login"
             type="submit"
             onClick={handleCancel}
