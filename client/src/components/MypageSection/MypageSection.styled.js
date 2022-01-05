@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import { FaMugHot, FaUserEdit } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { Container } from '../../GlobalStyle';
 
 export const MypageSec = styled.div`
   color: #D7AC87;

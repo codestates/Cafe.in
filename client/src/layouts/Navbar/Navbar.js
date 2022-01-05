@@ -15,6 +15,8 @@ const Navbar = ({
 }) => {
   // 지역 데이터
   const [currLoc, setCurrLoc] = useState("신논현역");
+  // 맵 아이콘 클릭시 현재 위치 가져오기
+  const [currPos, setCurrPos] = useState({ lat: null, lng: null });
 
   // Modal bar 구현 부분
   const [showModal, setShowModal] = useState(false);
@@ -31,6 +33,19 @@ const Navbar = ({
     setClickedMenu("logout");
     setShowModal((showModal) => !showModal);
   };
+
+  // 현재 위치 받아오기
+  const handleCurrentPosition = () => {
+    window.navigator.geolocation.getCurrentPosition(
+      (position) =>
+        setCurrPos({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        }),
+      (err) => console.log(err.message)
+    );
+  }
+  console.log("current position", currPos);
 
   // 로그인 때 보이는 JSX를 변수에 넣기
   // 로그인 상태 아닐 때 보이는 우측 버튼 두 개
@@ -101,7 +116,7 @@ const Navbar = ({
                 <N.NavIcon />
                 Cafe In
                 </N.NavLogo>   
-                <N.NavLogo2 to="/">
+                <N.NavLogo2 onClick={handleCurrentPosition}>
                 <N.NavIcon2/>
                 </ N.NavLogo2>
                 {dropDownBar}
