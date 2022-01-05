@@ -20,10 +20,11 @@ export const Background = styled.div`
 `;
 
 export const ModalLogo = styled(Link)`
-  color: #361a05;
-  cursor: pointer;
+  color: #6776ed;
   text-decoration: none;
   font-size: 2.2rem;
+  text-shadow : 2px 2px 2px #CCCCCC;
+  font-weight: 600 ;
   display: fixed;
   align-items: center;
   top: 30px;
@@ -34,6 +35,15 @@ export const ModalLogo = styled(Link)`
 export const ModalIcon = styled(FaMugHot)`
   /* margin-right: 0.9em; */
   margin: 0 0.5em 0 0;
+  fill : #E6C17B;
+  animation: move2  1s infinite;
+
+  @keyframes move2{
+    0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
+    40% {transform: translateX(3px);}
+    60% {transform: translateX(-3px);}
+} 
+
 `;
 
 export const ModalWrapper = styled.div`
@@ -41,7 +51,7 @@ export const ModalWrapper = styled.div`
   height: 530px; */
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.6);
   /* background: #fff; */
-  background: #D7AC87;
+  background: #FDF5E6;
   color: #000;
   display: flex;
   flex-direction: column;
@@ -71,13 +81,13 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
   line-height: 1.8;
-  color: #361a05;
+  color: #6776ed;
   p {
     margin-bottom: 1rem;
   }
   button {
     padding: 10px 24px;
-    background: #361a05;
+    background: #E6C17B;
     color: #fff;
     border: none;
   }
@@ -89,6 +99,7 @@ export const CloseModalButton = styled(MdClose)`
   top: 20px;
   right: 20px;
   width: 32px;
+  fill: #E6C17B;
   height: 32px;
   padding: 0;
   z-index: 10;

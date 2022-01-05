@@ -3,7 +3,7 @@ import { FaMugHot } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export const FooterContainer = styled.div`
-  background-color:#D7AC87;
+  background-color:#FDF5E6;
   padding: 4rem 0 2rem 0;
   display: flex;
   flex-direction: column;
@@ -102,15 +102,17 @@ export const FooterLinkItems = styled.div`
 
 export const FooterLinkTitle = styled.h2`
   margin-bottom: 16px;
+  color: #E6C17B;
 `;
 
 export const FooterLink = styled(Link)`
-  color: #fff;
+  color:  #7b95f2;
+  font-weight:400;
   text-decoration: none;
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #ff9c00;
+      color: #aaaaaa;
       transition: 200ms ease-in;
   }
 `;
@@ -134,7 +136,7 @@ export const SocialMediaWrap = styled.div`
 `;
 
 export const SocialLogo = styled(Link)`
-  color: #fff;
+  color: #E6C17B;
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
@@ -146,10 +148,11 @@ export const SocialLogo = styled(Link)`
 
 export const SocialIcon = styled(FaMugHot)`
   margin-right: 10px;
+
 `;
 
 export const WebsiteRights = styled.small`
-  color: #fff;
+  color: #E6C17B;
   margin-bottom: 16px;
 `;
 
@@ -161,7 +164,7 @@ export const SocialIcons = styled.div`
 `;
 
 export const SocialIconLink = styled.a`
-  color: #fff;
+  color:  #7b95f2;
   font-size: 24px;
 `;
 

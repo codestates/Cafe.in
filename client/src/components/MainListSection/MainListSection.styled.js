@@ -5,8 +5,7 @@ export const MainSectionSection = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
   grid-gap: 5px;
-
-  background: #d7ac87;
+  background: #FDF5E6;
 `;
 
 export const MainSectionHeading = styled.h1`
@@ -37,18 +36,20 @@ export const MainSectionContainer = styled.div`
 `;
 
 export const MainSectionCard = styled(Link)`
-  background: #472d0c;
+  background: #E6C17B;
   box-shadow: 0 6px 20px rgba(56, 125, 255, 0.2);
   text-decoration: none;
   border-radius: 20px;
   width: 350px;
   height: 480px;
   border-radius: 20x;
-  margin: 40px;
+  margin: 30px;
+  animation zoomIn 2s ;
+  animation-duration: 1s;
+
   &:hover {
     transform: scale(1.06);
     transition: all 0.3s ease-out;
-    color: #1c2237;
   }
   @media screen and (max-width: 960px) {
     width: 90%;
@@ -56,6 +57,17 @@ export const MainSectionCard = styled(Link)`
       transform: none;
     }
   }
+  @keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1; 
+    transform: none;
+  } 
+}
+
 `;
 
 export const MainSectionCardInfo = styled.div`
@@ -63,22 +75,23 @@ export const MainSectionCardInfo = styled.div`
   flex-direction: column;
   height: 500px;
   padding: 24px;
-  align-items: center;
-  color: #ffe4b5;
 `;
 
-export const MainSectionCardIcon = styled.div`
-  margin: 4px 4px;
-`;
+
 
 export const MainSectionCardPlan = styled.h3`
-  color: #ffe4b5;
-  font-size: 23px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #614b3f;
+  font-size: 22px;
+  margin: 8px 7px;
+  text-align:center;
 
   &:hover {
     transform: scale(1.09);
     transition: all 0.3s ease-out;
-    color: #9f814f;
+    color:   #311e26;
   }
 `;
 
@@ -87,44 +100,61 @@ export const MainSectionCardExp = styled.h4`
 `;
 
 export const MainSectionCardLength = styled.p`
-  color: #b4845f;
-  font-size: 18px;
-  margin-bottom: 0px;
+  color:#614b3f;
+  text-shadow:0 0 2 #FFF;
+  font-size:  14px;
+  font-weight: 700;
+  margin-bottom: 2px;
+  text-align:right;
 
   &:hover {
-    transform: scale(1.09);
-    transition: all 0.3s ease-out;
-    color: #ffe4b5;
+    color:  #311e26;
   }
 `;
 
 export const MainSectionCardFeatures = styled.ul`
-  margin: 10px 0 0px;
+  margin: 4px 0 0px;
   list-style: none;
   display: flex;
+  font-weight: 550;
   flex-direction: column;
-  align-items: center;
-  color: #b4845f;
+  align-items: left;
+  color: #614b3f;
+
+  &:hover {
+    color:    #311e26;
+    margin-left: 0;
+  }
 `;
 
+
 export const MainSectionCardFeature = styled.li`
-  margin-bottom: 4px;
+  margin-bottom: 0px;
 `;
 
 export const ImgWrapper = styled.div`
   max-width: 100%;
+  text-align:center;
+  flex-direction: column;
+  align-items: center;
   display: flex;
 `;
 
 export const Img = styled.img`
+
   border-radius: 10px;
-  padding-right: 0;
-  border: 0;
   max-width: 100%;
-  vertical-align: middle;
-  display: inline-block;
   height: 280px;
+  opacity: .8;
+  -webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+  
+
+  &:hover{
+    opacity: 1;
+  }
 `;
+
 
 export const HashtagSelect = styled.div`
   &:hover {
@@ -133,3 +163,14 @@ export const HashtagSelect = styled.div`
     color: #ffe4b5;
   }
 `;
+
+
+
+
+
+export const Img8 = styled.img`
+  max-width: 100%;
+  display: flex;
+  left : 80x;
+  filter: drop-shadow(1px 1px 1px #CCCCCC);
+  `;

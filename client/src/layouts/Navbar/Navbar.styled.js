@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { FaMugHot } from 'react-icons/fa';
+import { FaMugHot , FaRegMap } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Container } from '../../GlobalStyle';
 
 export const Nav = styled.nav`
-  background: #D7AC87;
+  background: #FDF5E6;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -23,18 +23,54 @@ export const NavbarContainer = styled(Container)`
 `;
 
 export const NavLogo = styled(Link)`
-  color: #361a05;
+  color:  #7b95f2;
+  font-weight: 700;
+  text-shadow : 2px 2px 2px #CCCCCC;
   justify-self: flex-start;
-  cursor: pointer;
-  text-decoration: none;
+  text-decoration: center;
+  white-space:nowrap;
   font-size: 2.2rem;
   display: flex;
   align-items: center;
 `;
 
 export const NavIcon = styled(FaMugHot)`
+  margin-right: 0.3em;
+  fill : #E6C17B;
+  animation: move2  1s infinite;
 
-  margin-right: 0.9em;
+  @keyframes move2{
+    0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
+    40% {transform: translateX(3px);}
+    60% {transform: translateX(-3px);}
+} 
+
+`
+
+
+export const NavIcon2 = styled(FaRegMap)`
+  fill : #E6C17B;
+  width: 40px;
+  align-items: center;
+
+  @media screen and (max-width: 960px) {
+    overflow:hidden;
+  }
+`;
+
+
+export const NavLogo2 = styled(Link)`
+  text-shadow : 2px 2px 2px #CCCCCC;
+  align-items: center;
+  font-size: 2rem;
+  margin-left : 1.4em;
+  margin-top: 0.8em;
+  margin-right: -1.4em;
+  display: flex;
+
+  @media screen and (max-width: 960px) {
+    overflow:hidden;
+  }
 `;
 
 
@@ -63,7 +99,7 @@ export const NavItem = styled.li`
   border-bottom: 2px solid transparent;
 
   &:hover {
-    border-bottom: 2px solid #8B4513;
+    border-bottom: 2px solid #7b95f2;
   }
 
   @media screen and (max-width: 960px) {
@@ -102,7 +138,7 @@ export const NavLinks = styled(Link)`
     display: table;
 
     &:hover {
-      color: #4b59f7;
+      color: #E6C17B;
       transition: all 0.3s ease;
     }
   }
