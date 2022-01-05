@@ -4,11 +4,10 @@ import * as Styled from "./MainListSection.styled";
 import MainListFragment from "./MainListFragment";
 import { dummyData, currentLocation } from "./MainListDummyData";
 import { distanceCalc } from "../../utils/DistCalculator";
-import imgurl7 from '../../assets/images/png7.png';
-import imgurl8 from '../../assets/images/menu.png';
+import imgurl7 from "../../assets/images/png7.png";
+import imgurl8 from "../../assets/images/menu.png";
 
 const MainListSection = () => {
-  
   //! 서버 연동시 다음 주석해제
   // const [main, setMain] = useState([]);
 
@@ -26,19 +25,31 @@ const MainListSection = () => {
   //     });
   // }, []);
 
+  const { lat: currLat, long: currLong } = currentLocation;
 
-  const { lat: currLat, long: currLong} = currentLocation;
+  const listMap = dummyData.map(
+    ({ id, title, title_img, lat, long, likes_hash_tags }) => {
+      let dist =
+        Math.round(
+          (distanceCalc(currLat, currLong, lat, long) + Number.EPSILON) * 100
+        ) / 100;
+      return (
+        <MainListFragment
+          key={id}
+          id={id}
+          title={title}
+          title_img={title_img}
+          dist={dist}
+          likes_hash_tags={likes_hash_tags}
+        />
+      );
+    }
+  );
 
-  const listMap = dummyData.map(({id, title, title_img, lat, long, likes_hash_tags}) => {
-    let dist = Math.round((distanceCalc(currLat, currLong, lat, long) + Number.EPSILON) * 100) / 100;
-    return <MainListFragment key={id} id={id} title={title} title_img={title_img} dist={dist} likes_hash_tags={likes_hash_tags} />
-  })
-
-  
   return (
-    <IconContext.Provider>
-            <Styled.MainSectionSection>
-            <Styled.Img8 src={imgurl8} />
+    <IconContext.Provider value={{ color: "#472d0c" }}>
+      <Styled.MainSectionSection>
+        <Styled.Img8 src={imgurl8} />
         {listMap}
 
         {/* {main === null ? (
@@ -58,11 +69,10 @@ const MainListSection = () => {
             );
           })
         )} */}
-        
       </Styled.MainSectionSection>
     </IconContext.Provider>
   );
-}
+};
 export default MainListSection;
 
 // {!main ? (

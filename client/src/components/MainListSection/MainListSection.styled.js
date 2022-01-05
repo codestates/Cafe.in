@@ -44,7 +44,7 @@ export const MainSectionCard = styled(Link)`
   height: 480px;
   border-radius: 20x;
   margin: 30px;
-  animation zoomIn 2s ;
+  animation: zoomIn 2s;
   animation-duration: 1s;
 
   &:hover {

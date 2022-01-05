@@ -59,7 +59,7 @@ export const NavIcon2 = styled(FaRegMap)`
 `;
 
 
-export const NavLogo2 = styled(Link)`
+export const NavLogo2 = styled.div`
   text-shadow : 2px 2px 2px #CCCCCC;
   align-items: center;
   font-size: 2rem;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button } from "../../GlobalStyle";
 import { ReactComponentElement } from "react";
-import { MainInfoSection as Styled } from "./MainInfoSection.styled";
+import * as Styled from "./MainInfoSection.styled";
 import imgurl from '../../assets/images/png4.png';
 import imgurl2 from '../../assets/images/png1.png';
 import imgurl3 from '../../assets/images/png2.png';
