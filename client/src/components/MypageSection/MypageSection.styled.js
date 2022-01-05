@@ -110,6 +110,7 @@ export const MypageSec2 = styled.div`
   width: 100%;
   border: none;
   outline: none;
+  
 `;
 
 
@@ -133,6 +134,7 @@ export const NameIcon = styled(FaMugHot)`
   margin-right: 0.9em;
   margin-left:0.9em;
   fill: #E6C17B;
+
 `;
 
 
