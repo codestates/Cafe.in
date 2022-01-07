@@ -1,11 +1,6 @@
 import React from 'react';
 import {
   FaGithub,
-  FaFacebook,
-  FaInstagram,
-  FaYoutube,
-  FaTwitter,
-  FaLinkedin
 } from 'react-icons/fa';
 
 import * as S from './Footer.styled.js';
