@@ -16,8 +16,8 @@ export const ImageContainer = styled.img`
 export const TitleContainer = styled.div`
   position: absolute;
   font-size: 34px;
-  top: 30vh;
-  left: 20vh;
+  top: 27vh;
+  left: 8vh;
   z-index: 20;
   color: white;
   text-shadow: 0px 0px 5px #000;
