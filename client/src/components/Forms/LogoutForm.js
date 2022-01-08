@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import {  Button } from '../../GlobalStyle';
+import {  Button } from '../../assets/styles/GlobalStyle';
 import "./Form.css";
 
 const LogoutForm = ({ handleLogout, setShowModal }) => {

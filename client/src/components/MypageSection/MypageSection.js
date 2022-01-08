@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button } from "../../GlobalStyle";
+import { Container, Button } from "../../assets/styles/GlobalStyle";
 // import imgurl from "../../assets/images/profile.png";
 import { IconContext } from "react-icons/lib";
 import ModalContainer from "../ModalContainer/ModalContainer";

@@ -3,7 +3,7 @@ import { FaMugHot } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export const FooterContainer = styled.div`
-  background-color:#FDF5E6;
+  background-color:${ ({theme}) => theme.colors.mainBackground };
   padding: 4rem 0 2rem 0;
   display: flex;
   flex-direction: column;
@@ -102,11 +102,11 @@ export const FooterLinkItems = styled.div`
 
 export const FooterLinkTitle = styled.h2`
   margin-bottom: 16px;
-  color: #E6C17B;
+  color: ${ ({theme}) => theme.colors.cardBackground };
 `;
 
 export const FooterLink = styled(Link)`
-  color:  #7b95f2;
+  color:  ${ ({theme}) => theme.colors.buttonSecondary};
   font-weight:400;
   text-decoration: none;
   margin-bottom: 0.5rem;
@@ -136,7 +136,7 @@ export const SocialMediaWrap = styled.div`
 `;
 
 export const SocialLogo = styled(Link)`
-  color: #E6C17B;
+  color: ${ ({theme}) => theme.colors.cardBackground };
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
@@ -152,7 +152,7 @@ export const SocialIcon = styled(FaMugHot)`
 `;
 
 export const WebsiteRights = styled.small`
-  color: #E6C17B;
+  color: ${ ({theme}) => theme.colors.cardBackground };
   margin-bottom: 16px;
 `;
 
@@ -164,7 +164,7 @@ export const SocialIcons = styled.div`
 `;
 
 export const SocialIconLink = styled.a`
-  color:  #7b95f2;
+  color:  ${ ({theme}) => theme.colors.buttonSecondary};
   font-size: 24px;
 `;
 

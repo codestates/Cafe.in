@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../../GlobalStyle";
+import { Button } from "../../assets/styles/GlobalStyle";
 // import axios from "axios";
 import imgkakao from "../../assets/images/kakao-login.png";
 import imggoogle from "../../assets/images/google-login.png";

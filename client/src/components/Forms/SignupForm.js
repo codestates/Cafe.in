@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import axios from "axios";
 import "./Form.css";
-import {  Button } from '../../GlobalStyle';
+import {  Button } from '../../assets/styles/GlobalStyle';
 import { emailCheck, passwordCheck1, passwordCheck2 } from "../../utils/RegExTest.js";
 import imgkakao from '../../assets/images/kakao-login.png'
 import imggoogle from '../../assets/images/google-login.png'

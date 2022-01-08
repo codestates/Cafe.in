@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { FaMugHot , FaRegMap } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { Container } from '../../GlobalStyle';
+import { Container } from '../../assets/styles/GlobalStyle';
 
 export const Nav = styled.nav`
-  background: #FDF5E6;
+  background: ${ ({theme}) => theme.colors.mainBackground };
   height: 80px;
   display: flex;
   justify-content: center;
@@ -23,7 +23,7 @@ export const NavbarContainer = styled(Container)`
 `;
 
 export const NavLogo = styled(Link)`
-  color:  #7b95f2;
+  color:  ${ ({theme}) => theme.colors.buttonSecondary};
   font-weight: 700;
   text-shadow : 2px 2px 2px #CCCCCC;
   justify-self: flex-start;
@@ -36,7 +36,7 @@ export const NavLogo = styled(Link)`
 
 export const NavIcon = styled(FaMugHot)`
   margin-right: 0.3em;
-  fill : #E6C17B;
+  fill : ${ ({theme}) => theme.colors.cardBackground };
   animation: move2  1s infinite;
 
   @keyframes move2{
@@ -49,7 +49,7 @@ export const NavIcon = styled(FaMugHot)`
 
 
 export const NavIcon2 = styled(FaRegMap)`
-  fill : #E6C17B;
+  fill : ${ ({theme}) => theme.colors.cardBackground };
   width: 40px;
   align-items: center;
 
@@ -99,7 +99,7 @@ export const NavItem = styled.li`
   border-bottom: 2px solid transparent;
 
   &:hover {
-    border-bottom: 2px solid #7b95f2;
+    border-bottom: 2px solid ${ ({theme}) => theme.colors.buttonSecondary};
   }
 
   @media screen and (max-width: 960px) {
@@ -138,7 +138,7 @@ export const NavLinks = styled(Link)`
     display: table;
 
     &:hover {
-      color: #E6C17B;
+      color: ${ ({theme}) => theme.colors.cardBackground };
       transition: all 0.3s ease;
     }
   }

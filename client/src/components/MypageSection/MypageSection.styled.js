@@ -4,7 +4,7 @@ import { FaMugHot, FaUserEdit } from 'react-icons/fa';
 export const MypageSec = styled.div`
   color: #D7AC87;
   padding: 100px 0;
-  background: ${({ lightBg }) => ('#FDF5E6')};
+  background: ${ ({theme}) => theme.colors.mainBackground };
 `;
 
 export const MypageRow = styled.div`
@@ -66,7 +66,7 @@ export const Img = styled.img`
 `;
 
 export const Id = styled.div`
-  color: ${({ lightTopLine }) => (lightTopLine ?  '#E6C17B' : '#7b95f2')};
+  color: ${({ lightTopLine }) => (lightTopLine ?  (({theme}) => theme.colors.buttonPrimary) : (({theme}) => theme.colors.buttonSecondary) )};
   font-size: 18px;
   line-height: 1.8;
   font-weight: 600;
@@ -75,7 +75,7 @@ export const Id = styled.div`
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #7b95f2;
+      color: ${ ({theme}) => theme.colors.buttonSecondary};
       transition: 200ms ease-in;
   }
 `;
@@ -86,13 +86,13 @@ export const Nickname = styled.p`
   line-height: 1.8;
   font-weight: 600;
   padding-bottom: 30px;
-  color: ${({ lightTextDesc }) => (lightTextDesc ?  '#E6C17B' : '#7b95f2')};
+  color: ${({ lightTextDesc }) => (lightTextDesc ?  (({theme}) => theme.colors.buttonPrimary) : (({theme}) => theme.colors.buttonSecondary))};
 
   text-decoration: none;
   margin-bottom: 0.5rem;
 
   &:hover {
-      color: #7b95f2;
+      color: ${ ({theme}) => theme.colors.buttonSecondary};
       transition: 200ms ease-in;
   }
   `;
@@ -114,14 +114,14 @@ export const MypageSec2 = styled.div`
 
 
 export const Header = styled.div`
-  color :  #7b95f2;
+  color :  ${ ({theme}) => theme.colors.buttonSecondary};
   font-size:30px;
   font-weight: 600;
   margin-bottom:20px;
   text-align:center;
 
   &:hover {
-      color: #E6C17B;
+      color: ${ ({theme}) => theme.colors.buttonPrimary };
       transition: 200ms ease-in;
   }
 
@@ -131,7 +131,7 @@ export const NameIcon = styled(FaMugHot)`
 
   margin-right: 0.9em;
   margin-left:0.9em;
-  fill: #E6C17B;
+  fill: ${ ({theme}) => theme.colors.cardBackground };
 
 `;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './CafeHashtagMain.styled';
 import good from "../../assets/images/good.png"
 import bad from "../../assets/images/bad.png"
-import {  Button } from '../../GlobalStyle';
+import {  Button } from '../../assets/styles/GlobalStyle';
 
 const CafeHashtagMain = () => {
 

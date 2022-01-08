@@ -6,7 +6,7 @@ export const CafePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2em 5em 0em;
-  background: #FDF5E6;
+  background: ${ ({theme}) => theme.colors.mainBackground };
 `;
 
 export const Cafe1ImageWrapper = styled.div`
@@ -32,9 +32,7 @@ export const Cafe3HashtagWrapper = styled.div`
 
 `
 export const Cafe4MapWrapper = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
+  height: 30vh;
 
 `
 
