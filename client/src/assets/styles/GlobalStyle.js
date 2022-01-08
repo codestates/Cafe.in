@@ -29,10 +29,10 @@ export const Button = styled.button`
   margin: 0px 10px;
   border-radius: 40px;
   box-shadow: 0 0px 10px #aaaaaa;
-  background: ${({ primary }) => (primary ? ' #7b95f2' : '#E6C17B')};
+  background: ${ ({ primary }) => (primary ? (({theme}) => theme.colors.buttonSecondary) : (({theme}) => theme.colors.buttonPrimary) ) };
   white-space: nowrap;
   padding: ${({ big }) => (big ? '12px 64px' : '10px 20px')};
-  color: #fff;
+  color: ${ ({theme}) => theme.colors.buttonFontColor};
   font-size: ${({ fontBig }) => (fontBig ? '20px' : '16px')};
   font-weight:480;
   outline: none;
@@ -42,7 +42,7 @@ export const Button = styled.button`
   &:hover {
     transition: all 0.3s ease-out;
     background: #fff;
-    background-color: ${({ primary }) => (primary ? '#E6C17B' : ' #7b95f2')};
+    background-color: ${({ primary }) => (primary ? (({theme}) => theme.colors.buttonPrimary) :  (({theme}) => theme.colors.buttonSecondary) )};
   }
 
   @media screen and (max-width: 960px) {

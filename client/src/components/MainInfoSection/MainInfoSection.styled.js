@@ -7,10 +7,9 @@ export const fadeIn = keyframes`from{
   }`;
 
 export const InfoSec = styled.div`
-  color: #fdf5e6;
   padding: 100px;
   padding-bottom: 200px;
-  background: ${({ lightBg }) => "#FDF5E6"};
+  background: ${ ({theme}) => theme.colors.mainBackground };
 `;
 
 export const InfoRow = styled.div`
@@ -224,7 +223,7 @@ export const Cup = styled.div`
 
   width : 270px;
   height : 240px;
-  border : 5px solid #FDF5E6;
+  border : 5px solid ${ ({theme}) => theme.colors.mainBackground };
   border-radius: 4% 4% 40% 40%;
   position: relative;
   background-image: url(${coffee});
@@ -262,7 +261,7 @@ export const Heading = styled.h1`
   text-shadow: 1px 1px 1px #ccc;
   line-height: 1.1;
   font-weight: 600;
-  color: ${({ lightText }) => (lightText ? " #7b95f2" : "#1c2237")};
+  color: ${({ lightText }) => (lightText ? (({theme}) => theme.colors.buttonSecondary) : "#1c2237")};
 `;
 
 export const Subtitle = styled.p`

@@ -20,7 +20,7 @@ export const CafeHashtagContainer = styled.div`
 export const CafeHashtagLikeWrapper  = styled.div`
 height: 490px;
 width: 49%;
-background: #FDF5E6;
+background: ${ ({theme}) => theme.colors.mainBackground };
 border-radius:40px;
 box-shadow: 0 0px 10px #aaaaaa;
 align-items:center;
@@ -115,7 +115,7 @@ export const CafeRank  = styled.p`
  font-size: 32px;
  white-space:nowrap;
  margin-top:-8px;
- color: #E6C17B;
+ color: ${ ({theme}) => theme.colors.cardBackground };
  margin : 4px 240px 0px 180px;
  text-align:left;
  text-shadow: 0px 1px #aaaaaa;
@@ -190,10 +190,10 @@ height: 43%;
 font-weight: 600;
 text-align:center;
 color: ${"palevioletred"};
-background: #FDF5E6;
+background: ${ ({theme}) => theme.colors.mainBackground };
 opacity: .9;
 box-shadow: 1px #cccccc;
-border: 10px solid #E6C17B;
+border: 10px solid ${ ({theme}) => theme.colors.cardBackground };
 outline: none;
 
 
@@ -207,11 +207,11 @@ export const Input2 = styled.input`
 height: 43%;
 font-weight: 600;
 text-align:center;
-color: #7b95f2;
-background: #FDF5E6;
+color: ${ ({theme}) => theme.colors.buttonSecondary};
+background: ${ ({theme}) => theme.colors.mainBackground };
 opacity: .9;
 box-shadow: 1px #cccccc;
-border: 10px solid #E6C17B;
+border: 10px solid ${ ({theme}) => theme.colors.cardBackground };
 outline: none;
 
 

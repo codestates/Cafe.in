@@ -9,13 +9,12 @@ form > div > span:first-child {
   padding: 0 1ch;
 }
 
-.header{
-  color:  #E6C17B;
-  text-shadow : 1px 1px 1px #CCCCCC;
+.header {
+  color: #e6c17b;
+  text-shadow: 1px 1px 1px #cccccc;
   font-size: 1.8rem;
   align-items: center;
   text-align: center;
-
 }
 
 input[type="text"],
@@ -24,7 +23,7 @@ input[type="email"],
 input[type="password"] {
   border-radius: 17px;
   border-color: #6776ed;
-  border: 3px solid #E6C17B;
+  border: 3px solid #e6c17b;
   outline: none;
   width: 300px;
   font-size: 0.9rem;
@@ -35,44 +34,40 @@ input[type="password"] {
 .btn {
   font-size: 1rem;
   padding: 0.5rem;
-  text-shadow: #CCCCCC;
-
+  text-shadow: #cccccc;
 }
 
 .btn-kakao-login,
 .btn-google-login {
-  filter: drop-shadow( 0px 0px 4px #CCCCCC);
+  filter: drop-shadow(0px 0px 4px #cccccc);
   margin: 14px 40px 0px 40px;
 }
 
-.verify{
-  color:  #E6C17B;
-  text-shadow : 1px 1px 1px #CCCCCC;
+.verify {
+  color: #e6c17b;
+  text-shadow: 1px 1px 1px #cccccc;
   font-size: 1.8rem;
   align-items: center;
   text-align: center;
   margin-bottom: 10px;
-  
 }
 
-.log-out{
-  color:  #E6C17B;
-  text-shadow : 1px 1px 1px #CCCCCC;
+.log-out {
+  color: #e6c17b;
+  text-shadow: 1px 1px 1px #cccccc;
   font-size: 1.4rem;
   align-items: center;
   text-align: center;
   margin-top: -10px;
   margin-bottom: 20px;
-
 }
 
 .confirm {
   color: #ff7383;
-  text-shadow : 1px 1px 1px #CCCCCC;
+  text-shadow: 1px 1px 1px #cccccc;
   font-size: 1.4rem;
   align-items: center;
   text-align: center;
-
 }
 
 .forget-pw {
@@ -97,7 +92,6 @@ input[type="password"] {
   margin-bottom: 20px;
   text-align: left;
 }
-
 
 .error-message {
   /* color: #721c24; */

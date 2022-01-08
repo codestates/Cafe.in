@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import GlobalStyle from "./GlobalStyle";
+import React, { useState, useEffect } from "react";
+import GlobalStyle from "./assets/styles/GlobalStyle";
 import ScrollToTop from "./components/ScrollToTop";
 import { Navbar, Footer } from "./layouts";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import MyPage from "./pages/Mypage/Mypage";
 import CafeInfo from "./pages/CafeInfo/CafeInfo";
+import { ThemeProvider } from "styled-components";
+import { theme, darkTheme } from "./assets/styles/theme";
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -21,8 +23,19 @@ const App = () => {
     // console.log("Signup Success", signupInfo);
   };
 
+  // 다음 6줄은 darkMode toggle을 위한 코드
+  const [mode, setMode] = useState(theme);
+  useEffect(() => {
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
+        setMode(event.matches ? darkTheme : theme);
+      });
+  }, []);
+
   return (
-    <>
+    // darkMode 필요시 아래 theme={theme}을 theme={mode}로 바꾼다.
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <ScrollToTop />
 
@@ -43,7 +56,7 @@ const App = () => {
       </Routes>
 
       <Footer />
-    </>
+    </ThemeProvider>
   );
 };
 

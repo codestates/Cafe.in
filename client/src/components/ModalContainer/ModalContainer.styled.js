@@ -35,7 +35,7 @@ export const ModalLogo = styled(Link)`
 export const ModalIcon = styled(FaMugHot)`
   /* margin-right: 0.9em; */
   margin: 0 0.5em 0 0;
-  fill : #E6C17B;
+  fill : ${ ({theme}) => theme.colors.cardBackground };
   animation: move2  1s infinite;
 
   @keyframes move2{
@@ -51,7 +51,7 @@ export const ModalWrapper = styled.div`
   height: 530px; */
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.6);
   /* background: #fff; */
-  background: #FDF5E6;
+  background: ${ ({theme}) => theme.colors.mainBackground };
   color: #000;
   display: flex;
   flex-direction: column;
@@ -87,7 +87,7 @@ export const ModalContent = styled.div`
   }
   button {
     padding: 10px 24px;
-    background: #E6C17B;
+    background: ${ ({theme}) => theme.colors.cardBackground };
     color: #fff;
     border: none;
   }
@@ -99,7 +99,7 @@ export const CloseModalButton = styled(MdClose)`
   top: 20px;
   right: 20px;
   width: 32px;
-  fill: #E6C17B;
+  fill: ${ ({theme}) => theme.colors.cardBackground };
   height: 32px;
   padding: 0;
   z-index: 10;

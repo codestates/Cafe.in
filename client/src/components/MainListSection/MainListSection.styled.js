@@ -5,7 +5,7 @@ export const MainSectionSection = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
   grid-gap: 5px;
-  background: #FDF5E6;
+  background: ${ ({theme}) => theme.colors.mainBackground };
 `;
 
 export const MainSectionHeading = styled.h1`
@@ -36,7 +36,7 @@ export const MainSectionContainer = styled.div`
 `;
 
 export const MainSectionCard = styled(Link)`
-  background: #E6C17B;
+  background: ${ ({theme}) => theme.colors.cardBackground };
   box-shadow: 0 6px 20px rgba(56, 125, 255, 0.2);
   text-decoration: none;
   border-radius: 20px;

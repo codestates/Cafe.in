@@ -13,30 +13,30 @@ const CafeInfo = () => {
   const { id } = useParams();
   const search = (num) => dummyData.find((key) => key.id === num);
   const cafe = search(Number(id));
-  const img = "https://images.squarespace-cdn.com/content/v1/5bfdafa63917eec8bc387b85/1560564506941-8HTL1GRDEX0UKW0964YT/APC_0050.JPG?format=2500w";
-  const dummyinfo = "주소: 부산시 해운대 수심 200미터, 전화번호: 032-8282-8282, 영업시간: 폐업중, 주차: 트럭도 주차 쌉가능"
-  
-  return (
+  const img =
+    "https://images.squarespace-cdn.com/content/v1/5bfdafa63917eec8bc387b85/1560564506941-8HTL1GRDEX0UKW0964YT/APC_0050.JPG?format=2500w";
+  const dummyinfo =
+    "주소: 부산시 해운대 수심 200미터, 전화번호: 032-8282-8282, 영업시간: 폐업중, 주차: 트럭도 주차 쌉가능";
 
+  return (
     <>
       <S.Cafe1ImageWrapper>
         <Cafe1ImageSection img={img} title={cafe.title} />
       </S.Cafe1ImageWrapper>
 
-  <S.CafePageContainer>
-      <S.Cafe2InfoWrapper>
-        <Cafe2InfoSection data={dummyinfo} />
-      </S.Cafe2InfoWrapper>
+      <S.CafePageContainer>
+        <S.Cafe2InfoWrapper>
+          <Cafe2InfoSection data={dummyinfo} />
+        </S.Cafe2InfoWrapper>
 
-      <S.Cafe3HashtagWrapper>
-        <Cafe3HashtagSection />
-      </S.Cafe3HashtagWrapper>
+        <S.Cafe3HashtagWrapper>
+          <Cafe3HashtagSection />
+        </S.Cafe3HashtagWrapper>
 
-      <S.Cafe4MapWrapper>
-        <Cafe4MapSection />
-      </S.Cafe4MapWrapper>
-
-    </S.CafePageContainer>
+        <S.Cafe4MapWrapper>
+          {/* <Cafe4MapSection lat={cafe.lat} lng={cafe.long} /> */}
+        </S.Cafe4MapWrapper>
+      </S.CafePageContainer>
     </>
   );
 };

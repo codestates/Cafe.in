@@ -75,7 +75,7 @@ export const InputText = styled.input`
   outline: none;
   margin: 4px 0px 0px 0px;
   padding: 0px 0px;
-  border: 3px solid #E6C17B;
+  border: 3px solid ${ ({theme}) => theme.colors.cardBackground };
   font-size: 17px;
   border-radius: 20px;
   height: 40px;
