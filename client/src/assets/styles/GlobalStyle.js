@@ -47,7 +47,8 @@ export const Button = styled.button`
 
   @media screen and (max-width: 960px) {
     width: 100%;
-    width : 80px;
+    width : 140px;
+    margin-top:10px;
     text-align: center;
     vertical-align:center;
   }

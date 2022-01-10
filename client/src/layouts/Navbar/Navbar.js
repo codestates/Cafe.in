@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
 import { Button } from "../../assets/styles/GlobalStyle";
 import * as N from "./Navbar.styled";
@@ -36,6 +37,26 @@ const Navbar = ({
     setShowModal((showModal) => !showModal);
   };
 
+
+  const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  };
+
+  useEffect(() => {
+    showButton();
+  }, []);
+
+  window.addEventListener('resize', showButton);
 
   useEffect(() => {
     window.navigator.geolocation.getCurrentPosition(
@@ -78,19 +99,26 @@ const Navbar = ({
   // 로그인 상태 아닐 때 보이는 우측 버튼 두 개
   const notLoginButton = (
     <>
+    <N.NavMenu onClick={handleClick} click={click}>
       <N.NavItem>
         <N.NavBtnLink>
-          <Button onClick={openLogin}>로그인</Button>
+          <Button onClick={openLogin} >로그인</Button>
         </N.NavBtnLink>
       </N.NavItem>
-
       <N.NavItemBtn>
-        <N.NavBtnLink>
-          <Button primary onClick={openSignup}>
-            회원가입
-          </Button>
-        </N.NavBtnLink>
+          {button ? (
+                  <N.NavBtnLink>
+                  <Button onClick={openSignup} >회원가입</Button>
+                  </N.NavBtnLink>
+                ) : (
+                  <N.NavBtnLink >
+                    <Button onClick={openSignup} primary >
+                    회원가입
+                    </Button>
+                </N.NavBtnLink>
+                )}
       </N.NavItemBtn>
+    </N.NavMenu>
     </>
   );
 
@@ -101,7 +129,7 @@ const Navbar = ({
       <D.MapButtonLink>
         <D.DropDownDiv>
           <D.DropDownSpan>현재 위치</D.DropDownSpan>
-          <D.InputText value={currAddr} disabled />
+          <D.InputText   value={currAddr} disabled />
         </D.DropDownDiv>
       </D.MapButtonLink>
     </>
@@ -138,24 +166,34 @@ const Navbar = ({
         </N.NavLinks>
       </N.NavItem>
 
-      <N.NavItemBtn>
-        <N.NavBtnLink>
-          <Button onClick={openLogout}>로그아웃</Button>
-        </N.NavBtnLink>
+ 
+        <N.NavItemBtn>
+          {button ? (
+                  <N.NavBtnLink>
+                  <Button onClick={openLogout}>로그아웃</Button>
+                </N.NavBtnLink>
+                ) : (
+                  <N.NavBtnLink >
+                   <Button onClick={openLogout} primary>로그아웃</Button>
+                </N.NavBtnLink>
+                )}
       </N.NavItemBtn>
     </>
   );
 
   return (
     <>
-      <IconContext.Provider value={{ color: "#472d0c" }}>
+      <IconContext.Provider value={{ color: "#7B95F2" }}>
         <N.Nav>
           <N.NavbarContainer>
             <D.SimpleDiv>
-              <N.NavLogo to="/">
+              <N.NavLogo to="/#" onClick={closeMobileMenu}>
                 <N.NavIcon />
                 Cafe In
               </N.NavLogo>
+              <N.MobileIcon onClick={handleClick}>
+               {click ? <FaTimes /> : <FaBars />}
+             </N.MobileIcon>
               {displayCurrentPosition}
               {/* <N.NavLogo2>
                 <N.NavIcon2 />
@@ -163,7 +201,7 @@ const Navbar = ({
               {/* {dropDownBar} */}
             </D.SimpleDiv>
 
-            <N.NavMenu>{isLogin ? loginButton : notLoginButton}</N.NavMenu>
+            <N.NavMenu onClick={handleClick} click={click} >{isLogin ? loginButton : notLoginButton}</N.NavMenu>
           </N.NavbarContainer>
 
           <ModalContainer
