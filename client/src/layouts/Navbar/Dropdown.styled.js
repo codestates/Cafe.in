@@ -39,7 +39,7 @@ export const MapButtonLink = styled.a.attrs({
   display: flex;
   height: 100%;
   margin: auto;
-  margin-left: 4em;
+  margin-left: 3.3em;
   position: relative;
   color: #000;
   :hover ${MainDropDown} {   // 이것때문에 함수 놓는 순서가 중요. MainDropDown이 위에 있어야 함.
@@ -50,10 +50,6 @@ export const MapButtonLink = styled.a.attrs({
   }
 `
 
-export const MapIcon = styled(FaRegMap)`
-  margin-right: 0.3em;
-  font-size: 2.2rem;
-`;
 
 export const DropDownDiv = styled.div`
   display: flex;
@@ -69,7 +65,7 @@ export const DropDownSpan = styled.span`
 `;
 
 export const InputText = styled.input`
-  width: 180px;
+  width: 140px;
   text-decoration: none;
   text-align: center;
   outline: none;
