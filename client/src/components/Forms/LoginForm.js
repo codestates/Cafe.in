@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Button } from "../../assets/styles/GlobalStyle";
-// import axios from "axios";
+import axios from "axios";
 import imgkakao from "../../assets/images/kakao-login.png";
 import imggoogle from "../../assets/images/google-login.png";
 import "./Form.css";
 import { emailCheck, passwordCheck1 } from "../../utils/RegExTest.js";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { loginAction } from "../../redux/reducer/user";
 
-const LoginForm = ({ handleLogin }) => {
+const LoginForm = () => {
   const [loginInfo, setLoginInfo] = useState({
-    id: 0,
     email: "yar0606@naver.com",
-    password: "qwe!1234",
-    nickname: "MarvelFan",
+    password: "qwe!12345",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -19,6 +20,10 @@ const LoginForm = ({ handleLogin }) => {
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
+
+  let navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const handleLoginInfo = () => {
     const { email, password } = loginInfo;
@@ -40,33 +45,33 @@ const LoginForm = ({ handleLogin }) => {
       );
       return;
     }
+    axios
+      .post(
+        "http://localhost:8080/users/sign-in",
+        {
+          user_email: loginInfo.email,
+          password: loginInfo.password,
+        },
+        {
+          "Content-Type": "application/json",
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        dispatch(loginAction(res.data.data.payload));
+        // navigate("/mypage");
+        //어디로 가야 하오
+      });
+    //handleLogin(loginInfo);
+  };
+  const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_ID}&response_type=token&redirect_uri=http://localhost:3000&scope=openid%20profile%20email`;
+  const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.REACT_APP_KAKAO_ID}&redirect_uri=http://localhost:3000`;
 
-    //! 서버 연동시 아래는 주석 처리
-    handleLogin(loginInfo);
-
-    //! 아래 주석은 지우지 마세요 => 서버 연동시 구현
-    // axios
-    //   .post(
-    //     "http://localhost:8080/users/sign-in",
-    //     { user_email: email, password: password },
-    //     { "Content-Type": "application/json", withCredentials: true }
-    //   )
-    //   .then((res) => {
-    //     axios
-    //       .get("http://localhost:8080/users/mypage/", { withCredentials: true })
-    //       .then((res) => {
-    //         const { id, user_email, password, nickname } = res.data.data;
-    //         const payload = {
-    //           id: id,
-    //           email: user_email,
-    //           password: password,
-    //           nickname: nickname,
-    //         };
-    //         handleLogin(payload);
-    //       })
-    //       .catch((err) => console.log(err.response.data.message));
-    //   })
-    //   .catch((err) => console.log(err.response.data.message));
+  const googleLoginHandler = () => {
+    window.location.assign(googleUrl);
+  };
+  const kakaoLoginHandler = () => {
+    window.location.assign(kakaoUrl);
   };
 
   return (
@@ -78,7 +83,7 @@ const LoginForm = ({ handleLogin }) => {
             <input
               type="text"
               onChange={handleInputValue("email")}
-              placeholder='아이디를 입력하세요.'
+              placeholder="아이디를 입력하세요."
               value={loginInfo.email}
             />
           </div>
@@ -87,7 +92,7 @@ const LoginForm = ({ handleLogin }) => {
             <input
               type="password"
               onChange={handleInputValue("password")}
-              placeholder='비밀번호를 입력하세요.'
+              placeholder="비밀번호를 입력하세요."
               value={loginInfo.password}
             />
           </div>
@@ -111,7 +116,7 @@ const LoginForm = ({ handleLogin }) => {
             </a>
           </div> */}
           <div className="box_btn block">
-            <a href="/">
+            <div onClick={kakaoLoginHandler}>
               <img
                 className="btn-kakao-login"
                 src={imgkakao}
@@ -119,9 +124,9 @@ const LoginForm = ({ handleLogin }) => {
                 align="center"
                 alt="kakao-logo"
               ></img>
-            </a>
+            </div>
             <span> </span>
-            <a href="/">
+            <div onClick={googleLoginHandler} style={{ cursor: "pointer" }}>
               <img
                 className="btn-google-login"
                 src={imggoogle}
@@ -129,7 +134,7 @@ const LoginForm = ({ handleLogin }) => {
                 align="center"
                 alt="google-logo"
               ></img>
-            </a>
+            </div>
           </div>
         </form>
       </center>

@@ -6,7 +6,7 @@ import { Button } from "../../assets/styles/GlobalStyle";
 import CafeHashHalfSection from "./CafeHashHalfSection";
 import { dummyGoodHashtags, dummyBadHashtags } from "./DummyDataHashtag";
 
-const CafeHashtagMain = () => {
+const CafeHashtagMain = ({ positive, negative, userPick }) => {
   return (
     <S.CafeHashtagContainer>
       <CafeHashHalfSection
@@ -14,6 +14,8 @@ const CafeHashtagMain = () => {
         titleImg={good}
         hashtagBg="#F2ACAC"
         hashtagArray={dummyGoodHashtags}
+        positive={positive}
+        userPick={userPick}
       />
 
       <CafeHashHalfSection
@@ -21,6 +23,8 @@ const CafeHashtagMain = () => {
         titleImg={bad}
         hashtagBg="#77B9F2"
         hashtagArray={dummyBadHashtags}
+        negative={negative}
+        userPick={userPick}
       />
     </S.CafeHashtagContainer>
   );

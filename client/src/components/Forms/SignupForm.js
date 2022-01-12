@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 // import axios from "axios";
 import "./Form.css";
-import {  Button } from '../../assets/styles/GlobalStyle';
-import { emailCheck, passwordCheck1, passwordCheck2 } from "../../utils/RegExTest.js";
-import imgkakao from '../../assets/images/kakao-login.png'
-import imggoogle from '../../assets/images/google-login.png'
+import { Button } from "../../assets/styles/GlobalStyle";
+import {
+  emailCheck,
+  passwordCheck1,
+  passwordCheck2,
+} from "../../utils/RegExTest.js";
+import imgkakao from "../../assets/images/kakao-login.png";
+import imggoogle from "../../assets/images/google-login.png";
 
 const SignupForm = ({ handleSignup }) => {
   const [signupInfo, setSignupInfo] = useState({
@@ -22,7 +26,7 @@ const SignupForm = ({ handleSignup }) => {
 
   const handleSignupInfo = () => {
     const { email, nickname, password, confirmPwd } = signupInfo;
-   
+
     if (!email) {
       setErrorMessage("이메일을 입력하세요");
       return;
@@ -36,10 +40,12 @@ const SignupForm = ({ handleSignup }) => {
       setErrorMessage("패스워드를 입력하세요");
       return;
     } else if (!passwordCheck1(password)) {
-      setErrorMessage("패스워드는 영문/숫자/특수문자 혼합 8~16글자 사이입니다.");
+      setErrorMessage(
+        "패스워드는 영문/숫자/특수문자 혼합 8~16글자 사이입니다."
+      );
       return;
-    } else if(passwordCheck2(password)) {
-      setErrorMessage("연속된 영문/숫자 3글자 이상 불가")
+    } else if (passwordCheck2(password)) {
+      setErrorMessage("연속된 영문/숫자 3글자 이상 불가");
       return;
     } else if (password !== confirmPwd) {
       setErrorMessage("패스워드가 일치하지 않습니다");
@@ -47,7 +53,7 @@ const SignupForm = ({ handleSignup }) => {
     }
 
     //! 서버 연동시 다음 주석 처리
-    handleSignup(signupInfo)
+    handleSignup(signupInfo);
 
     //! 서버연동시 다음 주석 해제
     // axios.post(
@@ -68,30 +74,39 @@ const SignupForm = ({ handleSignup }) => {
         <h2 className="verify">회원가입</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <div>
-            <input type="text"
-            placeholder='이메일을 입력해주세요'
-            onChange={handleInputValue("email")} />
+            <input
+              type="text"
+              placeholder="이메일을 입력해주세요"
+              onChange={handleInputValue("email")}
+            />
           </div>
           <div>
-            <input type="text"
-                placeholder='별명을 입력해주세요'
-                onChange={handleInputValue("nickname")} />
+            <input
+              type="text"
+              placeholder="별명을 입력해주세요"
+              onChange={handleInputValue("nickname")}
+            />
           </div>
           <div>
-            <input type="password" 
-                 placeholder='비밀번호를 입력해주세요'
-                 onChange={handleInputValue("password")} />
+            <input
+              type="password"
+              placeholder="비밀번호를 입력해주세요"
+              onChange={handleInputValue("password")}
+            />
           </div>
           <div>
-            <input type="password" 
-            placeholder='비밀번호 재입력'
-            onChange={handleInputValue("confirmPwd")} />
+            <input
+              type="password"
+              placeholder="비밀번호 재입력"
+              onChange={handleInputValue("confirmPwd")}
+            />
           </div>
 
           <div className="error-message">{errorMessage}</div>
 
           <div />
-          <Button primary
+          <Button
+            primary
             className="btn btn-login"
             type="button"
             onClick={handleSignupInfo}
@@ -100,13 +115,24 @@ const SignupForm = ({ handleSignup }) => {
           </Button>
           <div className="box_btn block">
             <a href="/">
-              <img className="btn-kakao-login" src={imgkakao} width="60" align="center" alt="kakao-logo"></img>
+              <img
+                className="btn-kakao-login"
+                src={imgkakao}
+                width="60"
+                align="center"
+                alt="kakao-logo"
+              ></img>
             </a>
-             <span> </span>
+            <span> </span>
             <a href="/">
-               <img className="btn-google-login" src={imggoogle} width="60" align="center" alt="google-logo"></img>
+              <img
+                className="btn-google-login"
+                src={imggoogle}
+                width="60"
+                align="center"
+                alt="google-logo"
+              ></img>
             </a>
-
           </div>
         </form>
       </center>

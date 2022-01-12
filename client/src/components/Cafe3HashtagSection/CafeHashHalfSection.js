@@ -5,7 +5,15 @@ import HashtagInputSection from "./HashtagInputSection";
 import { options } from "./DummyDataHashtag";
 import heartIcon from "../../assets/images/heart-black-empty.svg";
 
-const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
+const HashtagHalfSection = ({
+  type,
+  titleImg,
+  hashtagBg,
+  hashtagArray,
+  positive,
+  negative,
+  userPick,
+}) => {
   // 해시태그 list wrapper에 쓸 className 등등 state들
   const [divSize, setDivSize] = useState("short-div");
   const [showMoreText, setShowMoreText] = useState("해시태그 더보기 >");
@@ -29,24 +37,60 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
   };
 
   // 해시태그 길이가 3보다 기냐?
-  let hashtagsLength = hashtagArray.length;
+  let hashtagsLength = positive && positive.length;
   let isLongerThan3 = hashtagsLength > 3;
 
+  const userClickedHeart = userPick && userPick.map((fill) => fill.like_id);
   // 해시태그 List rendering
-  const hashtagListMap = hashtagArray
-    .slice(0, sliceIndex)
-    .map((hashtagElement, index) => {
+  const hashtagListMap =
+    type === "good" &&
+    positive &&
+    positive.map((hashtagElement, index) => {
       return (
         <S.CafeRank key={index}>
           {index + 1}.{" "}
           <S.CafeRankBox bgColor={hashtagBg}>
-            {hashtagElement.category + " " + hashtagElement.name}
+            #{hashtagElement.category + " " + hashtagElement.name}
+          </S.CafeRankBox>
+          <S.CafeRankCounts>{hashtagElement.counts}</S.CafeRankCounts>
+          {userClickedHeart &&
+          userClickedHeart.findIndex((res) => res === hashtagElement.id) === -1
+            ? "♡"
+            : "♥"}
+          {/* <img src={heartIcon} alt="heart-icon" /> */}
+        </S.CafeRank>
+      );
+    });
+
+  const hashtagListMap2 =
+    type === "bad" &&
+    negative &&
+    negative.map((hashtagElement, index) => {
+      return (
+        <S.CafeRank key={index}>
+          {index + 1}.{" "}
+          <S.CafeRankBox bgColor={hashtagBg}>
+            #{hashtagElement.category + " " + hashtagElement.name}
           </S.CafeRankBox>
           <S.CafeRankCounts>{hashtagElement.counts}</S.CafeRankCounts>
           <img src={heartIcon} alt="heart-icon" />
         </S.CafeRank>
       );
     });
+  // const hashtagListMap = hashtagArray
+  //   .slice(0, sliceIndex)
+  //   .map((hashtagElement, index) => {
+  //     return (
+  //       <S.CafeRank key={index}>
+  //         {index + 1}.{" "}
+  //         <S.CafeRankBox bgColor={hashtagBg}>
+  //           {hashtagElement.category + " " + hashtagElement.name}
+  //         </S.CafeRankBox>
+  //         <S.CafeRankCounts>{hashtagElement.counts}</S.CafeRankCounts>
+  //         <img src={heartIcon} alt="heart-icon" />
+  //       </S.CafeRank>
+  //     );
+  //   });
 
   // Section Wrapper className 바꾸기용 + 텍스트 변경용
   const makeDivLonger = () => {
@@ -60,7 +104,7 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
       setSliceIndex(3);
     }
   };
-
+  console.log(hashtagListMap && hashtagListMap.length);
   return (
     <S.CafeHashtagSectionWrapper>
       <S.CafeImg src={titleImg} />
@@ -74,7 +118,22 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
       </S.CafemoreWrapper>
 
       <S.CafeListWrapper className={divSize}>
-        {hashtagListMap}
+        {hashtagListMap && hashtagListMap.length === 0 ? (
+          <>
+            <h4>아직 태그가 없어요!</h4>
+            <p>가게에 대한 첫 태그를 달아보세요!</p>
+          </>
+        ) : (
+          hashtagListMap
+        )}
+        {hashtagListMap2 && hashtagListMap2.length === 0 ? (
+          <>
+            <h4>아직 태그가 없어요!</h4>
+            <p>가게에 대한 첫 태그를 달아보세요!</p>
+          </>
+        ) : (
+          hashtagListMap2
+        )}
       </S.CafeListWrapper>
 
       <S.HashtagInputWrapper>

@@ -8,8 +8,39 @@ import MyPage from "./pages/Mypage/Mypage";
 import CafeInfo from "./pages/CafeInfo/CafeInfo";
 import { ThemeProvider } from "styled-components";
 import { theme, darkTheme } from "./assets/styles/theme";
+import { useSelector, useDispatch } from "react-redux";
+import { userLocationAction } from "./redux/reducer/user";
+import axios from "axios";
+import Loading from "./pages/Loading";
 
 const App = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.userReducer);
+  const { isLoggedIn, userLatLong } = state;
+
+  const [location, setLocation] = useState("");
+
+  useEffect(() => {
+    // navigator.geolocation.getCurrentPosition((res) =>
+    //   dispatch(userLocationAction(res.coords.latitude, res.coords.longitude))
+    // );
+    console.log("네비요청감");
+  }, []);
+
+  useEffect(() => {
+    // location &&
+    //   axios
+    //     .get(
+    //       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${me.lat},${me.long}&key=${process.env.REACT_APP_API_KEY}`,
+    //       { withCredentials: false }
+    //     )
+    //     .then((res) =>
+    //       setLocation(res.data.results[1].address_components[2].long_name)
+    //     );
+    setLocation("대치동");
+    console.log("좌표요청감");
+  }, []);
+
   const [isLogin, setIsLogin] = useState(false);
   const [loginInfo, setLoginInfo] = useState(null);
 
@@ -47,12 +78,13 @@ const App = () => {
       />
 
       <Routes>
-        <Route path="/" element={<MainPage isLogin={isLogin} />} />
+        <Route path="/" element={<MainPage location={location} />} />
         <Route
           path="mypage"
           element={<MyPage loginInfo={loginInfo} setIsLogin={setIsLogin} />}
         />
         <Route path="cafeinfo/:id" element={<CafeInfo />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
 
       <Footer />
