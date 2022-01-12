@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { showModal } from "../../store/actions";
 // import axios from "axios";
 import "./Form.css";
 import {  Button } from '../../assets/styles/GlobalStyle';
@@ -6,7 +8,11 @@ import { emailCheck, passwordCheck1, passwordCheck2 } from "../../utils/RegExTes
 import imgkakao from '../../assets/images/kakao-login.png'
 import imggoogle from '../../assets/images/google-login.png'
 
-const SignupForm = ({ handleSignup }) => {
+const SignupForm = () => {
+
+  const isShowModal = useSelector(state => state.showModal.isShowModal);
+  const dispatch = useDispatch();
+
   const [signupInfo, setSignupInfo] = useState({
     email: "",
     nickname: "",
@@ -19,6 +25,11 @@ const SignupForm = ({ handleSignup }) => {
   const handleInputValue = (key) => (e) => {
     setSignupInfo({ ...signupInfo, [key]: e.target.value });
   };
+
+  // 회원가입 성공시
+  const handleSignupSuccess = () => {
+    dispatch(showModal(false));
+  }
 
   const handleSignupInfo = () => {
     const { email, nickname, password, confirmPwd } = signupInfo;
@@ -46,8 +57,8 @@ const SignupForm = ({ handleSignup }) => {
       return;
     }
 
-    //! 서버 연동시 다음 주석 처리
-    handleSignup(signupInfo)
+    //! 서버 연동시 다음 주석 처리?
+    handleSignupSuccess();
 
     //! 서버연동시 다음 주석 해제
     // axios.post(
@@ -57,7 +68,7 @@ const SignupForm = ({ handleSignup }) => {
     // )
     //   .then((res) => {
     //     setSignupInfo(res.data.data)
-    //     handleSignup(signupInfo)
+    //     handleSignupSuccess()
     //   })
     //   .catch(err => console.log(err.response.data.message));
   };

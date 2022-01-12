@@ -6,15 +6,20 @@ import { Button } from "../../assets/styles/GlobalStyle";
 import * as N from "./Navbar.styled";
 import * as D from "./Dropdown.styled";
 import ModalContainer from "../../components/ModalContainer/ModalContainer";
+
 import DropDownMenu from "./DropdownMenu";
 import { regionData } from "./DropDownDummyData";
+import { useSelector, useDispatch } from "react-redux";
+import { clickModalType, showModal } from "../../store/actions";
+
 
 const Navbar = ({
   handleLoginSuccess,
-  handleSignupSuccess,
-  isLogin,
-  setIsLogin,
 }) => {
+  // Redux
+  const isLogin = useSelector(state => state.isLogin.isLogin);
+  const isShowModal = useSelector(state => state.showModal.isShowModal);
+  const dispatch = useDispatch();
   // 지역 데이터
   const [currLoc, setCurrLoc] = useState("신논현역");
   // 맵 아이콘 클릭시 현재 위치 가져오기
@@ -22,19 +27,20 @@ const Navbar = ({
   const [currAddr, setCurrAddr] = useState("");
 
   // Modal bar 구현 부분
-  const [showModal, setShowModal] = useState(false);
-  const [clickedMenu, setClickedMenu] = useState(null);
   const openSignup = () => {
-    setClickedMenu("signup");
-    setShowModal((showModal) => !showModal);
+    // setClickedMenu("signup");
+    dispatch(clickModalType("signup"));
+    dispatch(showModal(!isShowModal));
   };
   const openLogin = () => {
-    setClickedMenu("login");
-    setShowModal((showModal) => !showModal);
+    // setClickedMenu("login");
+    dispatch(clickModalType("login"));
+    dispatch(showModal(!isShowModal));
   };
   const openLogout = () => {
-    setClickedMenu("logout");
-    setShowModal((showModal) => !showModal);
+    // setClickedMenu("logout");
+    dispatch(clickModalType("logout"));
+    dispatch(showModal(!isShowModal));
   };
 
 
@@ -205,13 +211,7 @@ const Navbar = ({
           </N.NavbarContainer>
 
           <ModalContainer
-            clickedMenu={clickedMenu}
-            showModal={showModal}
-            setShowModal={setShowModal}
             handleLoginSuccess={handleLoginSuccess}
-            handleSignupSuccess={handleSignupSuccess}
-            isLogin={isLogin}
-            setIsLogin={setIsLogin}
           />
         </N.Nav>
       </IconContext.Provider>

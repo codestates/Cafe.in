@@ -10,19 +10,6 @@ import { ThemeProvider } from "styled-components";
 import { theme, darkTheme } from "./assets/styles/theme";
 
 const App = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const [loginInfo, setLoginInfo] = useState(null);
-
-  const handleLoginSuccess = (loginInfo) => {
-    setIsLogin(true);
-    setLoginInfo(loginInfo);
-    // console.log("Login SUCCESS!", loginInfo);
-  };
-
-  const handleSignupSuccess = (signupInfo) => {
-    // console.log("Signup Success", signupInfo);
-  };
-
   // 다음 6줄은 darkMode toggle을 위한 코드
   const [mode, setMode] = useState(theme);
   useEffect(() => {
@@ -38,20 +25,11 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <ScrollToTop />
-
-      <Navbar
-        handleLoginSuccess={handleLoginSuccess}
-        handleSignupSuccess={handleSignupSuccess}
-        isLogin={isLogin}
-        setIsLogin={setIsLogin}
-      />
+      <Navbar />
 
       <Routes>
-        <Route path="/" element={<MainPage isLogin={isLogin} />} />
-        <Route
-          path="mypage"
-          element={<MyPage loginInfo={loginInfo} setIsLogin={setIsLogin} />}
-        />
+        <Route path="/" element={<MainPage />} />
+        <Route path="mypage" element={<MyPage />} />
         <Route path="cafeinfo/:id" element={<CafeInfo />} />
       </Routes>
 

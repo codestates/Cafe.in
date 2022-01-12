@@ -26,6 +26,19 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
   const handleFinalSubmit = () => {
     //! submit 버튼 누르면 처리할 것. 코드 추가 예정
     // let concatHashtag = selected[type] + " " + inputText[type];
+    // const concatHashtag = {
+    //   category: selected[type],
+    //   name: inputText[type],
+    //   counts: 1,
+    // };
+    // console.log("type", type, "submit", concatHashtag);
+    //! submit하면 초기화 시켜주기 해줄까?
+    setSelected({
+      [type]: "",
+    }); // 초기화
+    setInputText({
+      [type]: "",
+    })
     //! select[type]은 obj.category, inputText[type]은 obj.name으로 서버로 보내준다.
   };
 
@@ -36,17 +49,17 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
   let clicked = false;
   
   
-  likeBtn.addEventListener("click", () => {
-    if (!clicked) {
-      clicked = true;
-      likeIcon = `<i class="fas fa-thumbs-up"></i>`;
-      count.textContent++;
-    } else {
-      clicked = false;
-      likeIcon = `<i class="far fa-thumbs-up"></i>`;
-      count.textContent--;
-    }
-  });
+  // likeBtn.addEventListener("click", () => {
+  //   if (!clicked) {
+  //     clicked = true;
+  //     likeIcon = `<i class="fas fa-thumbs-up"></i>`;
+  //     count.textContent++;
+  //   } else {
+  //     clicked = false;
+  //     likeIcon = `<i class="far fa-thumbs-up"></i>`;
+  //     count.textContent--;
+  //   }
+  // });
   
 
   // 해시태그 List rendering
@@ -65,7 +78,8 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
           <S.buttonheart type="button">
           <span id="count">0</span> Like
       </S.buttonheart>
-      <S.Button type="button" onClick={handleSubmit}>입력</S.Button>
+      {/* <S.Button type="button" onClick={handleSubmit}>입력</S.Button> */}
+      <S.Button type="button">입력</S.Button>
           <S.CafeRankCounts>{hashtagElement.counts}</S.CafeRankCounts>
         </S.CafeRank>
       );
