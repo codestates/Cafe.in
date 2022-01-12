@@ -6,15 +6,22 @@ import { Button } from "../../assets/styles/GlobalStyle";
 import * as N from "./Navbar.styled";
 import * as D from "./Dropdown.styled";
 import ModalContainer from "../../components/ModalContainer/ModalContainer";
+
 import DropDownMenu from "./DropdownMenu";
 import { regionData } from "./DropDownDummyData";
+import { useSelector, useDispatch } from "react-redux";
+import { clickModalType } from "../../store/actions";
+
 
 const Navbar = ({
   handleLoginSuccess,
   handleSignupSuccess,
-  isLogin,
-  setIsLogin,
+  
 }) => {
+  // Redux
+  // const modalType = useSelector(state => state.modalType.clickedModalType);
+  const isLogin = useSelector(state => state.isLogin.isLogin);
+  const dispatch = useDispatch();
   // 지역 데이터
   const [currLoc, setCurrLoc] = useState("신논현역");
   // 맵 아이콘 클릭시 현재 위치 가져오기
@@ -23,17 +30,20 @@ const Navbar = ({
 
   // Modal bar 구현 부분
   const [showModal, setShowModal] = useState(false);
-  const [clickedMenu, setClickedMenu] = useState(null);
+  // const [clickedMenu, setClickedMenu] = useState(null);
   const openSignup = () => {
-    setClickedMenu("signup");
+    // setClickedMenu("signup");
+    dispatch(clickModalType("signup"));
     setShowModal((showModal) => !showModal);
   };
   const openLogin = () => {
-    setClickedMenu("login");
+    // setClickedMenu("login");
+    dispatch(clickModalType("login"));
     setShowModal((showModal) => !showModal);
   };
   const openLogout = () => {
-    setClickedMenu("logout");
+    // setClickedMenu("logout");
+    dispatch(clickModalType("logout"));
     setShowModal((showModal) => !showModal);
   };
 
@@ -205,13 +215,12 @@ const Navbar = ({
           </N.NavbarContainer>
 
           <ModalContainer
-            clickedMenu={clickedMenu}
+            
             showModal={showModal}
             setShowModal={setShowModal}
             handleLoginSuccess={handleLoginSuccess}
             handleSignupSuccess={handleSignupSuccess}
-            isLogin={isLogin}
-            setIsLogin={setIsLogin}
+
           />
         </N.Nav>
       </IconContext.Provider>

@@ -75,14 +75,14 @@ const PwdChangeForm = ({ setShowModal }) => {
           <div>
           <Button 
             className="btn btn-login"
-            type="submit"
+            type="button"
             onClick={handleChangePWInfo}
           >
             비밀번호 변경
           </Button>
           <Button 
             className="btn btn-login"
-            // type="submit"
+            type="button"
             onClick={handleCancel}
           >
             취소

@@ -5,16 +5,27 @@ import { IconContext } from "react-icons/lib";
 import ModalContainer from "../ModalContainer/ModalContainer";
 
 import * as Styled from "./MypageSection.styled";
+import { useSelector, useDispatch } from "react-redux";
+import { clickModalType } from "../../store/actions";
+// import { login } from "../../store/actions";
 
-const MypageSection = ({ loginInfo, setIsLogin, mypageObjOne }) => {
+const MypageSection = ({ loginInfo, mypageObjOne }) => {
+  // Redux
+  const isLogin = useSelector(state => state.isLogin.isLogin);
+  const modalType = useSelector((state) => state.modalType.clickedModalType);
+  const dispatch = useDispatch();
+
   const [showModal, setShowModal] = useState(false);
-  const [clickedMenu, setClickedMenu] = useState(null);
+  // const [clickedMenu, setClickedMenu] = useState(null);
   const openPwdChange = () => {
-    setClickedMenu("pwdchange");
+    // setClickedMenu("pwdchange");
+    dispatch(clickModalType("pwdchange"));
+
     setShowModal((showModal) => !showModal);
   };
   const openDelAccount = () => {
-    setClickedMenu("delaccount");
+    // setClickedMenu("delaccount");
+    dispatch(clickModalType("delaccount"));
     setShowModal((showModal) => !showModal);
   };
 
@@ -47,8 +58,7 @@ const MypageSection = ({ loginInfo, setIsLogin, mypageObjOne }) => {
                     <Button primary onClick={openPwdChange}>
                       {mypageObjOne.buttonLabel1}
                     </Button>
-                    <Button primary> 프로필변경
-                    </Button>
+                    <Button primary> 프로필변경</Button>
                   </Styled.TextWrapper>
                 </Styled.MypageColumn>
               </Styled.MypageRow>
@@ -61,11 +71,10 @@ const MypageSection = ({ loginInfo, setIsLogin, mypageObjOne }) => {
           </Styled.MypageSec>
 
           <ModalContainer
-            clickedMenu={clickedMenu}
+            
             showModal={showModal}
             setShowModal={setShowModal}
-            // isLogin={isLogin}
-            setIsLogin={setIsLogin}
+            
           />
         </IconContext.Provider>
       )}

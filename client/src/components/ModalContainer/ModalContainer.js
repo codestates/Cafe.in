@@ -9,14 +9,14 @@ import LogoutForm from "../Forms/LogoutForm";
 import PwdChangeForm from "../Forms/PwdChangeForm";
 import DeleteAccountForm from "../Forms/DeleteAccountForm";
 
+import { useSelector, useDispatch } from "react-redux";
+import { clickModalType, login } from "../../store/actions";
+
 const ModalContainer = ({
-  clickedMenu,
   showModal,
   setShowModal,
   handleLoginSuccess,
   handleSignupSuccess,
-  isLogin,
-  setIsLogin
 }) => {
   const modalRef = useRef();
   // 쓸데없는 기능 : 팝업창 위에서 아래로 내려오는 animation
@@ -28,6 +28,10 @@ const ModalContainer = ({
   //   opacity: showModal ? 1 : 0,
   //   transform: showModal ? `translateY(0%)` : `translateY(-100%)`
   // })
+
+  const modalType = useSelector(state => state.modalType.clickedModalType);
+  const isLogin = useSelector(state => state.isLogin.isLogin);
+  const dispatch = useDispatch();
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
@@ -63,19 +67,20 @@ const ModalContainer = ({
   // 로그아웃 handler
   const handleLogout = (isLogout) => {
     setShowModal(false);
-    setIsLogin(false);
+    // setIsLogin(false);
+    dispatch(login(false));
   }
 
   const innerForm = () => {
-    if (clickedMenu === 'login') {
+    if (modalType === 'login') {
       return <LoginForm handleLogin={handleLogin}/>
-    } else if (clickedMenu === 'signup') {
+    } else if (modalType === 'signup') {
       return <SignupForm handleSignup={handleSignup} />
-    } else if (clickedMenu === 'logout') {
+    } else if (modalType === 'logout') {
       return <LogoutForm handleLogout={handleLogout} setShowModal={setShowModal} />
-    } else if (clickedMenu === 'pwdchange') {
+    } else if (modalType === 'pwdchange') {
       return <PwdChangeForm setShowModal={setShowModal} />
-    } else if (clickedMenu === 'delaccount') {
+    } else if (modalType === 'delaccount') {
       return <DeleteAccountForm handleLogout={handleLogout} setShowModal={setShowModal} />
     }
   }

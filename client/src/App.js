@@ -9,12 +9,19 @@ import CafeInfo from "./pages/CafeInfo/CafeInfo";
 import { ThemeProvider } from "styled-components";
 import { theme, darkTheme } from "./assets/styles/theme";
 
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "./store/actions"
+
 const App = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  // Redux
+  const isLogin = useSelector(state => state.isLogin.isLogin);
+  // const [isLogin, setIsLogin] = useState(false);
+  const dispatch = useDispatch();
   const [loginInfo, setLoginInfo] = useState(null);
 
   const handleLoginSuccess = (loginInfo) => {
-    setIsLogin(true);
+    // setIsLogin(true);
+    dispatch(login(true));
     setLoginInfo(loginInfo);
     // console.log("Login SUCCESS!", loginInfo);
   };
@@ -42,15 +49,14 @@ const App = () => {
       <Navbar
         handleLoginSuccess={handleLoginSuccess}
         handleSignupSuccess={handleSignupSuccess}
-        isLogin={isLogin}
-        setIsLogin={setIsLogin}
+        
       />
 
       <Routes>
-        <Route path="/" element={<MainPage isLogin={isLogin} />} />
+        <Route path="/" element={<MainPage />} />
         <Route
           path="mypage"
-          element={<MyPage loginInfo={loginInfo} setIsLogin={setIsLogin} />}
+          element={<MyPage loginInfo={loginInfo} />}
         />
         <Route path="cafeinfo/:id" element={<CafeInfo />} />
       </Routes>
