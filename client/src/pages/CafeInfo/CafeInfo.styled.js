@@ -21,14 +21,23 @@ export const Cafe2InfoWrapper = styled.div`
   background: #ccc;
   margin: 4px 0 4px 0px ;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `
 
 export const Cafe3HashtagWrapper = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
+
   margin: 10px 0 10px 0px ;
+
+
+  @media screen and (max-width: 960px) {
+
+  align-items: left;
+  flex-direction: column;
+
+}
 
 `
 export const Cafe4MapWrapper = styled.div`

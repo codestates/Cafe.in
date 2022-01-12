@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import * as S from "./CafeHashtagMain.styled";
-import { Button } from "../../assets/styles/GlobalStyle";
 import HashtagInputSection from "./HashtagInputSection";
 import { options } from "./DummyDataHashtag";
 import heartIcon from "../../assets/images/heart-black-empty.svg";
+import { FaRegHeart } from 'react-icons/fa';
 
 const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
   // 해시태그 list wrapper에 쓸 className 등등 state들
@@ -16,6 +16,7 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
     [type]: "",
   });
 
+  
   // Input Section의 Input text 값
   const [inputText, setInputText] = useState({
     [type]: "",
@@ -32,18 +33,40 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
   let hashtagsLength = hashtagArray.length;
   let isLongerThan3 = hashtagsLength > 3;
 
+  let clicked = false;
+  
+  
+  likeBtn.addEventListener("click", () => {
+    if (!clicked) {
+      clicked = true;
+      likeIcon = `<i class="fas fa-thumbs-up"></i>`;
+      count.textContent++;
+    } else {
+      clicked = false;
+      likeIcon = `<i class="far fa-thumbs-up"></i>`;
+      count.textContent--;
+    }
+  });
+  
+
   // 해시태그 List rendering
   const hashtagListMap = hashtagArray
     .slice(0, sliceIndex)
     .map((hashtagElement, index) => {
       return (
         <S.CafeRank key={index}>
+          <S.Rankdiv bgColor={hashtagBg}>
           {index + 1}.{" "}
-          <S.CafeRankBox bgColor={hashtagBg}>
+          <S.CafeRankBox>
             {hashtagElement.category + " " + hashtagElement.name}
-          </S.CafeRankBox>
+            </S.CafeRankBox>
+            </S.Rankdiv>
+          <S.ImgIcon src={heartIcon} alt="heart-icon" />
+          <S.buttonheart type="button">
+          <span id="count">0</span> Like
+      </S.buttonheart>
+      <S.Button type="button" onClick={handleSubmit}>입력</S.Button>
           <S.CafeRankCounts>{hashtagElement.counts}</S.CafeRankCounts>
-          <img src={heartIcon} alt="heart-icon" />
         </S.CafeRank>
       );
     });

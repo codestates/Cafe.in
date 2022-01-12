@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FaRegHeart } from 'react-icons/fa';
 
 export const CafeHashtagContainer = styled.div`
   display: flex;
@@ -77,19 +78,19 @@ export const CafeHashtagSectionWrapper = styled.div`
 // `;
 
 export const CafeImg = styled.img`
-//! border 임시
-border: 0.1rem solid green;
+
   width: 15vh;
   height: 20vh;
   position: relative;
   align-items: center;
   text-align: center;
-  margin-top: -1.3rem;
-  margin-bottom: -1.3rem;
+  margin-bottom: -3rem;
 
   @media screen and (max-width: 960px) {
     width: 30%;
-    height: 27%;
+    height: 30%;
+    margin-top: .3rem;
+    margin-bottom: -2rem;
   }
 `;
 
@@ -123,8 +124,7 @@ border: 0.1rem solid green;
 // `;
 
 export const CafeListWrapper = styled.div`
-//! border 임시
-  border: 0.1rem solid red;
+
   &.short-div {
     height: 40%;
   }
@@ -137,62 +137,89 @@ export const CafeListWrapper = styled.div`
 
 export const Cafemore = styled.div`
   color: #aaaaaa;
-  text-shadow: 0px 1px 1px #cccccc;
+  text-shadow: 1px 1px 1px #cccccc;
 `;
 
 export const CafemoreWrapper = styled.div`
-//! border 임시
-  border: 0.1rem solid blue;
+
   align-items: right;
   text-align: right;
   padding-right: 2rem;
   margin-top: 0.4rem;
 
-  @media screen and (max-width: 1440px) {
+  @media screen and  (max-width: 960px) {
     width: 100%;
   }
 `;
 
 export const CafeRank = styled.div`
-  padding-top: -10px;
+
   font-weight: 700;
   font-size: 32px;
   white-space: nowrap;
-  margin-top: -8px;
   color: ${({ theme }) => theme.colors.cardBackground};
-  margin: 4px 20px 0px 10px;
+  margin: 10px 0px 0px 27%;
   text-align: left;
-  text-shadow: 0px 1px #aaaaaa;
   display: flex;
-  flex-direction: row;
 
-  @media screen and (max-width: 1440px) {
+
+  @media screen and  (max-width: 960px) {
     font-size: 30px;
     width: 100%;
-    margin: 4px 0px 0px 40px;
-    text-align: left;
+    margin: 10px 0px 0px 20px;
+    text-align: center;
   }
 `;
 
 export const CafeRankCounts = styled.div`
-  font-size: 28px;
+  font-size: 17px;
+  color: #aaaaaa;
+  text-align:right;
+  margin: 10px 7px 0px 7px;
+
+  @media screen and  (max-width: 960px) {
+  font-size: 14px;
   color: grey;
-  margin: 0 30px 0 30px;
-`
+  margin: 10px 10px 10px 4px;
+  }
+  
+`;
+export const Rankdiv = styled.div`
+  width: 50%;
+  height:  100%;
+  color: #cccccc;
+  background: ${({ bgColor }) => bgColor};
+  border-radius: 30px;
+  box-shadow: 1px 1px #cccccc;
+  text-shadow: 1px 1px 1px #6e6e6e;
+  white-space: nowrap;
+  padding-left : 18px;
+  padding-top : 2px;
+  vertical-align: middle;
+  display:flex; 
+  justify-content:left;
+  
+
+  @media screen and  (max-width: 1000px) {
+    width: 70%;
+    text-align:left;
+  }
+`;
+
 
 export const CafeRankBox = styled.span`
   font-weight: 700;
-  width: 40%;
-  color: #fff;
+  color: #ffff;
   padding: 4px 10px 4px 10px;
-  vertical-align: middle;
-  line-height: 2;
-  font-size: 17px;
-  background: ${({ bgColor }) => bgColor};
-  border-radius: 12px;
-  box-shadow: 1px 1px #cccc;
+  white-space: nowrap;
+  text-shadow: 1px 1px 1px #6e6e6e;
+  font-size: 18px;
+  
+  @media screen and  (max-width: 960px) {
+    width: 70%;
+    text-align:left;
+  }
 `;
-
 // export const CafeRankBox  = styled.span`
 //   font-weight :700;
 //   width: 100%;
@@ -219,73 +246,142 @@ export const CafeRankBox = styled.span`
 // `
 
 export const CafeInputWrapper = styled.div`
-  border: 0.1rem solid red;
   align-items: center;
   text-align: center;
-  white-space: nowrap;
-  margin: 4px 10px 0px 10px;
-  display: flex;
-  background: #fff;
-  padding-right: 2rem;
-  margin-top: 2.7rem;
 
-  @media screen and (max-width: 1440px) {
-    width: 10%;
+  @media screen and (max-width: 960px) {
     text-align: center;
-    margin: 80px 0px 0px 10px;
+    align-items: center;
+ 
+  }
+`;
+
+
+export const HashtagSection = styled.div`
+
+  align-items: center;
+  text-align: center;
+  padding : 10px 0px 10px 0px;
+
+  @media screen and (max-width: 960px) {
+
+    align-items: left;
+ 
   }
 `;
 
 export const Input = styled.input`
-  height: 2.5rem;
+  height: 2rem;
   font-weight: 600;
   /* text-align: center; */
-  color: ${"palevioletred"};
+  color: #0c0c0c;
   background: ${({ theme }) => theme.colors.mainBackground};
-  opacity: 0.9;
-  box-shadow: 1px #cccccc;
-  border: 10px solid ${({ theme }) => theme.colors.cardBackground};
+  text-align:left;
   outline: none;
 
-  @media screen and (max-width: 1440px) {
-    width: 70%;
-    text-align: center;
-  }
-`;
-
-export const Input2 = styled.input`
-  height: 43%;
-  font-weight: 600;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.buttonSecondary};
-  background: ${({ theme }) => theme.colors.mainBackground};
-  opacity: 0.9;
-  box-shadow: 1px #cccccc;
-  border: 10px solid ${({ theme }) => theme.colors.cardBackground};
-  outline: none;
-
-  @media screen and (max-width: 1440px) {
-    width: 70%;
-    text-align: center;
+  @media screen and (max-width: 960px) {
+    width: 40%;
+    text-align: left;
   }
 `;
 
 export const HashtagInputWrapper = styled.div`
-//! border 임시
-  border: 0.1rem solid purple;
-  display: flex;
-  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    text-align: left;
+  }
 `
 
 export const DropdownMenu = styled.select`
-  width: 10vw;
-  height: 4vh;
-  border-radius: 1em;
+  height: 2rem;
+  width: 17%;
+  border-radius: 30px;
+  border: 3px solid #E6C17B;
   text-align: center;
-  font-size: 1.1rem;
+  color: grey;
+  font-size:15px;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 600;
   background-color: ${({ theme }) => theme.colors.mainBackground};
   margin: 1rem;
+
+  @media screen and (max-width: 960px) {
+    height: 2rem;
+    width: 33%;
+    border-radius: 30px;
+    border: 3px solid #E6C17B;
+    text-align: center;
+    color: grey;
+    font-size:15px;
+     outline: none;
+  
+    
+  }
+`
+
+
+export const ImgIcon = styled.img`
+
+  margin : 10px 4px 0px 10px;
+  width:24px;
+  height:24px;
+
+  @media screen and  (max-width: 960px) {
+  
+  margin : 10px 4px 4px 10px;
+  width:20px;
+  height:24px;
+  }
+`;
+
+export const buttonheart  = styled(FaRegHeart)`
+
+  margin-right: 0.3em;
+  animation: move2  1s infinite;
+
+  @keyframes move2{
+    0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
+    40% {transform: translateX(3px);}
+    60% {transform: translateX(-3px);}
+} 
+
 `
 
 
 
+
+export const Button = styled.button`
+  margin: 0px 10px;
+  border-radius: 40px;
+  background: #E6C17B;
+  padding: 7px 20px;
+  color: ${ ({theme}) => theme.colors.buttonFontColor};
+  font-size: 13px;
+  font-weight:700;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    transition: all 0.3s ease-out;
+    background: #CCCCCC;
+    background-color:
+  }
+
+
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    width : 80px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    text-align: center;
+    vertical-align:center;
+  }
+
+`;
