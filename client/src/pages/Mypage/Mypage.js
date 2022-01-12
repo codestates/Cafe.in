@@ -2,12 +2,10 @@ import React from "react";
 import { MypageSection } from "../../components";
 import { mypageObjOne } from "./MypageData";
 
-const Mypage = ({ loginInfo }) => {
-  // console.log(loginInfo);
+const Mypage = () => {
   return (
     <>
       <MypageSection
-        loginInfo={loginInfo}
         mypageObjOne={mypageObjOne}
       />
     </>

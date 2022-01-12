@@ -6,38 +6,34 @@ import ModalContainer from "../ModalContainer/ModalContainer";
 
 import * as Styled from "./MypageSection.styled";
 import { useSelector, useDispatch } from "react-redux";
-import { clickModalType } from "../../store/actions";
-// import { login } from "../../store/actions";
+import { clickModalType, showModal, loginUserInfo } from "../../store/actions";
 
-const MypageSection = ({ loginInfo, mypageObjOne }) => {
+const MypageSection = ({ mypageObjOne }) => {
   // Redux
   const isLogin = useSelector(state => state.isLogin.isLogin);
   const modalType = useSelector((state) => state.modalType.clickedModalType);
+  const userInfo = useSelector(state => state.userInfo.userInfo);
+  const isShowModal = useSelector(state => state.showModal.isShowModal);
   const dispatch = useDispatch();
 
-  const [showModal, setShowModal] = useState(false);
-  // const [clickedMenu, setClickedMenu] = useState(null);
   const openPwdChange = () => {
-    // setClickedMenu("pwdchange");
     dispatch(clickModalType("pwdchange"));
-
-    setShowModal((showModal) => !showModal);
+    dispatch(showModal(true));
   };
   const openDelAccount = () => {
-    // setClickedMenu("delaccount");
     dispatch(clickModalType("delaccount"));
-    setShowModal((showModal) => !showModal);
+    dispatch(showModal(!isShowModal));
   };
 
   return (
     <>
-      {loginInfo && (
+      {isLogin && (
         <IconContext.Provider value={{ color: "#472d0c" }}>
           <Styled.MypageSec lightBg={mypageObjOne.lightBg}>
             <Container>
               <Styled.Header className="header">
                 {" "}
-                Welcome Cafe In {loginInfo.email} !
+                Welcome Cafe In {userInfo.email} !
               </Styled.Header>
               <Styled.MypageRow imgStart={mypageObjOne.imgStart}>
                 <Styled.MypageColumn>
@@ -49,11 +45,11 @@ const MypageSection = ({ loginInfo, mypageObjOne }) => {
                   <Styled.TextWrapper>
                     <Styled.Id lightTopLine={mypageObjOne.lightTopLine}>
                       <Styled.NameIcon />
-                      Id : {loginInfo.email}
+                      Id : {userInfo.email}
                     </Styled.Id>
                     <Styled.Nickname lightTextDesc={mypageObjOne.lightTextDesc}>
                       <Styled.NameIcon />
-                      Nickname : {loginInfo.nickname}
+                      Nickname : {userInfo.nickname}
                     </Styled.Nickname>
                     <Button primary onClick={openPwdChange}>
                       {mypageObjOne.buttonLabel1}
@@ -70,12 +66,7 @@ const MypageSection = ({ loginInfo, mypageObjOne }) => {
             </Container>
           </Styled.MypageSec>
 
-          <ModalContainer
-            
-            showModal={showModal}
-            setShowModal={setShowModal}
-            
-          />
+          <ModalContainer />
         </IconContext.Provider>
       )}
     </>

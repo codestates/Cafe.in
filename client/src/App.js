@@ -9,27 +9,7 @@ import CafeInfo from "./pages/CafeInfo/CafeInfo";
 import { ThemeProvider } from "styled-components";
 import { theme, darkTheme } from "./assets/styles/theme";
 
-import { useSelector, useDispatch } from "react-redux";
-import { login } from "./store/actions"
-
 const App = () => {
-  // Redux
-  const isLogin = useSelector(state => state.isLogin.isLogin);
-  // const [isLogin, setIsLogin] = useState(false);
-  const dispatch = useDispatch();
-  const [loginInfo, setLoginInfo] = useState(null);
-
-  const handleLoginSuccess = (loginInfo) => {
-    // setIsLogin(true);
-    dispatch(login(true));
-    setLoginInfo(loginInfo);
-    // console.log("Login SUCCESS!", loginInfo);
-  };
-
-  const handleSignupSuccess = (signupInfo) => {
-    // console.log("Signup Success", signupInfo);
-  };
-
   // 다음 6줄은 darkMode toggle을 위한 코드
   const [mode, setMode] = useState(theme);
   useEffect(() => {
@@ -45,19 +25,11 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <ScrollToTop />
-
-      <Navbar
-        handleLoginSuccess={handleLoginSuccess}
-        handleSignupSuccess={handleSignupSuccess}
-        
-      />
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route
-          path="mypage"
-          element={<MyPage loginInfo={loginInfo} />}
-        />
+        <Route path="mypage" element={<MyPage />} />
         <Route path="cafeinfo/:id" element={<CafeInfo />} />
       </Routes>
 

@@ -19,6 +19,7 @@
     "react-spring": "^9.0.0-rc.3",
     "react-transition-group": "^4.4.2",
     "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
     "styled-components": "^5.3.3",
     "svg-url-loader": "^7.1.1",
     "web-vitals": "^2.1.2"
@@ -46,7 +47,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
-    "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6"
   }
 }

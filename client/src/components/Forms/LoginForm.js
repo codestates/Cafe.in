@@ -1,20 +1,31 @@
 import React, { useState } from "react";
 import { Button } from "../../assets/styles/GlobalStyle";
 // import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login, loginUserInfo, showModal } from "../../store/actions";
 import imgkakao from "../../assets/images/kakao-login.png";
 import imggoogle from "../../assets/images/google-login.png";
 import "./Form.css";
 import { emailCheck, passwordCheck1 } from "../../utils/RegExTest.js";
 
-const LoginForm = ({ handleLogin }) => {
+const LoginForm = () => {
+
+  const dispatch = useDispatch();
+
   const [loginInfo, setLoginInfo] = useState({
     id: 0,
     email: "yar0606@naver.com",
     password: "qwe!1234",
-    nickname: "MarvelFan",
+    nickname: "captain_caffein",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
+
+  const handleLoginSuccess = (loginInfo) => {
+    dispatch(showModal(false));
+    dispatch(loginUserInfo(loginInfo));
+    dispatch(login(true));
+  }
 
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
@@ -41,8 +52,8 @@ const LoginForm = ({ handleLogin }) => {
       return;
     }
 
-    //! 서버 연동시 아래는 주석 처리
-    handleLogin(loginInfo);
+    //! 서버 연동시 아래는 주석 처리??
+    handleLoginSuccess(loginInfo);
 
     //! 아래 주석은 지우지 마세요 => 서버 연동시 구현
     // axios

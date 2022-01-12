@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Form.css";
+import { useSelector, useDispatch } from "react-redux";
+import { showModal } from "../../store/actions";
 import {  Button } from '../../assets/styles/GlobalStyle';
 import { emailCheck, passwordCheck } from "../../utils/RegExTest.js";
 import imgkakao from '../../assets/images/kakao-login.png'
 import imggoogle from '../../assets/images/google-login.png'
 const { passwordCheck1, passwordCheck2 } = require('../../utils/RegExTest')
 
-const PwdChangeForm = ({ setShowModal }) => {
+const PwdChangeForm = () => {
+
+  const isShowModal = useSelector(state => state.showModal.isShowModal);
+  const dispatch = useDispatch();
+
   const [pwdInfo, setPwdInfo] = useState({
     oldPassword : "",
     newPassword : "",
@@ -17,7 +23,7 @@ const PwdChangeForm = ({ setShowModal }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleCancel = () => {
-    setShowModal(false);
+    dispatch(showModal(false));
   };
 
   const handleInputValue = (key) => (e) => {
@@ -51,7 +57,7 @@ const PwdChangeForm = ({ setShowModal }) => {
     //   .then((res) => console.log(res.data))
     //   .catch((err) => console.log(err.response.data.message))
    
-    setShowModal(false);
+    dispatch(showModal(false));
   }
 
   return (

@@ -3,9 +3,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../assets/styles/GlobalStyle";
 import "./Form.css";
+import { useSelector, useDispatch } from "react-redux";
+import { showModal } from "../../store/actions";
 
-const DeleteAccountForm = ({ handleLogout, setShowModal }) => {
-  const [isLogout, setIsLogout] = useState(false);
+const DeleteAccountForm = ({ handleLogout }) => {
+
+  const isShowModal = useSelector(state => state.showModal.isShowModal);
+  const dispatch = useDispatch();
+  
   const [deleteInfo, setDeleteInfo] = useState({
     password: "",
     confirmText: "delete",
@@ -20,7 +25,7 @@ const DeleteAccountForm = ({ handleLogout, setShowModal }) => {
   };
 
   const handleCancel = () => {
-    setShowModal(false);
+    dispatch(showModal(false));
   };
 
   const handleDeleteInfo = () => {
@@ -52,21 +57,25 @@ const DeleteAccountForm = ({ handleLogout, setShowModal }) => {
     //     console.log(err)
     //   })
 
-    setShowModal(false);
+    dispatch(showModal(false));
   };
   return (
     <div>
       <center>
         <h2 className="verify">회원탈퇴</h2>
-        {/* <form onSubmit={(e) => e.preventDefault()}> */}
+        <form onSubmit={(e) => e.preventDefault()}>
         <div>
           <div>
-            <input type="password" placeholder='본인 확인을 위해 비밀번호를 입력해주세요.'  onChange={handleInputValue("password")} />
+            <input type="password" 
+            placeholder='본인 확인을 위해 비밀번호를 입력해주세요.'  onChange={handleInputValue("password")} 
+            value={deleteInfo.password}
+            />
           </div>
             <div>
             <input
               type="text"
               placeholder='다음 문구를 똑같이 입력해주세요' 
+              value={deleteInfo.confirmTextUsrInput}
               onChange={handleInputValue("confirmTextUsrInput")}
             />
           </div>
@@ -80,20 +89,20 @@ const DeleteAccountForm = ({ handleLogout, setShowModal }) => {
         <div>
           <Button
             className="btn btn-delete"
-            type="submit"
+            type="button"
             onClick={handleDeleteInfo}
           >
             탈퇴하기
           </Button>
           <Button
             className="btn btn-login"
-            type="submit"
+            type="button"
             onClick={handleCancel}
           >
             취소
           </Button>
         </div>
-        {/* </form> */}
+        </form>
       </center>
     </div>
   );
