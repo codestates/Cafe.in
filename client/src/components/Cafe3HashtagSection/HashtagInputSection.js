@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "../../assets/styles/GlobalStyle";
 import * as S from "./CafeHashtagMain.styled";
 
 const HashtagInputSection = ({ type, selected, setSelected, options, inputText, setInputText, handleFinalSubmit }) => {
@@ -23,6 +22,8 @@ const HashtagInputSection = ({ type, selected, setSelected, options, inputText, 
   }
 
   return (
+
+    <S.HashtagSection>
     <form onSubmit={(e) => e.preventDefault()}>
       <S.DropdownMenu
         value={selected[type]}
@@ -37,8 +38,9 @@ const HashtagInputSection = ({ type, selected, setSelected, options, inputText, 
         onChange={handleInputValue(type)}
         value={inputText[type]}
       />
-      <Button type="button" onClick={handleSubmit}>입력</Button>
+      <S.Button type="button" onClick={handleSubmit}>입력</S.Button>
     </form>
+    </S.HashtagSection>
   );
 };
 
