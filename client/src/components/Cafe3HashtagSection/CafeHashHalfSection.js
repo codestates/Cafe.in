@@ -18,7 +18,6 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
 
     
   const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
   const handleClick = () => setClick(!click);
   
   // Input Section의 Input text 값
@@ -36,12 +35,6 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
   // 해시태그 길이가 3보다 기냐?
   let hashtagsLength = hashtagArray.length;
   let isLongerThan3 = hashtagsLength > 3;
-
-  const [hearticon, sethearticon] = useState(false);
-
-  const handlehearticon = () => {
-    sethearticon(!hearticon);
-  };
 
 
   // 해시태그 List rendering
