@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { FaRegHeart } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { Container } from '../../assets/styles/GlobalStyle';
 
 export const CafeHashtagContainer = styled.div`
   display: flex;
@@ -338,22 +338,7 @@ export const ImgIcon = styled.img`
   width:20px;
   height:24px;
   }
-`;
-
-export const buttonheart  = styled(FaRegHeart)`
-
-  margin-right: 0.3em;
-  animation: move2  1s infinite;
-
-  @keyframes move2{
-    0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
-    40% {transform: translateX(3px);}
-    60% {transform: translateX(-3px);}
-} 
-
 `
-
-
 
 
 export const Button = styled.button`
@@ -383,5 +368,18 @@ export const Button = styled.button`
     text-align: center;
     vertical-align:center;
   }
+
+`;
+
+
+export const Buttonheart = styled.div`
+
+  cursor:pointer
+  display:flex;
+  margin-top:3px;
+  margin-bottom:-7px;
+  margin-left: 10px;
+
+  color:#de4545;
 
 `;
