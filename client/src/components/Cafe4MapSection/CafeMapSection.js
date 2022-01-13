@@ -1,5 +1,5 @@
-import React from 'react';
-import * as S from './CafeMapSection.styled';
+import React from "react";
+import * as S from "./CafeMapSection.styled";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 // 그냥 GoogleMap 필수요소
@@ -15,7 +15,6 @@ const options = {
 };
 
 const CafeMapSection = ({ lat, lng }) => {
-
   const center = { lat, lng };
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
@@ -23,19 +22,19 @@ const CafeMapSection = ({ lat, lng }) => {
   });
 
   return (
-    <S.CafeMapContainer> 
-      { isLoaded && (
+    <S.CafeMapContainer>
+      {isLoaded && (
         <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={16}
-        center={center}
-        options={options}
-      >
-        <Marker position={center} />
-      </GoogleMap>
+          mapContainerStyle={mapContainerStyle}
+          zoom={16}
+          center={center}
+          options={options}
+        >
+          <Marker position={center} />
+        </GoogleMap>
       )}
     </S.CafeMapContainer>
-  )
+  );
 };
 
 export default CafeMapSection;

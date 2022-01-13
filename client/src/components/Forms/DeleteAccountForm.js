@@ -4,13 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../assets/styles/GlobalStyle";
 import "./Form.css";
 import { useSelector, useDispatch } from "react-redux";
-import { showModal } from "../../store/actions";
+import { login, showModal, loginUserInfo } from "../../store/actions";
 
 const DeleteAccountForm = ({ handleLogout }) => {
-
-  const isShowModal = useSelector(state => state.showModal.isShowModal);
+  const isShowModal = useSelector((state) => state.showModal.isShowModal);
   const dispatch = useDispatch();
-  
+
   const [deleteInfo, setDeleteInfo] = useState({
     password: "",
     confirmText: "delete",
@@ -40,22 +39,26 @@ const DeleteAccountForm = ({ handleLogout }) => {
     }
 
     // ! 서버 연동시 주석 처리
-    handleLogout(true);
-    navigate("/");
+    // handleLogout(true);
+    // navigate("/");
 
     // ! 서버연동시 주석 해제
-    // axios.post(
-    //   'http://localhost:8080/users/delete-account',
-    //   { password: password },
-    //   { 'Content-Type': 'application/json', withCredentials: true }
-    // )
-    //   .then((res) => {
-    //     handleLogout(true);
-    //     history.push('/')
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
+    axios
+      .post(
+        "http://localhost:8080/users/delete-account",
+        { password },
+        { "Content-Type": "application/json", withCredentials: true }
+      )
+      .then(() => {
+        alert("회원 탈퇴가 완료되었습니다. ㅜㅜ");
+        dispatch(login(false));
+        dispatch(showModal(false));
+        dispatch(loginUserInfo(null));
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     dispatch(showModal(false));
   };
@@ -64,44 +67,44 @@ const DeleteAccountForm = ({ handleLogout }) => {
       <center>
         <h2 className="verify">회원탈퇴</h2>
         <form onSubmit={(e) => e.preventDefault()}>
-        <div>
           <div>
-            <input type="password" 
-            placeholder='본인 확인을 위해 비밀번호를 입력해주세요.'  onChange={handleInputValue("password")} 
-            value={deleteInfo.password}
-            />
-          </div>
             <div>
-            <input
-              type="text"
-              placeholder='다음 문구를 똑같이 입력해주세요' 
-              value={deleteInfo.confirmTextUsrInput}
-              onChange={handleInputValue("confirmTextUsrInput")}
-            />
-          </div>
-          <div>
-            <span className="confirm">
-              {deleteInfo.confirmText}
-            </span>
+              <input
+                type="password"
+                placeholder="본인 확인을 위해 비밀번호를 입력해주세요."
+                onChange={handleInputValue("password")}
+                value={deleteInfo.password}
+              />
             </div>
-        </div>
-        <div className="error-message">{errorMessage}</div>
-        <div>
-          <Button
-            className="btn btn-delete"
-            type="button"
-            onClick={handleDeleteInfo}
-          >
-            탈퇴하기
-          </Button>
-          <Button
-            className="btn btn-login"
-            type="button"
-            onClick={handleCancel}
-          >
-            취소
-          </Button>
-        </div>
+            <div>
+              <input
+                type="text"
+                placeholder="다음 문구를 똑같이 입력해주세요"
+                value={deleteInfo.confirmTextUsrInput}
+                onChange={handleInputValue("confirmTextUsrInput")}
+              />
+            </div>
+            <div>
+              <span className="confirm">{deleteInfo.confirmText}</span>
+            </div>
+          </div>
+          <div className="error-message">{errorMessage}</div>
+          <div>
+            <Button
+              className="btn btn-delete"
+              type="button"
+              onClick={handleDeleteInfo}
+            >
+              탈퇴하기
+            </Button>
+            <Button
+              className="btn btn-login"
+              type="button"
+              onClick={handleCancel}
+            >
+              취소
+            </Button>
+          </div>
         </form>
       </center>
     </div>

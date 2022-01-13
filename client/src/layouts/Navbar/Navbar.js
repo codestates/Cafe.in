@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { Button } from "../../assets/styles/GlobalStyle";
 import * as N from "./Navbar.styled";
@@ -10,21 +10,24 @@ import ModalContainer from "../../components/ModalContainer/ModalContainer";
 import DropDownMenu from "./DropdownMenu";
 import { regionData } from "./DropDownDummyData";
 import { useSelector, useDispatch } from "react-redux";
-import { clickModalType, showModal } from "../../store/actions";
+import {
+  clickModalType,
+  showModal,
+  userAddressAction,
+  userLocationAction,
+} from "../../store/actions";
 
-
-const Navbar = ({
-  handleLoginSuccess,
-}) => {
+const Navbar = ({ handleLoginSuccess }) => {
   // Redux
-  const isLogin = useSelector(state => state.isLogin.isLogin);
-  const isShowModal = useSelector(state => state.showModal.isShowModal);
+  const isLogin = useSelector((state) => state.isLogin.isLogin);
+  const isShowModal = useSelector((state) => state.showModal.isShowModal);
+  // const address = useSelector((state) => state.addressReducer.currAddr);
+  const userLatLong = useSelector((state) => state.userLocation.userLatLong);
   const dispatch = useDispatch();
+
   // 지역 데이터
-  const [currLoc, setCurrLoc] = useState("신논현역");
+  //const [currLoc, setCurrLoc] = useState("신논현역");
   // 맵 아이콘 클릭시 현재 위치 가져오기
-  const [currPos, setCurrPos] = useState({ lat: null, lng: null });
-  const [currAddr, setCurrAddr] = useState("");
 
   // Modal bar 구현 부분
   const openSignup = () => {
@@ -42,7 +45,6 @@ const Navbar = ({
     dispatch(clickModalType("logout"));
     dispatch(showModal(!isShowModal));
   };
-
 
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -62,86 +64,87 @@ const Navbar = ({
     showButton();
   }, []);
 
-  window.addEventListener('resize', showButton);
+  window.addEventListener("resize", showButton);
 
-  useEffect(() => {
-    window.navigator.geolocation.getCurrentPosition(
-      (position) =>
-        setCurrPos({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        }),
-      (err) => {
-        setCurrPos({
-          lat: 37.49791,
-          lng: 127.02761,
-        });
-        window.alert('현재 위치 차단시 서울 강남역으로 세팅됩니다.')
-      }
-    );
-  }, []);
+  // useEffect(() => {
+  //   window.navigator.geolocation.getCurrentPosition(
+  //     (position) =>
+  //       dispatch(
+  //         userLocationAction(
+  //           position.coords.latitude,
+  //           position.coords.longitude
+  //         )
+  //       ),
+  //     (err) => {
+  //       dispatch(userLocationAction(37.49791, 127.02761));
+  //       window.alert("현재 위치 차단시 서울 강남역으로 세팅됩니다.");
+  //     }
+  //   );
+  // }, []);
   // 현재 위치 받아오기
   // const handleCurrentPosition = () => {
-    // 다음 4줄 : Google reverse-Geocode를 위한 axios parameter 세팅하기
-    const geocode_url = "https://maps.googleapis.com/maps/api/geocode/json";
-    let params = new URLSearchParams();
-    params.append("latlng", currPos.lat + "," + currPos.lng);
-    params.append("key", process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+  // 다음 4줄 : Google reverse-Geocode를 위한 axios parameter 세팅하기
+  // const geocode_url = "https://maps.googleapis.com/maps/api/geocode/json";
+  // let params = new URLSearchParams();
+  // params.append("latlng", userLatLong.lat + "," + userLatLong.long);
+  // params.append("key", process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
-    const displayPosition = () => { 
-      axios
-      .get(geocode_url, { params })
-      .then((data) => {
-        const addr = data.data.results[0].address_components;
-        const addrString = addr[2].long_name + ' ' + addr[1].long_name + ' ' + addr[0].long_name;
-        setCurrAddr(addrString);
-        // console.log(addrString);
-      }) 
-      .catch((err) => console.log(err));
-    }
+  useEffect(() => {
+    // axios
+    //   .get(geocode_url, { params })
+    //   .then((data) => {
+    //     const addr = data.data.results[0].address_components;
+    //     const addrString =
+    //       addr[2].long_name + " " + addr[1].long_name + " " + addr[0].long_name;
+    //     //테스때는 1번 요소. 실사용은 2번 요소 console.log(addr[1].long_name);
+    //     dispatch(userAddressAction(addr[1].long_name));
+    //   })
+    //   .catch((err) => console.log(err));
+    dispatch(userAddressAction("대치동"));
+  }, []);
   // };
 
   // 로그인 때 보이는 JSX를 변수에 넣기
   // 로그인 상태 아닐 때 보이는 우측 버튼 두 개
   const notLoginButton = (
     <>
-    <N.NavMenu onClick={handleClick} click={click}>
-      <N.NavItem>
-        <N.NavBtnLink>
-          <Button onClick={openLogin} >로그인</Button>
-        </N.NavBtnLink>
-      </N.NavItem>
-      <N.NavItemBtn>
+      <N.NavMenu onClick={handleClick} click={click}>
+        <N.NavItem>
+          <N.NavBtnLink>
+            <Button onClick={openLogin}>로그인</Button>
+          </N.NavBtnLink>
+        </N.NavItem>
+        <N.NavItemBtn>
           {button ? (
-                  <N.NavBtnLink>
-                  <Button onClick={openSignup} >회원가입</Button>
-                  </N.NavBtnLink>
-                ) : (
-                  <N.NavBtnLink >
-                    <Button onClick={openSignup} primary >
-                    회원가입
-                    </Button>
-                </N.NavBtnLink>
-                )}
-      </N.NavItemBtn>
-    </N.NavMenu>
+            <N.NavBtnLink>
+              <Button onClick={openSignup}>회원가입</Button>
+            </N.NavBtnLink>
+          ) : (
+            <N.NavBtnLink>
+              <Button onClick={openSignup} primary>
+                회원가입
+              </Button>
+            </N.NavBtnLink>
+          )}
+        </N.NavItemBtn>
+      </N.NavMenu>
     </>
   );
 
- // Disply 현재 위치
+  // Disply 현재 위치
   // {currPos.lat !== null && displayPosition() }
   const displayCurrentPosition = (
     <>
       <D.MapButtonLink>
         <D.DropDownDiv>
           <D.DropDownSpan>현재 위치</D.DropDownSpan>
-          <D.InputText   value={currAddr} disabled />
+          <D.InputText disabled />
         </D.DropDownDiv>
       </D.MapButtonLink>
     </>
   );
 
-   // dropdown bar
+  // dropdown bar
   // const dropDownBar = (
   //   <>
   //     <D.MapButtonDiv>
@@ -172,17 +175,18 @@ const Navbar = ({
         </N.NavLinks>
       </N.NavItem>
 
- 
-        <N.NavItemBtn>
-          {button ? (
-                  <N.NavBtnLink>
-                  <Button onClick={openLogout}>로그아웃</Button>
-                </N.NavBtnLink>
-                ) : (
-                  <N.NavBtnLink >
-                   <Button onClick={openLogout} primary>로그아웃</Button>
-                </N.NavBtnLink>
-                )}
+      <N.NavItemBtn>
+        {button ? (
+          <N.NavBtnLink>
+            <Button onClick={openLogout}>로그아웃</Button>
+          </N.NavBtnLink>
+        ) : (
+          <N.NavBtnLink>
+            <Button onClick={openLogout} primary>
+              로그아웃
+            </Button>
+          </N.NavBtnLink>
+        )}
       </N.NavItemBtn>
     </>
   );
@@ -198,8 +202,8 @@ const Navbar = ({
                 Cafe In
               </N.NavLogo>
               <N.MobileIcon onClick={handleClick}>
-               {click ? <FaTimes /> : <FaBars />}
-             </N.MobileIcon>
+                {click ? <FaTimes /> : <FaBars />}
+              </N.MobileIcon>
               {displayCurrentPosition}
               {/* <N.NavLogo2>
                 <N.NavIcon2 />
@@ -207,12 +211,12 @@ const Navbar = ({
               {/* {dropDownBar} */}
             </D.SimpleDiv>
 
-            <N.NavMenu onClick={handleClick} click={click} >{isLogin ? loginButton : notLoginButton}</N.NavMenu>
+            <N.NavMenu onClick={handleClick} click={click}>
+              {isLogin ? loginButton : notLoginButton}
+            </N.NavMenu>
           </N.NavbarContainer>
 
-          <ModalContainer
-            handleLoginSuccess={handleLoginSuccess}
-          />
+          <ModalContainer handleLoginSuccess={handleLoginSuccess} />
         </N.Nav>
       </IconContext.Provider>
     </>

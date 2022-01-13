@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { FaRegHeart } from "react-icons/fa";
+import { Container } from "../../assets/styles/GlobalStyle";
 
 export const CafeHashtagContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-
   @media screen and (max-width: 960px) {
     display: flex;
     flex-direction: column;
@@ -30,7 +29,6 @@ export const CafeHashtagSectionWrapper = styled.div`
   margin: 2px auto;
   margin-bottom: 2rem;
   margin-top: 2rem;
-
   @media screen and (max-width: 960px) {
     width: 100%;
     &:hover {
@@ -84,7 +82,6 @@ export const CafeImg = styled.img`
   align-items: center;
   text-align: center;
   margin-bottom: -3rem;
-
   @media screen and (max-width: 960px) {
     width: 30%;
     height: 30%;
@@ -142,7 +139,6 @@ export const CafemoreWrapper = styled.div`
   text-align: right;
   padding-right: 2rem;
   margin-top: 0.4rem;
-
   @media screen and (max-width: 960px) {
     width: 100%;
   }
@@ -156,7 +152,6 @@ export const CafeRank = styled.div`
   margin: 10px 0px 0px 27%;
   text-align: left;
   display: flex;
-
   @media screen and (max-width: 960px) {
     font-size: 30px;
     width: 100%;
@@ -170,7 +165,6 @@ export const CafeRankCounts = styled.div`
   color: #aaaaaa;
   text-align: right;
   margin: 10px 7px 0px 7px;
-
   @media screen and (max-width: 960px) {
     font-size: 14px;
     color: grey;
@@ -186,6 +180,8 @@ export const Rankdiv = styled.div`
   box-shadow: 1px 1px #cccccc;
   text-shadow: 1px 1px 1px #6e6e6e;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   padding-left: 18px;
   padding-top: 2px;
   vertical-align: middle;
@@ -203,12 +199,14 @@ export const CafeRankBox = styled.span`
   color: #ffff;
   padding: 4px 10px 4px 10px;
   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   text-shadow: 1px 1px 1px #6e6e6e;
   font-size: 18px;
-
   @media screen and (max-width: 960px) {
     width: 70%;
     text-align: left;
+    font-size: 16px;
   }
 `;
 // export const CafeRankBox  = styled.span`
@@ -239,7 +237,6 @@ export const CafeRankBox = styled.span`
 export const CafeInputWrapper = styled.div`
   align-items: center;
   text-align: center;
-
   @media screen and (max-width: 960px) {
     text-align: center;
     align-items: center;
@@ -250,7 +247,6 @@ export const HashtagSection = styled.div`
   align-items: center;
   text-align: center;
   padding: 10px 0px 10px 0px;
-
   @media screen and (max-width: 960px) {
     align-items: left;
   }
@@ -264,7 +260,6 @@ export const Input = styled.input`
   background: ${({ theme }) => theme.colors.mainBackground};
   text-align: left;
   outline: none;
-
   @media screen and (max-width: 960px) {
     width: 40%;
     text-align: left;
@@ -296,7 +291,6 @@ export const DropdownMenu = styled.select`
   font-weight: 600;
   background-color: ${({ theme }) => theme.colors.mainBackground};
   margin: 1rem;
-
   @media screen and (max-width: 960px) {
     height: 2rem;
     width: 33%;
@@ -313,32 +307,10 @@ export const ImgIcon = styled.img`
   margin: 10px 4px 0px 10px;
   width: 24px;
   height: 24px;
-
   @media screen and (max-width: 960px) {
     margin: 10px 4px 4px 10px;
     width: 20px;
     height: 24px;
-  }
-`;
-
-export const buttonheart = styled(FaRegHeart)`
-  margin-right: 0.3em;
-  animation: move2 1s infinite;
-
-  @keyframes move2 {
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-      transform: translateX(0);
-    }
-    40% {
-      transform: translateX(3px);
-    }
-    60% {
-      transform: translateX(-3px);
-    }
   }
 `;
 
@@ -353,13 +325,11 @@ export const Button = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
-
   &:hover {
     transition: all 0.3s ease-out;
     background: #cccccc;
-    background-color: #000;
+    background-color: ;
   }
-
   @media screen and (max-width: 960px) {
     width: 100%;
     width: 80px;
@@ -368,4 +338,13 @@ export const Button = styled.button`
     text-align: center;
     vertical-align: center;
   }
+`;
+
+export const Buttonheart = styled.div`
+  cursor:pointer
+  display:flex;
+  margin-top:3px;
+  margin-bottom:-7px;
+  margin-left: 10px;
+  color:#de4545;
 `;

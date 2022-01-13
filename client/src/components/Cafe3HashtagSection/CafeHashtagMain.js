@@ -3,23 +3,26 @@ import * as S from "./CafeHashtagMain.styled";
 import good from "../../assets/images/good.png";
 import bad from "../../assets/images/bad.png";
 import CafeHashHalfSection from "./CafeHashHalfSection";
-import { dummyGoodHashtags, dummyBadHashtags } from "./DummyDataHashtag";
 
-const CafeHashtagMain = () => {
+const CafeHashtagMain = ({ positive, negative, userPick, clickHandle }) => {
   return (
     <S.CafeHashtagContainer>
       <CafeHashHalfSection
-        type="good"
+        type="positive"
         titleImg={good}
         hashtagBg="#F2ACAC"
-        hashtagArray={dummyGoodHashtags}
+        hashtagArray={positive}
+        userPick={userPick}
+        clickHandle={clickHandle}
       />
 
       <CafeHashHalfSection
-        type="bad"
+        type="negative"
         titleImg={bad}
         hashtagBg="#77B9F2"
-        hashtagArray={dummyBadHashtags}
+        hashtagArray={negative}
+        userPick={userPick}
+        clickHandle={clickHandle}
       />
     </S.CafeHashtagContainer>
   );

@@ -1,37 +1,31 @@
-
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
-import {  Button } from '../../assets/styles/GlobalStyle';
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "../../assets/styles/GlobalStyle";
 import "./Form.css";
 import { useSelector, useDispatch } from "react-redux";
-import { login, showModal } from "../../store/actions";
+import { login, showModal, loginUserInfo } from "../../store/actions";
 
-const LogoutForm = ({ handleLogout, setShowModal }) => {
-  
-  const isLogin = useSelector(state => state.isLogin.isLogin);
-  const isShowModal = useSelector(state => state.showModal.isShowModal);
+const LogoutForm = () => {
+  const isLogin = useSelector((state) => state.isLogin.isLogin);
+  const isShowModal = useSelector((state) => state.showModal.isShowModal);
   const dispatch = useDispatch();
-  
+
   const navigate = useNavigate();
 
   const handleOK = () => {
-    //! 서버와 연동시 다음 세 줄은 주석처리
-    dispatch(login(false));
-    handleLogout();
-    navigate('/');
-
     //! 지우지 마세요. 서버랑 연동시 다시 주석 해제
-    // axios.post(
-    //   'http://localhost:8080/users/sign-out',
-    //   null,
-    //   { withCredentials: true }
-    // )
-    //   .then((res) => {
-    //     setIsLogout(true);
-    //     handleLogout();
-    //     navigate('/');
-    //   })
+    //? 넵!
+    axios
+      .post("http://localhost:8080/users/sign-out", null, {
+        withCredentials: true,
+      })
+      .then(() => {
+        dispatch(login(false));
+        dispatch(showModal(false));
+        dispatch(loginUserInfo(null));
+        navigate("/");
+      });
   };
 
   const handleCancel = () => {
@@ -42,23 +36,19 @@ const LogoutForm = ({ handleLogout, setShowModal }) => {
     <div className="logout-container">
       <center>
         <h2 className="log-out">로그아웃 하시겠습니까？</h2>
-          <div>
-          <Button
-            className="btn btn-login"
-            type="submit"
-            onClick={handleOK}
-          >
+        <div>
+          <Button className="btn btn-login" type="submit" onClick={handleOK}>
             확인
           </Button>
-          
-          <Button 
+
+          <Button
             className="btn btn-login"
             type="submit"
             onClick={handleCancel}
           >
             취소
           </Button>
-          </div>
+        </div>
       </center>
     </div>
   );

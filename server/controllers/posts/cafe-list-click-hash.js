@@ -1,8 +1,8 @@
 const { post, hash_tag, click_hashtag } = require("../../models");
 
 module.exports = async (req, res) => {
-  const { lat, long, location, lastid } = req.params;
-
+  const { lat, long, location, lastid, category } = req.params;
+  //통상적으로 불가능한 요청
   if (lat === "" || long === "" || location === "") {
     return res.status(400).send({
       data: [],
@@ -10,12 +10,14 @@ module.exports = async (req, res) => {
       subMessage: "위치정보 수집에 동의해주시거나 임의의 지역을 선택해주세요",
     });
   }
+  //lastid, category는 요청 단계에서 안 들어올 수 없음. 절대란 건 없긴 한데 걍 안써놓음 일단
 
   const selectedPost = await post.findAll({
     where: { location },
     include: [
       {
         model: hash_tag,
+        where: { category, type: "positive" },
       },
     ],
   });
@@ -26,7 +28,7 @@ module.exports = async (req, res) => {
       message: "현재 서비스되고 있지 않은 지역입니다",
     });
   }
-  //좌표간 거리를 1000m 단위로 나타냄
+
   const deg2rad = (deg) => deg * (Math.PI / 180);
   const R = 6371;
   const result = selectedPost.map((fill) => {
@@ -47,7 +49,6 @@ module.exports = async (req, res) => {
     fill.distance = result[idx];
   });
 
-  //allPost를 만든 다음 거기에 distance를 넣는 것이기 때문에 order는 먹지 않는다
   const cafeList = selectedPost.sort((a, b) => a.distance - b.distance);
 
   const listUp = [];
@@ -66,13 +67,13 @@ module.exports = async (req, res) => {
 
   const count = listUp.map((fill) => fill.hash_tags);
 
-  const findPosHash = count.map((fill) => {
+  const a = count.map((fill) => {
     return fill.filter((fill) => {
       return fill.type === "positive";
     });
   });
 
-  findPosHash.map((fill) => {
+  a.map((fill) => {
     fill.map((fill) => {
       for (let i = 0; i < countsHashTags.length; i++) {
         if (fill.id === countsHashTags[i]) fill.counts++;
@@ -80,13 +81,7 @@ module.exports = async (req, res) => {
     });
   });
 
-  const sortPositiveTag = findPosHash.map((fill) =>
-    fill.sort((a, b) => b.counts - a.counts)
-  );
-
-  const positiveTag = sortPositiveTag.map((fill) =>
-    fill.length >= 3 ? fill.slice(0, 3) : fill
-  );
+  const positiveTag = a.map((fill) => fill.sort((a, b) => b.counts - a.counts));
 
   res.status(200).send({ data: { listUp, positiveTag } });
 };

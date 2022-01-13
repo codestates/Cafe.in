@@ -3,30 +3,29 @@ import * as Styled from "./MainListSection.styled";
 import { distanceCalc } from "../../utils/DistCalculator";
 // import Hashtag from "./Hashtag";
 
-const MainListFragment = ({
-  id,
-  title,
-  title_img,
-  dist,
-  likes_hash_tags
-}) => {
-  const hashtags = likes_hash_tags.map((hashtag) => {
-    return <Styled.MainSectionCardFeatures key={hashtag}>{hashtag}</Styled.MainSectionCardFeatures>
+const MainListFragment = ({ id, title, title_img, dist, likes_hash_tags }) => {
+  const hashtags = likes_hash_tags.slice(0, 3).map((hashtag) => {
+    return (
+      <Styled.MainSectionCardFeatures key={hashtag.id}>
+        #{hashtag.category}
+        {hashtag.name}
+      </Styled.MainSectionCardFeatures>
+    );
   });
 
   return (
     <Styled.MainSectionContainer>
       <Styled.MainSectionCard to={`cafeinfo/${id}`}>
         <Styled.MainSectionCardInfo>
-            <Styled.ImgWrapper>
-              <Styled.Img src={title_img} alt="타이틀 이미지" />
-            </Styled.ImgWrapper>
+          <Styled.ImgWrapper>
+            <Styled.Img src={title_img} alt="타이틀 이미지" />
+          </Styled.ImgWrapper>
           <Styled.MainSectionCardPlan>{title}</Styled.MainSectionCardPlan>
-       <Styled.MainSectionCardLength>{dist} km</Styled.MainSectionCardLength>
-          
-            {hashtags}
+          <Styled.MainSectionCardLength>{dist} km</Styled.MainSectionCardLength>
 
-            {/* {likes_hash_tags.map((fill) => {
+          {hashtags}
+
+          {/* {likes_hash_tags.map((fill) => {
               return (
                 <Styled.HashtagSelect>
                   <Hashtag
@@ -37,7 +36,6 @@ const MainListFragment = ({
                 </Styled.HashtagSelect>
               );
             })} */}
-
         </Styled.MainSectionCardInfo>
       </Styled.MainSectionCard>
     </Styled.MainSectionContainer>
