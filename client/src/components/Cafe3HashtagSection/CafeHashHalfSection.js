@@ -21,7 +21,7 @@ const HashtagHalfSection = ({
   const [divSize, setDivSize] = useState("short-div");
   const [showMoreText, setShowMoreText] = useState("해시태그 더보기 >");
   const [sliceIndex, setSliceIndex] = useState(3);
-  const userId = useSelector((state) => state.userInfo.userInfo.id);
+  const userId = useSelector((state) => state.userInfo.userInfo?.id);
 
   // Dropdown에 쓸 State
   const [selected, setSelected] = useState({

@@ -7,8 +7,9 @@ module.exports = async (req, res) => {
     return isAccessToken(res);
   }
 
-  const { userId, hashId, postId } = req.body;
+  let { userId, hashId, postId } = req.body;
 
+  !userId ? (userId = 0) : userId;
   const selectedPost = await post.findOne({
     where: { id: postId },
     include: [

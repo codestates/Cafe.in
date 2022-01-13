@@ -26,20 +26,21 @@ const CafeInfo = () => {
   const [langLung, setLangLung] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/posts/cafe-info/${id}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setCafeInfo(res.data.data.selectedPost);
-        setPositive(res.data.data.positiveTag);
-        setNegative(res.data.data.negativeTag);
-        setUserPick(res.data.data.getHashtagUserId);
-        setLangLung([
-          Number(res.data.data.selectedPost.lat),
-          Number(res.data.data.selectedPost.long),
-        ]);
-      });
+    id &&
+      axios
+        .get(`http://localhost:8080/posts/cafe-info/${id}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          setCafeInfo(res.data.data.selectedPost);
+          setPositive(res.data.data.positiveTag);
+          setNegative(res.data.data.negativeTag);
+          setUserPick(res.data.data.getHashtagUserId);
+          setLangLung([
+            Number(res.data.data.selectedPost.lat),
+            Number(res.data.data.selectedPost.long),
+          ]);
+        });
   }, [clicked, id]);
 
   const clickHandle = () => {
