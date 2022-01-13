@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as S from "./CafeHashtagMain.styled";
 import HashtagInputSection from "./HashtagInputSection";
 import { options } from "./DummyDataHashtag";
-import heartIcon from "../../assets/images/heart-black-empty.svg";
+import { FaHeart } from 'react-icons/fa';
 import { FaRegHeart } from 'react-icons/fa';
 
 const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
@@ -16,6 +16,9 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
     [type]: "",
   });
 
+    
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
   
   // Input Section의 Input text 값
   const [inputText, setInputText] = useState({
@@ -26,19 +29,6 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
   const handleFinalSubmit = () => {
     //! submit 버튼 누르면 처리할 것. 코드 추가 예정
     // let concatHashtag = selected[type] + " " + inputText[type];
-    // const concatHashtag = {
-    //   category: selected[type],
-    //   name: inputText[type],
-    //   counts: 1,
-    // };
-    // console.log("type", type, "submit", concatHashtag);
-    //! submit하면 초기화 시켜주기 해줄까?
-    setSelected({
-      [type]: "",
-    }); // 초기화
-    setInputText({
-      [type]: "",
-    })
     //! select[type]은 obj.category, inputText[type]은 obj.name으로 서버로 보내준다.
   };
 
@@ -46,21 +36,6 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
   let hashtagsLength = hashtagArray.length;
   let isLongerThan3 = hashtagsLength > 3;
 
-  let clicked = false;
-  
-  
-  // likeBtn.addEventListener("click", () => {
-  //   if (!clicked) {
-  //     clicked = true;
-  //     likeIcon = `<i class="fas fa-thumbs-up"></i>`;
-  //     count.textContent++;
-  //   } else {
-  //     clicked = false;
-  //     likeIcon = `<i class="far fa-thumbs-up"></i>`;
-  //     count.textContent--;
-  //   }
-  // });
-  
 
   // 해시태그 List rendering
   const hashtagListMap = hashtagArray
@@ -74,12 +49,12 @@ const HashtagHalfSection = ({ type, titleImg, hashtagBg, hashtagArray }) => {
             {hashtagElement.category + " " + hashtagElement.name}
             </S.CafeRankBox>
             </S.Rankdiv>
-          <S.ImgIcon src={heartIcon} alt="heart-icon" />
-          <S.buttonheart type="button">
-          <span id="count">0</span> Like
-      </S.buttonheart>
-      {/* <S.Button type="button" onClick={handleSubmit}>입력</S.Button> */}
-      <S.Button type="button">입력</S.Button>
+
+          <S.Buttonheart onClick={handleClick}>
+               {click ? <FaRegHeart/> : <FaHeart />}
+          </S.Buttonheart>
+
+
           <S.CafeRankCounts>{hashtagElement.counts}</S.CafeRankCounts>
         </S.CafeRank>
       );

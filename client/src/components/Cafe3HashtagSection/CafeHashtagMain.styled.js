@@ -1,13 +1,14 @@
+
+  
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { FaRegHeart } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import { Container } from '../../assets/styles/GlobalStyle';
 
 export const CafeHashtagContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-
   @media screen and (max-width: 960px) {
     display: flex;
     flex-direction: column;
@@ -30,7 +31,6 @@ export const CafeHashtagSectionWrapper = styled.div`
   margin: 2px auto;
   margin-bottom: 2rem;
   margin-top: 2rem;
-
   @media screen and (max-width: 960px) {
     width: 100%;
     &:hover {
@@ -84,14 +84,14 @@ export const CafeImg = styled.img`
   align-items: center;
   text-align: center;
   margin-bottom: -3rem;
-
   @media screen and (max-width: 960px) {
     width: 30%;
     height: 30%;
-    margin-top: 0.3rem;
+    margin-top: .3rem;
     margin-bottom: -2rem;
   }
 `;
+
 
 // export const CafeLikeImg = styled.img`
 //   width: 19%;
@@ -130,7 +130,7 @@ export const CafeListWrapper = styled.div`
     max-height: 30vh;
     overflow: auto;
   }
-`;
+`
 
 export const Cafemore = styled.div`
   color: #aaaaaa;
@@ -142,8 +142,7 @@ export const CafemoreWrapper = styled.div`
   text-align: right;
   padding-right: 2rem;
   margin-top: 0.4rem;
-
-  @media screen and (max-width: 960px) {
+  @media screen and  (max-width: 960px) {
     width: 100%;
   }
 `;
@@ -156,8 +155,7 @@ export const CafeRank = styled.div`
   margin: 10px 0px 0px 27%;
   text-align: left;
   display: flex;
-
-  @media screen and (max-width: 960px) {
+  @media screen and  (max-width: 960px) {
     font-size: 30px;
     width: 100%;
     margin: 10px 0px 0px 20px;
@@ -168,35 +166,36 @@ export const CafeRank = styled.div`
 export const CafeRankCounts = styled.div`
   font-size: 17px;
   color: #aaaaaa;
-  text-align: right;
+  text-align:right;
   margin: 10px 7px 0px 7px;
-
-  @media screen and (max-width: 960px) {
-    font-size: 14px;
-    color: grey;
-    margin: 10px 10px 10px 4px;
+  @media screen and  (max-width: 960px) {
+  font-size: 14px;
+  color: grey;
+  margin: 10px 10px 10px 4px;
   }
+  
 `;
 export const Rankdiv = styled.div`
   width: 50%;
-  height: 100%;
+  height:  100%;
   color: #cccccc;
   background: ${({ bgColor }) => bgColor};
   border-radius: 30px;
   box-shadow: 1px 1px #cccccc;
   text-shadow: 1px 1px 1px #6e6e6e;
   white-space: nowrap;
-  padding-left: 18px;
-  padding-top: 2px;
+  padding-left : 18px;
+  padding-top : 2px;
   vertical-align: middle;
-  display: flex;
-  justify-content: left;
-
-  @media screen and (max-width: 1000px) {
+  display:flex; 
+  justify-content:left;
+  
+  @media screen and  (max-width: 1000px) {
     width: 70%;
-    text-align: left;
+    text-align:left;
   }
 `;
+
 
 export const CafeRankBox = styled.span`
   font-weight: 700;
@@ -205,10 +204,10 @@ export const CafeRankBox = styled.span`
   white-space: nowrap;
   text-shadow: 1px 1px 1px #6e6e6e;
   font-size: 18px;
-
-  @media screen and (max-width: 960px) {
+  
+  @media screen and  (max-width: 960px) {
     width: 70%;
-    text-align: left;
+    text-align:left;
   }
 `;
 // export const CafeRankBox  = styled.span`
@@ -239,20 +238,21 @@ export const CafeRankBox = styled.span`
 export const CafeInputWrapper = styled.div`
   align-items: center;
   text-align: center;
-
   @media screen and (max-width: 960px) {
     text-align: center;
     align-items: center;
+ 
   }
 `;
+
 
 export const HashtagSection = styled.div`
   align-items: center;
   text-align: center;
-  padding: 10px 0px 10px 0px;
-
+  padding : 10px 0px 10px 0px;
   @media screen and (max-width: 960px) {
     align-items: left;
+ 
   }
 `;
 
@@ -262,9 +262,8 @@ export const Input = styled.input`
   /* text-align: center; */
   color: #0c0c0c;
   background: ${({ theme }) => theme.colors.mainBackground};
-  text-align: left;
+  text-align:left;
   outline: none;
-
   @media screen and (max-width: 960px) {
     width: 40%;
     text-align: left;
@@ -275,97 +274,87 @@ export const HashtagInputWrapper = styled.div`
   align-items: center;
   text-align: center;
   width: 100%;
-
+  
   @media screen and (max-width: 960px) {
     width: 100%;
     text-align: left;
   }
-`;
+`
 
 export const DropdownMenu = styled.select`
   height: 2rem;
   width: 17%;
   border-radius: 30px;
-  border: 3px solid #e6c17b;
+  border: 3px solid #E6C17B;
   text-align: center;
   color: grey;
-  font-size: 15px;
+  font-size:15px;
   outline: none;
   cursor: pointer;
   white-space: nowrap;
   font-weight: 600;
   background-color: ${({ theme }) => theme.colors.mainBackground};
   margin: 1rem;
-
   @media screen and (max-width: 960px) {
     height: 2rem;
     width: 33%;
     border-radius: 30px;
-    border: 3px solid #e6c17b;
+    border: 3px solid #E6C17B;
     text-align: center;
     color: grey;
-    font-size: 15px;
-    outline: none;
+    font-size:15px;
+     outline: none;
+  
+    
   }
-`;
+`
+
 
 export const ImgIcon = styled.img`
-  margin: 10px 4px 0px 10px;
-  width: 24px;
-  height: 24px;
-
-  @media screen and (max-width: 960px) {
-    margin: 10px 4px 4px 10px;
-    width: 20px;
-    height: 24px;
+  margin : 10px 4px 0px 10px;
+  width:24px;
+  height:24px;
+  @media screen and  (max-width: 960px) {
+  
+  margin : 10px 4px 4px 10px;
+  width:20px;
+  height:24px;
   }
-`;
+`
 
-export const buttonheart = styled(FaRegHeart)`
-  margin-right: 0.3em;
-  animation: move2 1s infinite;
-
-  @keyframes move2 {
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-      transform: translateX(0);
-    }
-    40% {
-      transform: translateX(3px);
-    }
-    60% {
-      transform: translateX(-3px);
-    }
-  }
-`;
 
 export const Button = styled.button`
   margin: 0px 10px;
   border-radius: 40px;
-  background: #e6c17b;
+  background: #E6C17B;
   padding: 7px 20px;
-  color: ${({ theme }) => theme.colors.buttonFontColor};
+  color: ${ ({theme}) => theme.colors.buttonFontColor};
   font-size: 13px;
-  font-weight: 700;
+  font-weight:700;
   outline: none;
   border: none;
   cursor: pointer;
-
   &:hover {
     transition: all 0.3s ease-out;
-    background: #cccccc;
-    background-color: #000;
+    background: #CCCCCC;
+    background-color:
   }
-
   @media screen and (max-width: 960px) {
     width: 100%;
-    width: 80px;
+    width : 80px;
     margin-top: 4px;
     margin-bottom: 10px;
     text-align: center;
-    vertical-align: center;
+    vertical-align:center;
   }
+`;
+
+
+export const Buttonheart = styled.div`
+  cursor:pointer
+  display:flex;
+  margin-top:3px;
+  margin-bottom:-7px;
+  margin-left: 10px;
+  color:#de4545;
 `;
