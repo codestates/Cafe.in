@@ -86,7 +86,7 @@ const HashtagHalfSection = ({
       )
       .then(() => {
         clickHandle();
-        console.log("좋아요 눌렀어요호호");
+        // console.log("좋아요 눌렀어요호호");
       });
   };
 
