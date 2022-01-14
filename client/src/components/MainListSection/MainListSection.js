@@ -44,7 +44,7 @@ const MainListSection = () => {
       .then((res) => {
         setMain(res.data.data.listUp);
       });
-  }, [location, listCount]);
+  }, [location, listCount, category]);
 
   useEffect(() => {
     if (inView) dispatch(postCountAction());
@@ -53,23 +53,25 @@ const MainListSection = () => {
     //즉 얘가 화면을 감지해주는 거임
   }, [inView]);
 
-  const listMap = main.map(({ id, title, small_img, lat, long, hash_tags }) => {
-    let dist =
-      Math.round(
-        (distanceCalc(latlng.lat, latlng.long, lat, long) + Number.EPSILON) *
-          100
-      ) / 100;
-    return (
-      <MainListFragment
-        key={id}
-        id={id}
-        title={title}
-        title_img={small_img}
-        dist={dist}
-        likes_hash_tags={hash_tags}
-      />
-    );
-  });
+  const listMap =
+    main &&
+    main.map(({ id, title, small_img, lat, long, hash_tags }) => {
+      let dist =
+        Math.round(
+          (distanceCalc(latlng.lat, latlng.long, lat, long) + Number.EPSILON) *
+            100
+        ) / 100;
+      return (
+        <MainListFragment
+          key={id}
+          id={id}
+          title={title}
+          title_img={small_img}
+          dist={dist}
+          likes_hash_tags={hash_tags}
+        />
+      );
+    });
 
   return (
     <>

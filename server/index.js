@@ -35,30 +35,30 @@ app.use(
 app.use(cookieParser());
 app.use("/", Router);
 
-const data = [...yeoksam.documents, ...daechi.documents];
-const result = data.map((fill) => {
-  return {
-    title: fill.place_name,
-    tel: fill.phone,
-    adress: fill.address_name,
-    location: fill.address_name.split(" ")[2],
-    lat: fill.y,
-    long: fill.x,
-  };
-});
-const putIn = result.map(async (fill) => {
-  await post.create({
-    large_img: "http://placeimg.com/300/300/nature",
-    small_img: "http://placeimg.com/300/300/arch",
-    tel: fill.tel,
-    adress: fill.adress,
-    distance: null,
-    title: fill.title,
-    location: fill.location,
-    lat: fill.lat,
-    long: fill.long,
-  });
-});
+// const data = [...yeoksam.documents, ...daechi.documents];
+// const result = data.map((fill) => {
+//   return {
+//     title: fill.place_name,
+//     tel: fill.phone,
+//     adress: fill.address_name,
+//     location: fill.address_name.split(" ")[2],
+//     lat: fill.y,
+//     long: fill.x,
+//   };
+// });
+// const putIn = result.map(async (fill) => {
+//   await post.create({
+//     large_img: "http://placeimg.com/300/300/nature",
+//     small_img: "http://placeimg.com/300/300/arch",
+//     tel: fill.tel,
+//     adress: fill.adress,
+//     distance: null,
+//     title: fill.title,
+//     location: fill.location,
+//     lat: fill.lat,
+//     long: fill.long,
+//   });
+// });
 
 if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
   const key = fs.readFileSync(__dirname + "/key.pem", "utf-8");

@@ -16,6 +16,7 @@ import {
   userAddressAction,
   userLocationAction,
 } from "../../store/actions";
+import { postCategoryAction } from "../../store/actions";
 
 const Navbar = ({ handleLoginSuccess }) => {
   // Redux
@@ -49,8 +50,13 @@ const Navbar = ({ handleLoginSuccess }) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
+  const handleClick = () => {
+    setClick(!click);
+  };
+  const closeMobileMenu = () => {
+    dispatch(postCategoryAction(""));
+    setClick(false);
+  };
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -59,6 +65,8 @@ const Navbar = ({ handleLoginSuccess }) => {
       setButton(true);
     }
   };
+
+  const resetList = () => {};
 
   useEffect(() => {
     showButton();
