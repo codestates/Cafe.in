@@ -150,10 +150,12 @@ export const Img = styled.img`
 `;
 
 export const HashtagSelect = styled.div`
+
   &:hover {
     transform: scale(1.09);
     transition: all 0.3s ease-out;
     color: #ffe4b5;
+  
   }
 `;
 

@@ -7,12 +7,15 @@ export const CafeHashtagContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+
+  
   @media screen and (max-width: 960px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
   }
 `;
 
@@ -121,6 +124,7 @@ export const CafeImg = styled.img`
 export const CafeListWrapper = styled.div`
   &.short-div {
     height: 40%;
+    
   }
   &.long-div {
     min-height: 40%;
@@ -188,9 +192,10 @@ export const Rankdiv = styled.div`
   display: flex;
   justify-content: left;
 
-  @media screen and (max-width: 1000px) {
-    width: 70%;
+  @media screen and (max-width: 1440px) {
+    width: 72%;
     text-align: left;
+    align-items: center;
   }
 `;
 
@@ -269,6 +274,7 @@ export const Input = styled.input`
 export const HashtagInputWrapper = styled.div`
   align-items: center;
   text-align: center;
+  margin-top:4px;
   width: 100%;
 
   @media screen and (max-width: 960px) {
