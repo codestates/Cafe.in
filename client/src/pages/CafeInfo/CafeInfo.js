@@ -84,7 +84,9 @@ const CafeInfo = () => {
             </S.Cafe3HashtagWrapper>
 
             <S.Cafe4MapWrapper>
-              {/* <Cafe4MapSection lat={center.lat} lng={center.lng} /> */}
+            { process.env.REACT_APP_ENV_GOOGLE_MAP === "no" ?
+              null :
+              <Cafe4MapSection lat={center.lat} lng={center.lng} /> }
             </S.Cafe4MapWrapper>
           </S.CafePageContainer>{" "}
         </>
