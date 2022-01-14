@@ -53,7 +53,7 @@ const MainListSection = () => {
     //즉 얘가 화면을 감지해주는 거임
   }, [inView]);
 
-  const listMap = main.map(({ id, title, small_img, lat, long, hash_tags }) => {
+  const listMap = main && main.map(({ id, title, small_img, lat, long, hash_tags }) => {
     let dist =
       Math.round(
         (distanceCalc(latlng.lat, latlng.long, lat, long) + Number.EPSILON) *

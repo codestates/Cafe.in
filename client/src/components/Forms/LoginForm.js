@@ -12,8 +12,8 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const [loginInfo, setLoginInfo] = useState({
-    email: "yar0606@naver.com",
-    password: "qwe@12345",
+    email: "resacle93@naver.com",
+    password: "123qwe@@",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
