@@ -48,6 +48,11 @@ export const postCountAction = () => {
     type: Types.CAFE_LIST_COUNT,
   };
 };
+export const postCountResetAction = () => {
+  return {
+    type: Types.CAFE_LIST_COUNT_RESET,
+  };
+};
 
 export const postCategoryAction = (category) => {
   return {
