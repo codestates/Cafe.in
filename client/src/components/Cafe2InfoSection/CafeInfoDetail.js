@@ -1,16 +1,21 @@
 import React from "react";
+import { FaHome, FaPhone } from "react-icons/fa";
 import * as S from "./CafeInfoDetail.styled";
 
 const CafeInfoDetail = ({ data }) => {
+ 
+
   return (
     <>
       <S.CafeInfoContainer>
-        <span style={{ margin: "15px", color: "lime" }}>
-          가게주소 : {data.adress}
-        </span>
-        <div style={{ margin: "15px", color: "lime" }}>
-          전화번호 : {data.tel}
-        </div>
+        <S.Addressd >
+        <FaHome/>   <S.Address>{data.adress}</S.Address>
+        </S.Addressd>
+        
+        <S.Phonenumber>
+        <FaPhone/> <S.Number>
+          {data.tel }</S.Number>
+        </S.Phonenumber>
       </S.CafeInfoContainer>
     </>
   );

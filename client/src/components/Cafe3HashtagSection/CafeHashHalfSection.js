@@ -86,7 +86,7 @@ const HashtagHalfSection = ({
       )
       .then(() => {
         clickHandle();
-        console.log("좋아요 눌렀어요호호");
+        // console.log("좋아요 눌렀어요호호");
       });
   };
 
@@ -151,7 +151,7 @@ const HashtagHalfSection = ({
       <S.CafeListWrapper className={divSize}>
         {hashtagListMap && hashtagListMap.length === 0 ? (
           <>
-            <h2 style={{ paddingTop: "10px", color: "tomato" }}>
+            <h2 style={{ paddingTop: "20px",marginBottom:"10px", color: "grey" }}>
               아직 태그가 없어요!
             </h2>
             <br />
