@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 const user = require("./user");
 const post = require("./post");
-const dislikes_hash_tag = require("./dislikes_hash_tag");
-const likes_hash_tag = require("./likes_hash_tag");
+const hash_tag = require("./hash_tag");
+const click_hashtag = require("./click_hashtag");
 
 const env = process.env.NODE_ENV || "development";
 const config = require("../config/config")[env];
@@ -20,17 +20,16 @@ db.Sequelize = Sequelize;
 
 db.user = user;
 db.post = post;
-db.dislikes_hash_tag = dislikes_hash_tag;
-db.likes_hash_tag = likes_hash_tag;
+db.hash_tag = hash_tag;
+db.click_hashtag = click_hashtag;
 
 user.init(sequelize);
 post.init(sequelize);
-dislikes_hash_tag.init(sequelize);
-likes_hash_tag.init(sequelize);
+hash_tag.init(sequelize);
+click_hashtag.init(sequelize);
 
 user.associate(db);
 post.associate(db);
-dislikes_hash_tag.associate(db);
-likes_hash_tag.associate(db);
+hash_tag.associate(db);
 
 module.exports = db;

@@ -2,57 +2,85 @@ import React, { useEffect, useState } from "react";
 import { IconContext } from "react-icons/lib";
 import * as Styled from "./MainListSection.styled";
 import MainListFragment from "./MainListFragment";
-import { dummyData, currentLocation } from "./MainListDummyData";
 import { distanceCalc } from "../../utils/DistCalculator";
 import imgurl7 from "../../assets/images/png7.png";
 import imgurl8 from "../../assets/images/menu.png";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { useInView } from "react-intersection-observer";
+import { postCountAction, userLocationAction } from "../../store/actions";
 
 const MainListSection = () => {
   //! 서버 연동시 다음 주석해제
-  // const [main, setMain] = useState([]);
+  const [main, setMain] = useState([]);
 
-  // const mainSearchHandle = (data) => {
-  //   setMain(data);
-  // };
+  const [ref, inView] = useInView();
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:8080/posts/cafe-list", {
-  //       withCredentials: true,
-  //     })
-  //     .then((res) => {
-  //       setMain(res.data.data);
-  //     });
-  // }, []);
+  const location = useSelector((state) => state.addressReducer.currAddr);
+  console.log();
+  const latlng = useSelector((state) => state.userLocation.userLatLong);
+  const listCount = useSelector((state) => state.listCountReducer.listCount);
+  const category = useSelector((state) => state.categoryReducer.category);
 
-  const { lat: currLat, long: currLong } = currentLocation;
+  const dispatch = useDispatch();
 
-  const listMap = dummyData.map(
-    ({ id, title, title_img, lat, long, likes_hash_tags }) => {
+  const mainSearchHandle = (data) => {
+    setMain(data);
+  };
+
+  useEffect(() => {
+    //!아랫줄은 완성 후 삭제
+    dispatch(userLocationAction(37.4988, 127.06314));
+    //!
+    axios
+      .get(
+        `http://localhost:8080/posts/cafe-list/${location}/lat/${
+          latlng.lat
+        }/long/${latlng.long}/${listCount}/${category === "" ? "" : category}`,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        setMain(res.data.data.listUp);
+      });
+  }, [location, listCount, category]);
+
+  useEffect(() => {
+    if (inView) dispatch(postCountAction());
+    //ref는 컴포넌트에 걸어준다
+    //inView는 ref를 사용자가 보고 있으면 true로, 안 보이면 false로 바꿔줌
+    //즉 얘가 화면을 감지해주는 거임
+  }, [inView]);
+
+  const listMap =
+    main &&
+    main.map(({ id, title, small_img, lat, long, hash_tags }) => {
       let dist =
         Math.round(
-          (distanceCalc(currLat, currLong, lat, long) + Number.EPSILON) * 100
+          (distanceCalc(latlng.lat, latlng.long, lat, long) + Number.EPSILON) *
+            100
         ) / 100;
       return (
         <MainListFragment
           key={id}
           id={id}
           title={title}
-          title_img={title_img}
+          title_img={small_img}
           dist={dist}
-          likes_hash_tags={likes_hash_tags}
+          likes_hash_tags={hash_tags}
         />
       );
-    }
-  );
+    });
 
   return (
-    <IconContext.Provider value={{ color: "#472d0c" }}>
-      <Styled.MainSectionSection>
-        <Styled.Img8 src={imgurl8} />
-        {listMap}
+    <>
+      <IconContext.Provider value={{ color: "#472d0c" }}>
+        <Styled.MainSectionSection>
+          <Styled.Img8 src={imgurl8} />
+          {listMap}
 
-        {/* {main === null ? (
+          {/* {main === null ? (
           <h3>로딩중</h3>
         ) : ( 
           main.map((fill) => {
@@ -69,8 +97,10 @@ const MainListSection = () => {
             );
           })
         )} */}
-      </Styled.MainSectionSection>
-    </IconContext.Provider>
+        </Styled.MainSectionSection>
+      </IconContext.Provider>
+      <div ref={ref}></div>
+    </>
   );
 };
 export default MainListSection;

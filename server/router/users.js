@@ -4,6 +4,8 @@ const controllers = require("../controllers");
 
 router.post("/sign-in", controllers.sign_in);
 
+router.post("/sign-in-oauth/google", controllers.sign_in_oauth_google);
+
 router.post("/sign-up", controllers.sign_up);
 
 router.post("/sign-out", controllers.sign_out);

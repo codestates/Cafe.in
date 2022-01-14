@@ -19,7 +19,7 @@ const App = () => {
         setMode(event.matches ? darkTheme : theme);
       });
   }, []);
-
+  // 다크모드
   return (
     // darkMode 필요시 아래 theme={theme}을 theme={mode}로 바꾼다.
     <ThemeProvider theme={theme}>

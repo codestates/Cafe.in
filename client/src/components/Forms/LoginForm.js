@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../../assets/styles/GlobalStyle";
-// import axios from "axios";
+import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login, loginUserInfo, showModal } from "../../store/actions";
 import imgkakao from "../../assets/images/kakao-login.png";
@@ -9,23 +9,20 @@ import "./Form.css";
 import { emailCheck, passwordCheck1 } from "../../utils/RegExTest.js";
 
 const LoginForm = () => {
-
   const dispatch = useDispatch();
 
   const [loginInfo, setLoginInfo] = useState({
-    id: 0,
     email: "yar0606@naver.com",
-    password: "qwe!1234",
-    nickname: "captain_caffein",
+    password: "qwe@12345",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleLoginSuccess = (loginInfo) => {
-    dispatch(showModal(false));
-    dispatch(loginUserInfo(loginInfo));
-    dispatch(login(true));
-  }
+  // const handleLoginSuccess = (loginInfo) => {
+  //   dispatch(login(true));
+  //   dispatch(showModal(false));
+  //   dispatch(loginUserInfo(loginInfo));
+  // };
 
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
@@ -33,6 +30,7 @@ const LoginForm = () => {
 
   const handleLoginInfo = () => {
     const { email, password } = loginInfo;
+
     if (!email && !password) {
       setErrorMessage("이메일과 비밀번호를 입력하세요");
       return;
@@ -53,31 +51,26 @@ const LoginForm = () => {
     }
 
     //! 서버 연동시 아래는 주석 처리??
-    handleLoginSuccess(loginInfo);
+    //handleLoginSuccess(loginInfo);
 
-    //! 아래 주석은 지우지 마세요 => 서버 연동시 구현
-    // axios
-    //   .post(
-    //     "http://localhost:8080/users/sign-in",
-    //     { user_email: email, password: password },
-    //     { "Content-Type": "application/json", withCredentials: true }
-    //   )
-    //   .then((res) => {
-    //     axios
-    //       .get("http://localhost:8080/users/mypage/", { withCredentials: true })
-    //       .then((res) => {
-    //         const { id, user_email, password, nickname } = res.data.data;
-    //         const payload = {
-    //           id: id,
-    //           email: user_email,
-    //           password: password,
-    //           nickname: nickname,
-    //         };
-    //         handleLogin(payload);
-    //       })
-    //       .catch((err) => console.log(err.response.data.message));
-    //   })
-    //   .catch((err) => console.log(err.response.data.message));
+    axios
+      .post(
+        "http://localhost:8080/users/sign-in",
+        { user_email: email, password: password },
+        { "Content-Type": "application/json", withCredentials: true }
+      )
+      .then((res) => {
+        dispatch(showModal(false));
+        dispatch(loginUserInfo(res.data.data.payload));
+        dispatch(login(true));
+      })
+      .catch((err) => console.log(err.response.data.message));
+  };
+
+  const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_ID}&response_type=token&redirect_uri=http://localhost:3000&scope=openid%20profile%20email`;
+
+  const googleLoginHandler = () => {
+    window.location.assign(googleUrl);
   };
 
   return (
@@ -89,7 +82,7 @@ const LoginForm = () => {
             <input
               type="text"
               onChange={handleInputValue("email")}
-              placeholder='아이디를 입력하세요.'
+              placeholder="아이디를 입력하세요."
               value={loginInfo.email}
             />
           </div>
@@ -98,7 +91,7 @@ const LoginForm = () => {
             <input
               type="password"
               onChange={handleInputValue("password")}
-              placeholder='비밀번호를 입력하세요.'
+              placeholder="비밀번호를 입력하세요."
               value={loginInfo.password}
             />
           </div>
@@ -121,26 +114,14 @@ const LoginForm = () => {
               <div className="sign-up"> 회원가입을 안하셨나요? </div>
             </a>
           </div> */}
-          <div className="box_btn block">
-            <a href="/">
-              <img
-                className="btn-kakao-login"
-                src={imgkakao}
-                width="60"
-                align="center"
-                alt="kakao-logo"
-              ></img>
-            </a>
-            <span> </span>
-            <a href="/">
-              <img
-                className="btn-google-login"
-                src={imggoogle}
-                width="60"
-                align="center"
-                alt="google-logo"
-              ></img>
-            </a>
+          <div onClick={googleLoginHandler} style={{ cursor: "pointer" }}>
+            <img
+              className="btn-google-login"
+              src={imggoogle}
+              width="60"
+              align="center"
+              alt="google-logo"
+            ></img>
           </div>
         </form>
       </center>

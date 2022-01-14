@@ -10,10 +10,10 @@ import { clickModalType, showModal, loginUserInfo } from "../../store/actions";
 
 const MypageSection = ({ mypageObjOne }) => {
   // Redux
-  const isLogin = useSelector(state => state.isLogin.isLogin);
+  const isLogin = useSelector((state) => state.isLogin.isLogin);
   const modalType = useSelector((state) => state.modalType.clickedModalType);
-  const userInfo = useSelector(state => state.userInfo.userInfo);
-  const isShowModal = useSelector(state => state.showModal.isShowModal);
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+  const isShowModal = useSelector((state) => state.showModal.isShowModal);
   const dispatch = useDispatch();
 
   const openPwdChange = () => {
@@ -33,19 +33,19 @@ const MypageSection = ({ mypageObjOne }) => {
             <Container>
               <Styled.Header className="header">
                 {" "}
-                Welcome Cafe In {userInfo.email} !
+                Welcome Cafe In {userInfo.user_email} !
               </Styled.Header>
               <Styled.MypageRow imgStart={mypageObjOne.imgStart}>
                 <Styled.MypageColumn>
                   <Styled.ImgWrapper start={mypageObjOne.start}>
-                    <Styled.Img src={mypageObjOne.img} />
+                    {<Styled.Img src={mypageObjOne.img} />}
                   </Styled.ImgWrapper>
                 </Styled.MypageColumn>
                 <Styled.MypageColumn>
                   <Styled.TextWrapper>
                     <Styled.Id lightTopLine={mypageObjOne.lightTopLine}>
                       <Styled.NameIcon />
-                      Id : {userInfo.email}
+                      email : {userInfo.user_email}
                     </Styled.Id>
                     <Styled.Nickname lightTextDesc={mypageObjOne.lightTextDesc}>
                       <Styled.NameIcon />
