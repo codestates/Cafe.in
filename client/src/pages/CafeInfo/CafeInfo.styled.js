@@ -33,7 +33,9 @@ export const Cafe3HashtagWrapper = styled.div`
 
 
   @media screen and (max-width: 960px) {
-
+  height: 100%;
+  width: 100%;
+  display: flex;
   align-items: left;
   flex-direction: column;
 
@@ -41,7 +43,8 @@ export const Cafe3HashtagWrapper = styled.div`
 
 `
 export const Cafe4MapWrapper = styled.div`
-  height: 30vh;
+  height: 40vh;
+  margin-top : 40px;
 
 `
 

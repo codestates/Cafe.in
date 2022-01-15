@@ -11,7 +11,7 @@ const yeoksam = require("./cafeJsonData/yeoksam.json");
 const daechi = require("./cafeJsonData/daechi.json");
 
 const app = express();
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 8080;
 
 const Router = require("./router");
 
@@ -20,6 +20,7 @@ const Router = require("./router");
 //   .then(() => sequelize.sync({ force: true }))
 //   .then(() => sequelize.query("SET FOREIGN_KEY_CHECKS = 1"))
 //   .then(() => console.log("DB연결 성공"));
+
 sequelize.sync({ force: false }).then(() => console.log("DB연결 성공"));
 
 app.use(express.json());
