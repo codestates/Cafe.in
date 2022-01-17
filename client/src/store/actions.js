@@ -1,4 +1,5 @@
 import * as Types from "./types";
+import axios from 'axios';
 
 export const clickModalType = (clickedMenu = "") => {
   return {
@@ -60,3 +61,42 @@ export const postCategoryAction = (category) => {
     category,
   };
 };
+
+//thunk
+
+export const getCafeInfoRequest = () => {
+  return {
+    type: Types.GET_CAFE_INFO_REQUEST,
+  };
+};
+
+export const getCafeInfoSuccess = (data) => {
+  return {
+    type: Types.GET_CAFE_INFO_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getCafeInfoFailure = (error) => {
+  return {
+    type: Types.GET_CAFE_INFO_FAILURE,
+    payload: error,
+  };
+};
+
+export const getCafeInfo = (id, isLogin) => {
+  return (dispatch) => {
+    dispatch(getCafeInfoRequest());
+    axios
+        .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          const data = res.data.data;
+          dispatch(getCafeInfoSuccess(data));
+        })
+        .catch(error => {
+          dispatch(getCafeInfoFailure(error.message));
+        })
+  }
+}

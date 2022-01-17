@@ -7,7 +7,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { login, showModal, loginUserInfo } from "../../store/actions";
+import { login, showModal, loginUserInfo, getCafeInfo } from "../../store/actions";
 import { useNavigate } from "react-router-dom";
 
 const HashtagHalfSection = ({
@@ -16,7 +16,6 @@ const HashtagHalfSection = ({
   hashtagBg,
   hashtagArray,
   userPick,
-  clickHandle,
 }) => {
   const { id } = useParams();
   // 해시태그 list wrapper에 쓸 className 등등 state들
@@ -35,8 +34,8 @@ const HashtagHalfSection = ({
   const [selected, setSelected] = useState({
     [type]: "",
   });
-  const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
+  // const [click, setClick] = useState(false);
+  // const handleClick = () => setClick(!click);
 
   // Input Section의 Input text 값
   const [inputText, setInputText] = useState({
@@ -45,8 +44,8 @@ const HashtagHalfSection = ({
   // console.log("category", selected, "inputText", inputText);
 
   const handleFinalSubmit = () => {
-    console.log(selected);
-    console.log(inputText);
+    // console.log(selected);
+    // console.log(inputText);
 
     axios
       .post(
@@ -69,7 +68,7 @@ const HashtagHalfSection = ({
         setInputText({
           [type]: "",
         });
-        clickHandle();
+        dispatch(getCafeInfo(id, isLogin));
       })
       .catch((e) => {
         if (e.response.data.type === "noHash")
@@ -110,8 +109,8 @@ const HashtagHalfSection = ({
         }
       )
       .then(() => {
-        clickHandle();
-        console.log("좋아요 눌렀어요호호");
+        // console.log("좋아요 눌렀어요호호");
+        dispatch(getCafeInfo(id, isLogin));
       })
       .catch(() => {
         alert("세션이 만료되었습니다. 다시 로그인해주세요.");
