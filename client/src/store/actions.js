@@ -1,5 +1,7 @@
 import * as Types from "./types";
-import axios from 'axios';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 export const clickModalType = (clickedMenu = "") => {
   return {
@@ -88,15 +90,23 @@ export const getCafeInfo = (id, isLogin) => {
   return (dispatch) => {
     dispatch(getCafeInfoRequest());
     axios
-        .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          const data = res.data.data;
-          dispatch(getCafeInfoSuccess(data));
-        })
-        .catch(error => {
-          dispatch(getCafeInfoFailure(error.message));
-        })
-  }
-}
+      .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        const data = res.data.data;
+        dispatch(getCafeInfoSuccess(data));
+      })
+      .catch((error) => {
+        console.log(error);
+        // dispatch(getCafeInfoFailure(error.message));
+        alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+        dispatch(login(false));
+        dispatch(showModal(false));
+        dispatch(loginUserInfo(null));
+        dispatch(postCountResetAction());
+        const navigate = useNavigate();
+        navigate("/");
+      });
+  };
+};

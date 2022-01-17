@@ -1,39 +1,32 @@
-import { GET_CAFE_INFO_FAILURE, GET_CAFE_INFO_REQUEST, GET_CAFE_INFO_SUCCESS } from "../../types";
+import { GET_CAFE_INFO_REQUEST, GET_CAFE_INFO_SUCCESS } from "../../types";
 
 const initialState = {
-  loading: false,
-  data: {
-    selectedPost : {},
-    positiveTag: [],
-    negativeTag: [],
-    getHashtagUserId: [],
-  },
-  error: ''
-}
+  isLoading: false,
+  selectedPost: {},
+  positiveTag: [],
+  negativeTag: [],
+  getHashtagUserId: [],
+};
 
 const cafeInfoReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CAFE_INFO_REQUEST:
       return {
         ...state,
-        loading: true,
-        error: ''
+        isLoading: true,
       }
     case GET_CAFE_INFO_SUCCESS:
       return {
         ...state,
-        loading: false,
-        data: action.payload,
-        error: ''
-      }
-    case GET_CAFE_INFO_FAILURE:
-      return {
-        loading: false,
-        data: {},
-        error: action.payload,
-      }
-    default: return state
+        isLoading: false,
+        selectedPost: action.payload.selectedPost,
+        positiveTag: action.payload.positiveTag,
+        negativeTag: action.payload.negativeTag,
+        getHashtagUserId: action.payload.getHashtagUserId,
+      };
+    default:
+      return state;
   }
-}
+};
 
-export default cafeInfoReducer
+export default cafeInfoReducer;
