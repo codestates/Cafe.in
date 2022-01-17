@@ -7,12 +7,15 @@ export const CafeHashtagContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+
+  
   @media screen and (max-width: 960px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
   }
 `;
 
@@ -121,6 +124,7 @@ export const CafeImg = styled.img`
 export const CafeListWrapper = styled.div`
   &.short-div {
     height: 40%;
+    
   }
   &.long-div {
     min-height: 40%;
@@ -270,7 +274,11 @@ export const Input = styled.input`
 export const HashtagInputWrapper = styled.div`
   align-items: center;
   text-align: center;
+<<<<<<< HEAD
   margin-top: 4px;
+=======
+  margin-top:4px;
+>>>>>>> d966a3d7763f3ddbc5f899d121555826162ec517
   width: 100%;
 
   @media screen and (max-width: 960px) {

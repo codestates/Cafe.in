@@ -90,6 +90,7 @@ const CafeInfo = () => {
             <S.Cafe2InfoWrapper>
               <Cafe2InfoSection data={cafeInfo} />
             </S.Cafe2InfoWrapper>
+            {console.log("Rendering Test")}
 
             <S.Cafe3HashtagWrapper>
               <Cafe3HashtagSection
