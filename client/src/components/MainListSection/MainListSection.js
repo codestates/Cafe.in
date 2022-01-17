@@ -9,6 +9,8 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { useInView } from "react-intersection-observer";
 import { postCountAction, userLocationAction } from "../../store/actions";
+import { useNavigate } from "react-router-dom";
+import { login, loginUserInfo, showModal } from "../../store/actions";
 
 const MainListSection = () => {
   //! 서버 연동시 다음 주석해제
@@ -17,10 +19,12 @@ const MainListSection = () => {
   const [ref, inView] = useInView();
 
   const location = useSelector((state) => state.addressReducer.currAddr);
-  console.log();
   const latlng = useSelector((state) => state.userLocation.userLatLong);
   const listCount = useSelector((state) => state.listCountReducer.listCount);
   const category = useSelector((state) => state.categoryReducer.category);
+  const isLogin = useSelector((state) => state.isLogin.isLogin);
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -36,13 +40,21 @@ const MainListSection = () => {
       .get(
         `http://localhost:8080/posts/cafe-list/${location}/lat/${
           latlng.lat
-        }/long/${latlng.long}/${listCount}/${category === "" ? "" : category}`,
+        }/long/${latlng.long}/${listCount}/${isLogin}/${
+          category === "" ? "" : category
+        }`,
         {
           withCredentials: true,
         }
       )
       .then((res) => {
         setMain(res.data.data.listUp);
+      })
+      .catch(() => {
+        // alert("세션이 만료되어 자동으로 로그아웃됩니다");
+        // dispatch(login(false));
+        // dispatch(loginUserInfo(null));
+        //dispatch(showModal(true));
       });
   }, [location, listCount, category]);
 
@@ -68,7 +80,7 @@ const MainListSection = () => {
           title={title}
           title_img={small_img}
           dist={dist}
-          likes_hash_tags={hash_tags}
+          likes_hash_tags={hash_tags.filter((fill) => fill.type === "positive")}
         />
       );
     });
