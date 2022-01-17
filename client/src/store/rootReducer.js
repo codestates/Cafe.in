@@ -20,6 +20,7 @@ const persistConfig = {
     "listCountReducer",
     "categoryReducer",
     "userLocationReducer",
+    "addressReducer",
   ],
 };
 

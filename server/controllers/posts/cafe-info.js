@@ -4,11 +4,17 @@ const { isAccessToken, accessTokenDecoded } = require("../modules/jwt");
 module.exports = async (req, res) => {
   const accessToken = req.cookies.accessToken;
 
+  let { postid, islogin } = req.params;
+
+  if (islogin && accessTokenDecoded(accessToken) === "null") {
+    res.clearCookie("accessToken", { path: "/" });
+    return res.redirect(404, "/");
+    //.send({ message: "세션이 만료되었습니다. 다시 로그인해주세요." });
+  }
+
   let userid;
   if (!accessToken) userid = 0;
   else userid = accessTokenDecoded(accessToken).id;
-
-  let { postid } = req.params;
 
   const selectedPost = await post.findOne({
     where: { id: postid },

@@ -274,7 +274,11 @@ export const Input = styled.input`
 export const HashtagInputWrapper = styled.div`
   align-items: center;
   text-align: center;
+<<<<<<< HEAD
+  margin-top: 4px;
+=======
   margin-top:4px;
+>>>>>>> d966a3d7763f3ddbc5f899d121555826162ec517
   width: 100%;
 
   @media screen and (max-width: 960px) {

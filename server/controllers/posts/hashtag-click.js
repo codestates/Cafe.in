@@ -1,13 +1,21 @@
 const { user, hash_tag, post, click_hashtag } = require("../../models");
-const { isAccessToken } = require("../modules/jwt");
+const { isAccessToken, accessTokenDecoded } = require("../modules/jwt");
 
 module.exports = async (req, res) => {
   const accessToken = req.cookies.accessToken;
+  const { islogin } = req.params;
+
   if (accessToken === null || !accessToken) {
     return isAccessToken(res);
   }
 
-  let { userId, hashId, postId } = req.body;
+  if (islogin && accessTokenDecoded(accessToken) === "null") {
+    res.clearCookie("accessToken", { path: "/" });
+    return res.redirect(401, "/");
+    //.send({ message: "세션이 만료되었습니다. 다시 로그인해주세요." });
+  }
+
+  let { userId, hashId, postId, type } = req.body;
 
   !userId ? (userId = 0) : userId;
   const selectedPost = await post.findOne({
@@ -29,6 +37,7 @@ module.exports = async (req, res) => {
       post_id: postId,
       user_id: userId,
       like_id: tagId,
+      like_type: type,
     },
   });
 
@@ -38,6 +47,7 @@ module.exports = async (req, res) => {
         post_id: postId,
         user_id: userId,
         like_id: tagId,
+        like_type: type,
       },
     });
     res.status(200).send({ data: deleLike, message: "태그 좋아요 취소" });
@@ -46,6 +56,7 @@ module.exports = async (req, res) => {
       post_id: postId,
       user_id: userId,
       like_id: tagId,
+      like_type: type,
     });
     res.status(200).send({ data: addLike, message: "태그 좋아요 추가" });
   }

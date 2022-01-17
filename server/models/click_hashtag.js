@@ -16,6 +16,10 @@ module.exports = class click_hashtag extends Sequelize.Model {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
+        like_type: {
+          type: Sequelize.STRING(20),
+          allowNull: false,
+        },
       },
       {
         sequelize,

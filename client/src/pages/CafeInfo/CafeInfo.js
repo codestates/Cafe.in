@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as S from "./CafeInfo.styled";
+import { useSelector, useDispatch } from "react-redux";
+import { login, showModal, loginUserInfo } from "../../store/actions";
+import { useNavigate } from "react-router-dom";
+import { postCountResetAction } from "../../store/actions";
 
 import { Cafe1ImageSection } from "../../components";
 import { Cafe2InfoSection } from "../../components";
 import { Cafe3HashtagSection } from "../../components";
 import { Cafe4MapSection } from "../../components";
 
-import { dummyData } from "../../components/MainListSection/MainListDummyData";
 import axios from "axios";
 
 const CafeInfo = () => {
   const { id } = useParams();
+  const isLogin = useSelector((state) => state.isLogin.isLogin);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   // const search = (num) => dummyData.find((key) => key.id === num);
   // const cafe = search(Number(id));
   // const img =
@@ -28,7 +36,7 @@ const CafeInfo = () => {
   useEffect(() => {
     id &&
       axios
-        .get(`http://localhost:8080/posts/cafe-info/${id}`, {
+        .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -40,6 +48,15 @@ const CafeInfo = () => {
             Number(res.data.data.selectedPost.lat),
             Number(res.data.data.selectedPost.long),
           ]);
+        })
+        .catch((e) => {
+          alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+
+          dispatch(login(false));
+          dispatch(showModal(false));
+          dispatch(loginUserInfo(null));
+          dispatch(postCountResetAction());
+          navigate("/");
         });
   }, [clicked, id]);
 
@@ -73,7 +90,7 @@ const CafeInfo = () => {
             <S.Cafe2InfoWrapper>
               <Cafe2InfoSection data={cafeInfo} />
             </S.Cafe2InfoWrapper>
-            { console.log('Rendering Test')}
+            {console.log("Rendering Test")}
 
             <S.Cafe3HashtagWrapper>
               <Cafe3HashtagSection
@@ -85,9 +102,10 @@ const CafeInfo = () => {
             </S.Cafe3HashtagWrapper>
 
             <S.Cafe4MapWrapper>
-            { process.env.REACT_APP_ENV_GOOGLE_MAP === "no" ?
-              null :
-              <Cafe4MapSection lat={center.lat} lng={center.lng} /> }
+              {/* <Cafe4MapSection lat={center.lat} lng={center.lng} /> */}
+              {process.env.REACT_APP_ENV_GOOGLE_MAP === "no" ? null : (
+                <Cafe4MapSection lat={center.lat} lng={center.lng} />
+              )}
             </S.Cafe4MapWrapper>
           </S.CafePageContainer>{" "}
         </>

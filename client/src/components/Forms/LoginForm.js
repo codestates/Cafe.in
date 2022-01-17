@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Button } from "../../assets/styles/GlobalStyle";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { login, loginUserInfo, showModal } from "../../store/actions";
+import {
+  login,
+  loginUserInfo,
+  showModal,
+  postCountResetAction,
+} from "../../store/actions";
 import imgkakao from "../../assets/images/kakao-login.png";
 import imggoogle from "../../assets/images/google-login.png";
 import "./Form.css";
@@ -13,7 +18,7 @@ const LoginForm = () => {
 
   const [loginInfo, setLoginInfo] = useState({
     email: "yar0606@naver.com",
-    password: "qwe@12345",
+    password: "qwe!12345",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -63,6 +68,8 @@ const LoginForm = () => {
         dispatch(showModal(false));
         dispatch(loginUserInfo(res.data.data.payload));
         dispatch(login(true));
+        dispatch(postCountResetAction());
+        //window.location.reload();
       })
       .catch((err) => console.log(err.response.data.message));
   };
