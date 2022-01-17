@@ -4,7 +4,7 @@ import good from "../../assets/images/good.png";
 import bad from "../../assets/images/bad.png";
 import CafeHashHalfSection from "./CafeHashHalfSection";
 
-const CafeHashtagMain = ({ positive, negative, userPick, clickHandle }) => {
+const CafeHashtagMain = ({ positive, negative, userPick }) => {
   return (
     <S.CafeHashtagContainer>
       <CafeHashHalfSection
@@ -13,7 +13,6 @@ const CafeHashtagMain = ({ positive, negative, userPick, clickHandle }) => {
         hashtagBg="#F2ACAC"
         hashtagArray={positive}
         userPick={userPick}
-        clickHandle={clickHandle}
       />
 
       <CafeHashHalfSection
@@ -22,7 +21,6 @@ const CafeHashtagMain = ({ positive, negative, userPick, clickHandle }) => {
         hashtagBg="#77B9F2"
         hashtagArray={negative}
         userPick={userPick}
-        clickHandle={clickHandle}
       />
     </S.CafeHashtagContainer>
   );
