@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
         fill.posts_hash_tags.post_id === Number(postid) &&
         fill.posts_hash_tags.hash_tag_id === findHash.id
     );
-    console.log(filterPostId);
+
     if (filterPostId.length === 0) {
       const finishHash = await selectedPost.addHash_tag(findHash.id);
 

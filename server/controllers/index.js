@@ -11,4 +11,5 @@ module.exports = {
   add_hashtag: require("./posts/add-hashtag"),
   cafe_list_click_hash: require("./posts/cafe-list-click-hash"),
   hashtag_click: require("./posts/hashtag-click"),
+  remove_hashtag: require("./posts/remove-hashtag"),
 };

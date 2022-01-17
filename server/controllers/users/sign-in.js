@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
     });
 
     const payload = {
-      type: "nomal",
+      type: checkPassword.type,
       id: checkPassword.id,
       user_email: checkPassword.user_email,
       password: checkPassword.password,

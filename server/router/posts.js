@@ -21,6 +21,8 @@ router.get("/cafe-info/:postid/:islogin", controllers.cafe_info);
 
 router.post("/add-hashtag/:islogin", controllers.add_hashtag);
 
+router.post("/remove-hashtag", controllers.remove_hashtag);
+
 // router.post("/dislike-hashtag");
 
 router.post("/hashtag-click/:islogin", controllers.hashtag_click);

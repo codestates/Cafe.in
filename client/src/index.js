@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 // React-Redux import
 import { Provider } from "react-redux"; // Provider component
-import thunk from 'redux-thunk';
+import thunk from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";

@@ -24,6 +24,7 @@ module.exports = {
       return payload;
     } catch (e) {
       if (e.name === "TokenExpiredError") return "null";
+      //if (e.name === "JsonWebTokenError") return "needToLogin";
       return e.name;
     }
   },
@@ -32,8 +33,9 @@ module.exports = {
   },
   isAccessToken: (res) => {
     return res.status(401).send({
+      type: "needToLogin",
       data: null,
-      message: "인증되지 않은 사용자 입니다.",
+      message: "로그인 후 마음에 드는 태그에 좋아요를 눌러보세요",
     });
   },
 };

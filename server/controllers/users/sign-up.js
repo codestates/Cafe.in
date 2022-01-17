@@ -10,7 +10,7 @@ const bcrypt = require("bcrypt");
 //const { transporter, NODEMAILER_USER } = require("../modules/mailer");
 
 module.exports = async (req, res) => {
-  const { user_email, password, nickname } = req.body;
+  const { user_email, password, nickname, type } = req.body;
   let { profile_img } = req.body;
 
   if (!user_email || !password || !nickname) {
@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
     profile_img = "http://placeimg.com/640/480/any";
 
     const payload = {
-      type: "nomal",
+      type: !type ? "nomal" : type,
       user_email,
       password: passwordHash,
       nickname,
@@ -84,7 +84,7 @@ module.exports = async (req, res) => {
     });
   } else {
     const payload = {
-      type: "nomal",
+      type: !type ? "nomal" : type,
       user_email,
       password: passwordHash,
       nickname,

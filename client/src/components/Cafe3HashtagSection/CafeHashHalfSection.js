@@ -7,7 +7,12 @@ import { FaRegHeart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { login, showModal, loginUserInfo, getCafeInfo } from "../../store/actions";
+import {
+  login,
+  showModal,
+  loginUserInfo,
+  getCafeInfo,
+} from "../../store/actions";
 import { useNavigate } from "react-router-dom";
 
 const HashtagHalfSection = ({
@@ -77,6 +82,8 @@ const HashtagHalfSection = ({
           return alert(e.response.data.message);
         if (e.response.data.type === "already")
           return alert(e.response.data.message);
+        if (e.response.data.type === "needToLogin")
+          return alert("로그인 후 해시태그를 입력해보세요");
         //위의 오류종류 빼고 나는 오류는 예상치 못한 거던가 쿠키 시간이 끝났거나
         //이런 식으로 구분하면 너무 길어질 것 같다.. 더 좋은 방법은 없을까?
         dispatch(login(false));
@@ -112,7 +119,9 @@ const HashtagHalfSection = ({
         // console.log("좋아요 눌렀어요호호");
         dispatch(getCafeInfo(id, isLogin));
       })
-      .catch(() => {
+      .catch((e) => {
+        if (e.response.data.type === "needToLogin")
+          return alert(e.response.data.message);
         alert("세션이 만료되었습니다. 다시 로그인해주세요.");
         axios
           .post("http://localhost:8080/users/sign-out", null, {
@@ -127,6 +136,26 @@ const HashtagHalfSection = ({
       });
   };
 
+  const removeLike = (hashid) => {
+    axios
+      .post(
+        "http://localhost:8080/posts/remove-hashtag",
+        {
+          hashid,
+          postid: id,
+          type,
+        },
+        {
+          "Content-Type": "applicaton/json",
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        dispatch(getCafeInfo(id, isLogin));
+        console.log(res.data.message);
+      });
+  };
+
   //positive= [], negative = []
   // 해시태그 List rendering
   const hashtagListMap =
@@ -134,7 +163,10 @@ const HashtagHalfSection = ({
     hashtagArray.slice(0, sliceIndex).map((hashtagElement, index) => {
       return (
         <S.CafeRank key={index}>
-          <S.Rankdiv bgColor={hashtagBg}>
+          <S.Rankdiv
+            bgColor={hashtagBg}
+            onClick={() => removeLike(hashtagElement.id)}
+          >
             {index + 1}.{" "}
             <S.CafeRankBox>
               #{hashtagElement.category + " " + hashtagElement.name}

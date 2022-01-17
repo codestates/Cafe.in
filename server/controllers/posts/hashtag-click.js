@@ -4,6 +4,8 @@ const { isAccessToken, accessTokenDecoded } = require("../modules/jwt");
 module.exports = async (req, res) => {
   const accessToken = req.cookies.accessToken;
   const { islogin } = req.params;
+  //console.log(`@@@@@@@@@@@@${accessTokenDecoded(accessToken)}`);
+  //error.name 은 JsonWebTokenError
 
   if (accessToken === null || !accessToken) {
     return isAccessToken(res);
@@ -14,6 +16,13 @@ module.exports = async (req, res) => {
     return res.redirect(401, "/");
     //.send({ message: "세션이 만료되었습니다. 다시 로그인해주세요." });
   }
+
+  // if (islogin && accessTokenDecoded(accessToken) === "needToLogin") {
+  //   return res
+  //     .status(400)
+  //     .send({ message: "로그인 후 마음에 드는 태그에 좋아요를 눌러보세요" });
+  //   //.send({ message: "세션이 만료되었습니다. 다시 로그인해주세요." });
+  // }
 
   let { userId, hashId, postId, type } = req.body;
 
@@ -28,7 +37,6 @@ module.exports = async (req, res) => {
   });
 
   const a = selectedPost.hash_tags.filter((fill) => fill.id === hashId);
-
   const tagId = a[0].id;
 
   const insertLike = await click_hashtag.findOne({
