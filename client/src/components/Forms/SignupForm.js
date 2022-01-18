@@ -8,7 +8,7 @@ import {
   emailCheck,
   passwordCheck1,
   passwordCheck2,
-} from "../../utils/RegExTest.js";
+} from "../../utils/helper/RegExTest.js";
 import imgkakao from "../../assets/images/kakao-login.png";
 import imggoogle from "../../assets/images/google-login.png";
 

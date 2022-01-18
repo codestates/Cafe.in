@@ -7,18 +7,14 @@ import MainPage from "./pages/MainPage/MainPage";
 import MyPage from "./pages/Mypage/Mypage";
 import CafeInfo from "./pages/CafeInfo/CafeInfo";
 import { ThemeProvider } from "styled-components";
-import { theme, darkTheme } from "./assets/styles/theme";
+import { lightTheme, darkTheme } from "./assets/styles/theme";
+import useDarkMode from "./utils/hooks/useDarkMode";
 
 const App = () => {
-  // 다음 6줄은 darkMode toggle을 위한 코드
-  const [mode, setMode] = useState(theme);
-  useEffect(() => {
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", (event) => {
-        setMode(event.matches ? darkTheme : theme);
-      });
-  }, []);
+  
+  let theme = useDarkMode() ? darkTheme : lightTheme;
+  if (process.env.REACT_APP_USE_DARK_MODE === "no") theme = lightTheme;
+
   // 다크모드
   return (
     // darkMode 필요시 아래 theme={theme}을 theme={mode}로 바꾼다.

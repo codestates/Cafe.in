@@ -56,8 +56,8 @@ const CafeInfo = () => {
               <S.Cafe4MapWrapper>
                 {process.env.REACT_APP_ENV_GOOGLE_MAP === "no" ? null : (
                   <Cafe4MapSection
-                    lat={selectedPost.lat}
-                    lng={selectedPost.long}
+                    lat={Number(selectedPost.lat)}
+                    lng={Number(selectedPost.long)}
                   />
                 )}
               </S.Cafe4MapWrapper>
