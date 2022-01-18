@@ -1,7 +1,7 @@
-import { USER_LOCATION } from "../../types";
+import { DENIED_GEOLOCATION, GET_GEOLOCATION, USER_LOCATION } from "../../types";
 
 const initialState = {
-  userLatLong: { lat: 1, long: 127.06314 },
+  userLatLong: null,
 };
 
 const userLocationReducer = (state = initialState, action) => {
@@ -11,6 +11,16 @@ const userLocationReducer = (state = initialState, action) => {
         ...state,
         userLatLong: { lat: action.lat, long: action.long },
       };
+    case GET_GEOLOCATION:
+      return {
+        ...state,
+        userLatLong: { lat: action.payload.coords.latitude, long: action.payload.coords.longitude },
+      }
+    case DENIED_GEOLOCATION:
+      return {
+        ...state,
+        userLatLong: { lat: 37.4988, long: 127.06314 },
+      }
     default:
       return state;
   }
