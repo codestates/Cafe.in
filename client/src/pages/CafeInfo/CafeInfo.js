@@ -7,6 +7,7 @@ import { Cafe1ImageSection } from "../../components";
 import { Cafe2InfoSection } from "../../components";
 import { Cafe3HashtagSection } from "../../components";
 import { Cafe4MapSection } from "../../components";
+import Spinner from '../../assets/styles/Spinner.js';
 
 const CafeInfo = () => {
   const { id } = useParams();
@@ -28,10 +29,7 @@ const CafeInfo = () => {
   return (
     <>
       {isLoading ? (
-        <div>
-          
-          <h1>Loading in progress</h1>
-        </div>
+              <Spinner />
       ) : (
         cafeInfo && (
           <>
