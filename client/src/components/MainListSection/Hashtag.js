@@ -6,7 +6,7 @@ export default function Hashtag({ text, id, mainSearchHandle }) {
 
   const hashSearch = () => {
     axios
-      .get(`http://localhost:8080/posts/cafe-list/${id}`, {
+      .get(`http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/posts/cafe-list/${id}`, {
         withCredentials: true,
       })
       .then((res) => {

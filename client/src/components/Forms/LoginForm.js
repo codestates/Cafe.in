@@ -60,7 +60,7 @@ const LoginForm = () => {
 
     axios
       .post(
-        "http://localhost:8080/users/sign-in",
+        "http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/users/sign-in",
         { user_email: email, password: password },
         { "Content-Type": "application/json", withCredentials: true }
       )

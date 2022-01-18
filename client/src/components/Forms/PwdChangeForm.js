@@ -51,7 +51,7 @@ const PwdChangeForm = () => {
     //! 서버 연동시 다음 주석 해제
     axios
       .patch(
-        "http://localhost:8080/users/mypage/password",
+        "http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/users/mypage/password",
         { old_password: oldPassword, new_password: newPassword },
         { "Content-Type": "application/json", withCredentials: true }
       )

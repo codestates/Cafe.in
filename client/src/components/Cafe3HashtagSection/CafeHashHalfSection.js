@@ -60,7 +60,7 @@ const HashtagHalfSection = ({
 
     axios
       .post(
-        `http://localhost:8080/posts/add-hashtag/${isLogin}`,
+        `http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/posts/add-hashtag/${isLogin}`,
         {
           hashtag: inputText[type],
           category: selected[type].split("#")[1],
@@ -108,7 +108,7 @@ const HashtagHalfSection = ({
   const addLike = (hashId) => {
     axios
       .post(
-        `http://localhost:8080/posts/hashtag-click/${isLogin}`,
+        `http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/posts/hashtag-click/${isLogin}`,
         {
           userId,
           postId: id,
@@ -129,7 +129,7 @@ const HashtagHalfSection = ({
           return alert(e.response.data.message);
         alert("세션이 만료되었습니다. 다시 로그인해주세요.");
         axios
-          .post("http://localhost:8080/users/sign-out", null, {
+          .post("http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/users/sign-out", null, {
             withCredentials: true,
           })
           .then(() => {
@@ -144,7 +144,7 @@ const HashtagHalfSection = ({
   const removeLike = (hashid) => {
     axios
       .post(
-        "http://localhost:8080/posts/remove-hashtag",
+        "http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/posts/remove-hashtag",
         {
           hashid,
           postid: id,

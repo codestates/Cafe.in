@@ -42,7 +42,7 @@ const MypageSection = ({ mypageObjOne }) => {
 
     const res = await axios
       .post(
-        `http://localhost:8080/users/mypage/profile/${userInfo.id}`,
+        `http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/users/mypage/profile/${userInfo.id}`,
         formData
       )
       .then((res) => {

@@ -26,7 +26,7 @@ const MainPage = () => {
           console.log(res.data);
           axios
             .post(
-              `http://localhost:8080/users/sign-in-oauth/google`,
+              `http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/users/sign-in-oauth/google`,
               {
                 user_email: res.data.email,
                 nickname: res.data.name,

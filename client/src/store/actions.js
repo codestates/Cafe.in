@@ -102,7 +102,7 @@ export const getCafeInfo = (id, isLogin) => {
   return (dispatch) => {
     dispatch(getCafeInfoRequest());
     axios
-      .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
+      .get(`http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/posts/cafe-info/${id}/${isLogin}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -126,7 +126,7 @@ export const getCafeInfo = (id, isLogin) => {
 export const getLikeCount = (id, isLogin) => {
   return (dispatch) => {
     axios
-      .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
+      .get(`http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/posts/cafe-info/${id}/${isLogin}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -139,7 +139,7 @@ export const getLikeCount = (id, isLogin) => {
 export const getHashTags = (id, isLogin) => {
   return (dispatch) => {
     axios
-      .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
+      .get(`http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/posts/cafe-info/${id}/${isLogin}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -191,14 +191,27 @@ export const getCurrAddress = (lat, lng) => {
   params.append("key", process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
   return (dispatch) => {
-    axios
-      .get(geocode_url, { params })
-      .then((data) => {
-        const addr = data.data.results[6].address_components;
-        const addrString =
-          addr[2].long_name + " " + addr[1].long_name + " " + addr[0].long_name;
-        dispatch(userAddressAction(addr[0].long_name));
-      })
-      .catch((err) => console.log(err));
+    // axios
+    //   .get(geocode_url, { params })
+    //   .then((data) => {
+    //     const addr = data.data.results[6].address_components;
+    //     const addrString =
+    //       addr[2].long_name + " " + addr[1].long_name + " " + addr[0].long_name;
+    //     dispatch(userAddressAction('대치동'));
+    //   })
+    //   .catch((err) => console.log(err));
+
+      // ===============================================================
+
+  // axios
+  //     .get(geocode_url, { params })
+  //     .then((data) => {
+  //       const addr = data.data.results[6].address_components;
+  //       const addrString =
+  //         addr[2].long_name + " " + addr[1].long_name + " " + addr[0].long_name;
+        dispatch(userAddressAction('대치동'));
+      // })
+      // .catch((err) => console.log(err));
+
   }
 }

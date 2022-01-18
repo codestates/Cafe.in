@@ -39,7 +39,7 @@ const MainListSection = () => {
     location &&
       axios
         .get(
-          `http://localhost:8080/posts/cafe-list/${location}/lat/${
+          `http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/posts/cafe-list/${location}/lat/${
             latlng.lat
           }/long/${latlng.long}/${listCount}/${isLogin}/${
             category === "" ? "" : category

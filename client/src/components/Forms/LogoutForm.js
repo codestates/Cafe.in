@@ -17,7 +17,7 @@ const LogoutForm = () => {
     //! 지우지 마세요. 서버랑 연동시 다시 주석 해제
     //? 넵!
     axios
-      .post("http://localhost:8080/users/sign-out", null, {
+      .post("http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/users/sign-out", null, {
         withCredentials: true,
       })
       .then(() => {

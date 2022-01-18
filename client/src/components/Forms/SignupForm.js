@@ -68,7 +68,7 @@ const SignupForm = () => {
     //! 서버연동시 다음 주석 해제
     axios
       .post(
-        "http://localhost:8080/users/sign-up",
+        "http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/users/sign-up",
         { user_email: email, password: password, nickname: nickname },
         { "Content-Type": "application/json", withCredentials: true }
       )

@@ -45,7 +45,7 @@ const DeleteAccountForm = ({ handleLogout }) => {
     // ! 서버연동시 주석 해제
     axios
       .post(
-        "http://localhost:8080/users/delete-account",
+        "http://ec2-52-79-84-183.ap-northeast-2.compute.amazonaws.com/users/delete-account",
         { password },
         { "Content-Type": "application/json", withCredentials: true }
       )
