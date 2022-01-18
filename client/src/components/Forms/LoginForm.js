@@ -11,7 +11,7 @@ import {
 import imgkakao from "../../assets/images/kakao-login.png";
 import imggoogle from "../../assets/images/google-login.png";
 import "./Form.css";
-import { emailCheck, passwordCheck1 } from "../../utils/RegExTest.js";
+import { emailCheck, passwordCheck1 } from "../../utils/helper/RegExTest.js";
 
 const LoginForm = () => {
   const dispatch = useDispatch();

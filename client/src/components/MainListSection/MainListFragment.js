@@ -1,6 +1,6 @@
 import React from "react";
 import * as Styled from "./MainListSection.styled";
-import { distanceCalc } from "../../utils/DistCalculator";
+import { distanceCalc } from "../../utils/helper/DistCalculator";
 // import Hashtag from "./Hashtag";
 import { useSelector, useDispatch } from "react-redux";
 import { postCategoryAction, postCountResetAction } from "../../store/actions";

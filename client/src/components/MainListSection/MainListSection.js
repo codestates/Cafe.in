@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IconContext } from "react-icons/lib";
 import * as Styled from "./MainListSection.styled";
 import MainListFragment from "./MainListFragment";
-import { distanceCalc } from "../../utils/DistCalculator";
+import { distanceCalc } from "../../utils/helper/DistCalculator";
 import imgurl7 from "../../assets/images/png7.png";
 import imgurl8 from "../../assets/images/menu.png";
 import { useSelector, useDispatch } from "react-redux";

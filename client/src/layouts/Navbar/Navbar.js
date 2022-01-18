@@ -139,7 +139,7 @@ const Navbar = ({ handleLoginSuccess }) => {
     </>
   );
 
-  // Disply 현재 위치
+  // Display 현재 위치
   // {currPos.lat !== null && displayPosition() }
   const displayCurrentPosition = (
     <>

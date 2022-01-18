@@ -4,10 +4,10 @@ import "./Form.css";
 import { useSelector, useDispatch } from "react-redux";
 import { showModal } from "../../store/actions";
 import { Button } from "../../assets/styles/GlobalStyle";
-import { emailCheck, passwordCheck } from "../../utils/RegExTest.js";
+import { emailCheck, passwordCheck } from "../../utils/helper/RegExTest.js";
 import imgkakao from "../../assets/images/kakao-login.png";
 import imggoogle from "../../assets/images/google-login.png";
-const { passwordCheck1, passwordCheck2 } = require("../../utils/RegExTest");
+const { passwordCheck1, passwordCheck2 } = require("../../utils/helper/RegExTest");
 
 const PwdChangeForm = () => {
   const isShowModal = useSelector((state) => state.showModal.isShowModal);
