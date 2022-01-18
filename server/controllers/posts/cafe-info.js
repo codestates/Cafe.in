@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
 
   let { postid, islogin } = req.params;
 
-  if (islogin && accessTokenDecoded(accessToken) === "null") {
+  if (islogin === true && accessTokenDecoded(accessToken) === "null") {
     res.clearCookie("accessToken", { path: "/" });
     return res.redirect(404, "/");
     //.send({ message: "세션이 만료되었습니다. 다시 로그인해주세요." });

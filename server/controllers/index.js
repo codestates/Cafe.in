@@ -12,4 +12,5 @@ module.exports = {
   cafe_list_click_hash: require("./posts/cafe-list-click-hash"),
   hashtag_click: require("./posts/hashtag-click"),
   remove_hashtag: require("./posts/remove-hashtag"),
+  profile: require("./users/mypage/profile"),
 };

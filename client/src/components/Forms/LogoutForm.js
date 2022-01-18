@@ -21,10 +21,10 @@ const LogoutForm = () => {
         withCredentials: true,
       })
       .then(() => {
+        navigate("/");
         dispatch(login(false));
         dispatch(showModal(false));
         dispatch(loginUserInfo(null));
-        navigate("/");
       });
   };
 

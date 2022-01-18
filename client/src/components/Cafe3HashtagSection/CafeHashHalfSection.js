@@ -14,6 +14,7 @@ import {
   getCafeInfo,
 } from "../../store/actions";
 import { useNavigate } from "react-router-dom";
+import delteImg from "../../assets/images/pngwing.com.png";
 
 const HashtagHalfSection = ({
   type,
@@ -21,15 +22,18 @@ const HashtagHalfSection = ({
   hashtagBg,
   hashtagArray,
   userPick,
+  clickHandle,
 }) => {
   const { id } = useParams();
   // 해시태그 list wrapper에 쓸 className 등등 state들
   const [divSize, setDivSize] = useState("short-div");
   const [showMoreText, setShowMoreText] = useState("해시태그 더보기 >");
   const [sliceIndex, setSliceIndex] = useState(3);
+  const [deleteHover, setDeleteHover] = useState(false);
 
   const userId = useSelector((state) => state.userInfo.userInfo?.id);
   const isLogin = useSelector((state) => state.isLogin.isLogin);
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
 
   const dispatch = useDispatch();
 
@@ -39,8 +43,8 @@ const HashtagHalfSection = ({
   const [selected, setSelected] = useState({
     [type]: "",
   });
-  // const [click, setClick] = useState(false);
-  // const handleClick = () => setClick(!click);
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
 
   // Input Section의 Input text 값
   const [inputText, setInputText] = useState({
@@ -49,8 +53,8 @@ const HashtagHalfSection = ({
   // console.log("category", selected, "inputText", inputText);
 
   const handleFinalSubmit = () => {
-    // console.log(selected);
-    // console.log(inputText);
+    console.log(selected);
+    console.log(inputText);
 
     axios
       .post(
@@ -116,7 +120,6 @@ const HashtagHalfSection = ({
         }
       )
       .then(() => {
-        // console.log("좋아요 눌렀어요호호");
         dispatch(getCafeInfo(id, isLogin));
       })
       .catch((e) => {
@@ -152,7 +155,11 @@ const HashtagHalfSection = ({
       )
       .then((res) => {
         dispatch(getCafeInfo(id, isLogin));
+
         console.log(res.data.message);
+      })
+      .catch(() => {
+        //
       });
   };
 
@@ -163,14 +170,36 @@ const HashtagHalfSection = ({
     hashtagArray.slice(0, sliceIndex).map((hashtagElement, index) => {
       return (
         <S.CafeRank key={index}>
-          <S.Rankdiv
-            bgColor={hashtagBg}
-            onClick={() => removeLike(hashtagElement.id)}
-          >
+          <S.Rankdiv bgColor={hashtagBg} style={{ position: "relative" }}>
             {index + 1}.{" "}
             <S.CafeRankBox>
               #{hashtagElement.category + " " + hashtagElement.name}
             </S.CafeRankBox>
+            {userInfo && userInfo.type === "admin" ? (
+              <span
+                style={{
+                  width: "13px",
+                  height: "13px",
+                  cursor: "pointer",
+                  fontSize: "15px",
+                  position: "absolute",
+                  right: "12px",
+                  top: "5px",
+                  borderRadius: "50%",
+                  color: "#000",
+                  backgroundImage: `url(${delteImg})`,
+                  backgroundSize: "cover",
+                  //backgroundPosition: "center",
+                }}
+                onClick={
+                  userInfo.type === "admin"
+                    ? () => removeLike(hashtagElement.id)
+                    : () => {}
+                }
+              ></span>
+            ) : (
+              ""
+            )}
           </S.Rankdiv>
 
           <S.Buttonheart

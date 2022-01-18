@@ -129,16 +129,6 @@ const SignupForm = () => {
           <div className="box_btn block">
             <a href="/">
               <img
-                className="btn-kakao-login"
-                src={imgkakao}
-                width="60"
-                align="center"
-                alt="kakao-logo"
-              ></img>
-            </a>
-            <span> </span>
-            <a href="/">
-              <img
                 className="btn-google-login"
                 src={imggoogle}
                 width="60"

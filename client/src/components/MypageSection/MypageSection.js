@@ -1,5 +1,9 @@
-import React, { useState } from "react";
-import { Container, Button } from "../../assets/styles/GlobalStyle";
+import React, { useState, useRef } from "react";
+import {
+  Container,
+  Button,
+  ProfilImgBtn,
+} from "../../assets/styles/GlobalStyle";
 // import imgurl from "../../assets/images/profile.png";
 import { IconContext } from "react-icons/lib";
 import ModalContainer from "../ModalContainer/ModalContainer";
@@ -7,6 +11,7 @@ import ModalContainer from "../ModalContainer/ModalContainer";
 import * as Styled from "./MypageSection.styled";
 import { useSelector, useDispatch } from "react-redux";
 import { clickModalType, showModal, loginUserInfo } from "../../store/actions";
+import axios from "axios";
 
 const MypageSection = ({ mypageObjOne }) => {
   // Redux
@@ -25,6 +30,26 @@ const MypageSection = ({ mypageObjOne }) => {
     dispatch(showModal(!isShowModal));
   };
 
+  const profileImgInput = useRef();
+
+  const profileClickHandle = () => {
+    profileImgInput.current.click();
+  };
+
+  const profileChangeHandle = async (e) => {
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+
+    const res = await axios
+      .post(
+        `http://localhost:8080/users/mypage/profile/${userInfo.id}`,
+        formData
+      )
+      .then((res) => {
+        dispatch(loginUserInfo(res.data.data));
+      });
+  };
+
   return (
     <>
       {isLogin && (
@@ -38,7 +63,11 @@ const MypageSection = ({ mypageObjOne }) => {
               <Styled.MypageRow imgStart={mypageObjOne.imgStart}>
                 <Styled.MypageColumn>
                   <Styled.ImgWrapper start={mypageObjOne.start}>
-                    {<Styled.Img src={mypageObjOne.img} />}
+                    {userInfo.profile_img === null ? (
+                      <Styled.Img src={mypageObjOne.img} />
+                    ) : (
+                      <Styled.Img src={userInfo.profile_img} />
+                    )}
                   </Styled.ImgWrapper>
                 </Styled.MypageColumn>
                 <Styled.MypageColumn>
@@ -54,7 +83,16 @@ const MypageSection = ({ mypageObjOne }) => {
                     <Button primary onClick={openPwdChange}>
                       {mypageObjOne.buttonLabel1}
                     </Button>
-                    <Button primary> 프로필변경</Button>
+                    <input
+                      ref={profileImgInput}
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => profileChangeHandle(e)}
+                      style={{ display: "none" }}
+                    />
+                    <Button primary onClick={profileClickHandle}>
+                      프로필 사진 변경
+                    </Button>
                   </Styled.TextWrapper>
                 </Styled.MypageColumn>
               </Styled.MypageRow>

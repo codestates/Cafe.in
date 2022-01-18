@@ -24,6 +24,8 @@ const Navbar = ({ handleLoginSuccess }) => {
   const isShowModal = useSelector((state) => state.showModal.isShowModal);
   // const address = useSelector((state) => state.addressReducer.currAddr);
   const userLatLong = useSelector((state) => state.userLocation.userLatLong);
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+
   const dispatch = useDispatch();
 
   // 지역 데이터
@@ -177,6 +179,11 @@ const Navbar = ({ handleLoginSuccess }) => {
   // 로그인되면 보일 우측 버튼 2개
   const loginButton = (
     <>
+      {userInfo && userInfo.profile_img ? (
+        <N.Img src={userInfo.profile_img} />
+      ) : (
+        ""
+      )}
       <N.NavItem>
         <N.NavLinks to="/mypage">
           <Button>마이페이지</Button>

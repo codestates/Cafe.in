@@ -34,28 +34,29 @@ const MainListSection = () => {
 
   useEffect(() => {
     //!아랫줄은 완성 후 삭제
-    dispatch(userLocationAction(37.4988, 127.06314));
+    //dispatch(userLocationAction(37.4988, 127.06314));
     //!
-    axios
-      .get(
-        `http://localhost:8080/posts/cafe-list/${location}/lat/${
-          latlng.lat
-        }/long/${latlng.long}/${listCount}/${isLogin}/${
-          category === "" ? "" : category
-        }`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        setMain(res.data.data.listUp);
-      })
-      .catch(() => {
-        // alert("세션이 만료되어 자동으로 로그아웃됩니다");
-        // dispatch(login(false));
-        // dispatch(loginUserInfo(null));
-        //dispatch(showModal(true));
-      });
+    location &&
+      axios
+        .get(
+          `http://localhost:8080/posts/cafe-list/${location}/lat/${
+            latlng.lat
+          }/long/${latlng.long}/${listCount}/${isLogin}/${
+            category === "" ? "" : category
+          }`,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          setMain(res.data.data.listUp);
+        })
+        .catch(() => {
+          // alert("세션이 만료되어 자동으로 로그아웃됩니다");
+          // dispatch(login(false));
+          // dispatch(loginUserInfo(null));
+          //dispatch(showModal(true));
+        });
   }, [location, listCount, category]);
 
   useEffect(() => {
