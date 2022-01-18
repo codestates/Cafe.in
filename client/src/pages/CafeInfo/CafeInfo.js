@@ -11,7 +11,7 @@ import { Cafe4MapSection } from "../../components";
 const CafeInfo = () => {
   const { id } = useParams();
   const isLogin = useSelector((state) => state.isLogin.isLogin);
-  const isLoading = useSelector((state) => state.cafeInfoReducer.loading);
+  const isLoading = useSelector((state) => state.cafeInfoReducer.isLoading);
   const cafeInfo = useSelector((state) => state.cafeInfoReducer);
   const selectedPost = useSelector((state) => state.cafeInfoReducer.selectedPost);
   const positiveTag = useSelector((state) => state.cafeInfoReducer.positiveTag);
@@ -24,11 +24,12 @@ const CafeInfo = () => {
   useEffect(() => {
     id && dispatch(getCafeInfo(id, isLogin));
   }, [id]);
-
+  console.log('Loading?', isLoading);
   return (
     <>
       {isLoading ? (
         <div>
+          
           <h1>Loading in progress</h1>
         </div>
       ) : (
