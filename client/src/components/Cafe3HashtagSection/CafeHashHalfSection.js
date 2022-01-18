@@ -12,6 +12,8 @@ import {
   showModal,
   loginUserInfo,
   getCafeInfo,
+  getLikeCount,
+  getHashTags,
 } from "../../store/actions";
 import { useNavigate } from "react-router-dom";
 import delteImg from "../../assets/images/pngwing.com.png";
@@ -77,7 +79,7 @@ const HashtagHalfSection = ({
         setInputText({
           [type]: "",
         });
-        dispatch(getCafeInfo(id, isLogin));
+        dispatch(getHashTags(id, isLogin));
       })
       .catch((e) => {
         if (e.response.data.type === "noHash")
@@ -120,7 +122,7 @@ const HashtagHalfSection = ({
         }
       )
       .then(() => {
-        dispatch(getCafeInfo(id, isLogin));
+        dispatch(getLikeCount(id, isLogin));
       })
       .catch((e) => {
         if (e.response.data.type === "needToLogin")
@@ -154,9 +156,7 @@ const HashtagHalfSection = ({
         }
       )
       .then((res) => {
-        dispatch(getCafeInfo(id, isLogin));
-
-        console.log(res.data.message);
+        dispatch(getHashTags(id, isLogin));
       })
       .catch(() => {
         //

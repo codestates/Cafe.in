@@ -2,7 +2,6 @@ import * as Types from "./types";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 export const clickModalType = (clickedMenu = "") => {
   return {
     type: Types.CLICK_MODAL_TYPE,
@@ -86,6 +85,19 @@ export const getCafeInfoFailure = (error) => {
   };
 };
 
+export const addlike = (data) => {
+  return {
+    type: Types.ADD_LIKE,
+    payload: data,
+  };
+};
+export const hashTagAction = (data) => {
+  return {
+    type: Types.ADD_HASH,
+    payload: data,
+  };
+};
+
 export const getCafeInfo = (id, isLogin) => {
   return (dispatch) => {
     dispatch(getCafeInfoRequest());
@@ -107,6 +119,32 @@ export const getCafeInfo = (id, isLogin) => {
         dispatch(postCountResetAction());
         const navigate = useNavigate();
         navigate("/");
+      });
+  };
+};
+
+export const getLikeCount = (id, isLogin) => {
+  return (dispatch) => {
+    axios
+      .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        const data = res.data.data;
+        dispatch(addlike(data));
+      });
+  };
+};
+
+export const getHashTags = (id, isLogin) => {
+  return (dispatch) => {
+    axios
+      .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        const data = res.data.data;
+        dispatch(hashTagAction(data));
       });
   };
 };
