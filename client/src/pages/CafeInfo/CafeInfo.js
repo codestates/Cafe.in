@@ -24,7 +24,7 @@ const CafeInfo = () => {
   useEffect(() => {
     id && dispatch(getCafeInfo(id, isLogin));
   }, [id]);
-  console.log('Loading?', isLoading);
+
   return (
     <>
       {isLoading ? (

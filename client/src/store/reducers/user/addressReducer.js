@@ -2,7 +2,7 @@ import { USER_ADDRESS } from "../../types";
 
 // Initial State
 const initialState = {
-  currAddr: "대치동",
+  currAddr: null,
 };
 
 // Reducer

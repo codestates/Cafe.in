@@ -15,3 +15,6 @@ export const GET_CAFE_INFO_FAILURE = "GET_CAFE_INFO_FAILURE";
 export const GET_CAFE_HASHTAGS_SUCCESS = "GET_CAFE_HASHTAGS_SUCCESS";
 export const ADD_LIKE = "ADD_LIKE";
 export const ADD_HASH = "ADD_HASH";
+// get current Geo-location
+export const GET_GEOLOCATION = "GET_GEOLOCATION";
+export const DENIED_GEOLOCATION = "DENIED_GEOLOCATION";
