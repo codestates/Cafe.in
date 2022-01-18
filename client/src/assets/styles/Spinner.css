@@ -1,0 +1,87 @@
+body {
+	font-weight: bold;
+    background: #fdf5e6;
+    
+    
+  }
+
+  .winediv{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	top: 50%;
+	left: 50%;
+    width: 100%;
+    height: 800px;
+    background-color:#fdf5e6;
+
+  }
+  .wineglass {
+      
+    height: 36px;
+    position: relative;
+  }
+  .wineglass:after {
+    content: ''; 
+    position: absolute;
+    top: 34px;
+    left: 7px;
+    width: 27px;
+    height: 5px;
+    background: #cccc;
+    box-shadow: 0 0 1px #cccc;
+    border-radius: 20px;
+  }
+  .top {
+    background: #cccc;
+    width: 40px;
+    height: 36px;
+    border-radius: 0 0 36px 36px;
+    box-shadow: 0 0 1px #cccc;
+  }
+  .top:before {
+    content: ''; 
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
+    width: 32px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(transparent 50%, #8B4513 50%);
+  }
+  .left .top:before {
+    animation: rotate2 2s linear infinite;
+  }
+  .right .top:before {
+    animation: rotate1 2s linear infinite;
+  }
+  .top:after {
+    content: ''; 
+    position: absolute;
+    top: 7px;
+    left: 41px;
+    width: 3px;
+    height: 11px;
+    background: #cccc;
+    box-shadow: 0 0 1px #cccc;
+    border-radius: 20px;
+  }
+
+  .left {
+    display: inline-block;
+    margin-right: 20px;
+    animation: rotate1 2s cubic-bezier(.39,1.52,.46,.92) infinite;
+  }
+  .right {
+    display: inline-block;
+    animation: rotate2 2s cubic-bezier(.39,1.52,.46,.92) infinite;
+  }
+  @keyframes rotate1{
+    0% {transform: rotate(0deg);}
+    50% {transform:rotate(22deg);}
+  }
+  @keyframes rotate2{
+    0% {transform:rotate(0deg);}
+    50% {transform:rotate(-22deg);}
+  }
