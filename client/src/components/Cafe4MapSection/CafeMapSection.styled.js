@@ -8,6 +8,7 @@ export const CafeMapContainer = styled.div`
   overflow: hidden;
   @media screen and (max-width: 960px) {
     width: 100%;
+    height:100%;
     &:hover {
       transform: none;
     }
