@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../assets/styles/GlobalStyle";
 import "./Form.css";
 import { useSelector, useDispatch } from "react-redux";
 import { login, showModal, loginUserInfo } from "../../store/actions";
+import axiosConfig from "../../axiosConfig";
 
 const LogoutForm = () => {
   const isLogin = useSelector((state) => state.isLogin.isLogin);
@@ -14,18 +14,12 @@ const LogoutForm = () => {
   const navigate = useNavigate();
 
   const handleOK = () => {
-    //! 지우지 마세요. 서버랑 연동시 다시 주석 해제
-    //? 넵!
-    axios
-      .post("http://localhost:8080/users/sign-out", null, {
-        withCredentials: true,
-      })
-      .then(() => {
-        navigate("/");
-        dispatch(login(false));
-        dispatch(showModal(false));
-        dispatch(loginUserInfo(null));
-      });
+    axiosConfig.post(`/users/sign-out`).then(() => {
+      navigate("/");
+      dispatch(login(false));
+      dispatch(showModal(false));
+      dispatch(loginUserInfo(null));
+    });
   };
 
   const handleCancel = () => {

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosConfig from "../../axiosConfig";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../assets/styles/GlobalStyle";
@@ -38,17 +38,8 @@ const DeleteAccountForm = ({ handleLogout }) => {
       return;
     }
 
-    // ! 서버 연동시 주석 처리
-    // handleLogout(true);
-    // navigate("/");
-
-    // ! 서버연동시 주석 해제
-    axios
-      .post(
-        "http://localhost:8080/users/delete-account",
-        { password },
-        { "Content-Type": "application/json", withCredentials: true }
-      )
+    axiosConfig
+      .post(`/users/delete-account`, { password })
       .then(() => {
         alert("회원 탈퇴가 완료되었습니다. ㅜㅜ");
         dispatch(login(false));

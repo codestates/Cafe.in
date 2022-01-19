@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosConfig from "../../axiosConfig";
 import "./Form.css";
 import { useSelector, useDispatch } from "react-redux";
 import { showModal } from "../../store/actions";
@@ -7,7 +7,10 @@ import { Button } from "../../assets/styles/GlobalStyle";
 import { emailCheck, passwordCheck } from "../../utils/helper/RegExTest.js";
 import imgkakao from "../../assets/images/kakao-login.png";
 import imggoogle from "../../assets/images/google-login.png";
-const { passwordCheck1, passwordCheck2 } = require("../../utils/helper/RegExTest");
+const {
+  passwordCheck1,
+  passwordCheck2,
+} = require("../../utils/helper/RegExTest");
 
 const PwdChangeForm = () => {
   const isShowModal = useSelector((state) => state.showModal.isShowModal);
@@ -48,13 +51,11 @@ const PwdChangeForm = () => {
       return;
     }
 
-    //! 서버 연동시 다음 주석 해제
-    axios
-      .patch(
-        "http://localhost:8080/users/mypage/password",
-        { old_password: oldPassword, new_password: newPassword },
-        { "Content-Type": "application/json", withCredentials: true }
-      )
+    axiosConfig
+      .patch(`/users/mypage/password`, {
+        old_password: oldPassword,
+        new_password: newPassword,
+      })
       .then((res) => console.log(res.data.message))
       .catch((err) => console.log(err.response.data.message));
 

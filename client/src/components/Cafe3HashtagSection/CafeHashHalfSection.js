@@ -6,6 +6,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import axiosConfig from "../../axiosConfig";
 import { useParams } from "react-router-dom";
 import {
   login,
@@ -58,20 +59,13 @@ const HashtagHalfSection = ({
     console.log(selected);
     console.log(inputText);
 
-    axios
-      .post(
-        `http://localhost:8080/posts/add-hashtag/${isLogin}`,
-        {
-          hashtag: inputText[type],
-          category: selected[type].split("#")[1],
-          type,
-          postid: id,
-        },
-        {
-          withCredentials: true,
-          "Content-Type": "applicaton/json",
-        }
-      )
+    axiosConfig
+      .post(`/posts/add-hashtag/${isLogin}`, {
+        hashtag: inputText[type],
+        category: selected[type].split("#")[1],
+        type,
+        postid: id,
+      })
       .then((res) => {
         setSelected({
           [type]: "",
@@ -106,21 +100,14 @@ const HashtagHalfSection = ({
     userPick && userPick.filter((fill) => fill.post_id === Number(id));
   //const userClickedHeart = userPick && userPick.map((fill) => fill.like_id);
   const addLike = (hashId) => {
-    axios
-      .post(
-        `http://localhost:8080/posts/hashtag-click/${isLogin}`,
-        {
-          userId,
-          postId: id,
-          hashId,
-          type,
-          //user state에서 id를 가져와주면 됨. 지금은 user관련을 다 날려서 1로 고정함
-        },
-        {
-          "Content-Type": "applicaton/json",
-          withCredentials: true,
-        }
-      )
+    axiosConfig
+      .post(`/posts/hashtag-click/${isLogin}`, {
+        userId,
+        postId: id,
+        hashId,
+        type,
+        //user state에서 id를 가져와주면 됨. 지금은 user관련을 다 날려서 1로 고정함
+      })
       .then(() => {
         dispatch(getLikeCount(id, isLogin));
       })
@@ -128,33 +115,22 @@ const HashtagHalfSection = ({
         if (e.response.data.type === "needToLogin")
           return alert(e.response.data.message);
         alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-        axios
-          .post("http://localhost:8080/users/sign-out", null, {
-            withCredentials: true,
-          })
-          .then(() => {
-            dispatch(login(false));
-            dispatch(showModal(false));
-            dispatch(loginUserInfo(null));
-            navigate("/");
-          });
+        axiosConfig.post(`/users/sign-out`).then(() => {
+          dispatch(login(false));
+          dispatch(showModal(false));
+          dispatch(loginUserInfo(null));
+          navigate("/");
+        });
       });
   };
 
   const removeLike = (hashid) => {
-    axios
-      .post(
-        "http://localhost:8080/posts/remove-hashtag",
-        {
-          hashid,
-          postid: id,
-          type,
-        },
-        {
-          "Content-Type": "applicaton/json",
-          withCredentials: true,
-        }
-      )
+    axiosConfig
+      .post(`/posts/remove-hashtag`, {
+        hashid,
+        postid: id,
+        type,
+      })
       .then((res) => {
         dispatch(getHashTags(id, isLogin));
       })

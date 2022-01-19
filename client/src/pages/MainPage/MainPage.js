@@ -4,6 +4,7 @@ import { MainInfoSection } from "../../components";
 import { homeObjOne } from "./MainInfoData";
 import { login, loginUserInfo, showModal } from "../../store/actions";
 import axios from "axios";
+import axiosConfig from "../../axiosConfig";
 import { useSelector, useDispatch } from "react-redux";
 // import { login } from "../../store/actions";
 
@@ -24,19 +25,13 @@ const MainPage = () => {
         )
         .then((res) => {
           console.log(res.data);
-          axios
-            .post(
-              `http://localhost:8080/users/sign-in-oauth/google`,
-              {
-                user_email: res.data.email,
-                nickname: res.data.name,
-                profile_img: res.data.picture,
-              },
-              {
-                withCredentials: true,
-                "Content-Type": "application/json",
-              }
-            )
+          axiosConfig
+            .post(`/users/sign-in-oauth/google`,
+            {
+              user_email: res.data.email,
+              nickname: res.data.name,
+              profile_img: res.data.picture,
+            })
             .then((res) => {
               dispatch(showModal(false));
               dispatch(loginUserInfo(res.data.data.payload));

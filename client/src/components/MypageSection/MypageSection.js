@@ -11,7 +11,7 @@ import ModalContainer from "../ModalContainer/ModalContainer";
 import * as Styled from "./MypageSection.styled";
 import { useSelector, useDispatch } from "react-redux";
 import { clickModalType, showModal, loginUserInfo } from "../../store/actions";
-import axios from "axios";
+import axiosConfig from "../../axiosConfig";
 
 const MypageSection = ({ mypageObjOne }) => {
   // Redux
@@ -40,11 +40,8 @@ const MypageSection = ({ mypageObjOne }) => {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
 
-    const res = await axios
-      .post(
-        `http://localhost:8080/users/mypage/profile/${userInfo.id}`,
-        formData
-      )
+    const res = await axiosConfig
+      .post(`/users/mypage/profile/${userInfo.id}`, formData)
       .then((res) => {
         dispatch(loginUserInfo(res.data.data));
       });

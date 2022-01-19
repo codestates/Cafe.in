@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { showModal } from "../../store/actions";
-import axios from "axios";
+import axiosConfig from "../../axiosConfig";
 import "./Form.css";
 import { Button } from "../../assets/styles/GlobalStyle";
 import {
@@ -62,16 +62,12 @@ const SignupForm = () => {
       return;
     }
 
-    //! 서버 연동시 다음 주석 처리?
-    //handleSignupSuccess();
-
-    //! 서버연동시 다음 주석 해제
-    axios
-      .post(
-        "http://localhost:8080/users/sign-up",
-        { user_email: email, password: password, nickname: nickname },
-        { "Content-Type": "application/json", withCredentials: true }
-      )
+    axiosConfig
+      .post(`/users/sign-up`, {
+        user_email: email,
+        password: password,
+        nickname: nickname,
+      })
       .then((res) => {
         dispatch(showModal(false));
         alert(
