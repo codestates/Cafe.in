@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { Button } from "../../assets/styles/GlobalStyle";
 import * as N from "./Navbar.styled";
 import * as D from "./Dropdown.styled";
 import ModalContainer from "../../components/ModalContainer/ModalContainer";
-
 import { useSelector, useDispatch } from "react-redux";
 import {
   clickModalType,
@@ -16,6 +14,7 @@ import {
   getCurrAddress,
 } from "../../store/actions";
 import { postCategoryAction } from "../../store/actions";
+import useWindowSize from "../../utils/hooks/useWindowSize";
 
 const Navbar = () => {
   // Redux
@@ -26,7 +25,6 @@ const Navbar = () => {
   const userInfo = useSelector((state) => state.userInfo.userInfo);
 
   const dispatch = useDispatch();
-
 
   // Modal bar 구현 부분
   const openSignup = () => {
@@ -45,10 +43,9 @@ const Navbar = () => {
     dispatch(showModal(!isShowModal));
   };
 
-  // 여기서부터 아래 20줄은 무슨 코드지?
+  // 모바일 메뉴용
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
   const handleClick = () => {
     setClick(!click);
   };
@@ -57,34 +54,24 @@ const Navbar = () => {
     setClick(false);
   };
 
-  const showButton = () => {
-    if (window.innerWidth <= 960) {
-      setButton(false);
-    } else {
-      setButton(true);
-    }
-  };
+  // custom hook : width에 따라 버튼 색 바꾸는 기능 (필요는 없음)
+  const width = useWindowSize(setButton);
 
-  useEffect(() => {
-    showButton();
-  }, []);
-
-  window.addEventListener("resize", showButton);
-
-
- 
+  // browser에서 현재 위치 가져오기
   useEffect(() => {
     dispatch(getCurrLocation());
   }, []);
 
+  // 구글 geocode로 lat,lng을 주소로 변경
   useEffect(() => {
     {
       process.env.REACT_APP_ENV_GOOGLE_MAP === "no"
-        ? dispatch(userAddressAction('대치동'))
+        ? dispatch(userAddressAction("대치동"))
         : dispatch(getCurrAddress(userLatLong.lat, userLatLong.long));
     }
   }, [userLatLong]);
 
+  // 현재 무슨 동인지 표시
   const displayCurrentPosition = (
     <>
       <D.MapButtonLink>
@@ -122,6 +109,7 @@ const Navbar = () => {
     </>
   );
 
+  // 로그인 되면 보이는 우측 버튼 두 개
   const loginButton = (
     <>
       {userInfo && userInfo.profile_img ? (
@@ -165,10 +153,6 @@ const Navbar = () => {
                 {click ? <FaTimes /> : <FaBars />}
               </N.MobileIcon>
               {displayCurrentPosition}
-              {/* <N.NavLogo2>
-                <N.NavIcon2 />
-              </N.NavLogo2> */}
-              {/* {dropDownBar} */}
             </D.SimpleDiv>
 
             <N.NavMenu onClick={handleClick} click={click}>
