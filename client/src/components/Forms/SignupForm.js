@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { showModal } from "../../store/actions";
-import axios from "axios";
+import axiosConfig from "../../axiosConfig";
 import "./Form.css";
 import { Button } from "../../assets/styles/GlobalStyle";
 import {
   emailCheck,
   passwordCheck1,
   passwordCheck2,
-} from "../../utils/RegExTest.js";
+} from "../../utils/helper/RegExTest.js";
 import imgkakao from "../../assets/images/kakao-login.png";
 import imggoogle from "../../assets/images/google-login.png";
 
@@ -62,16 +62,12 @@ const SignupForm = () => {
       return;
     }
 
-    //! 서버 연동시 다음 주석 처리?
-    //handleSignupSuccess();
-
-    //! 서버연동시 다음 주석 해제
-    axios
-      .post(
-        "http://localhost:8080/users/sign-up",
-        { user_email: email, password: password, nickname: nickname },
-        { "Content-Type": "application/json", withCredentials: true }
-      )
+    axiosConfig
+      .post(`/users/sign-up`, {
+        user_email: email,
+        password: password,
+        nickname: nickname,
+      })
       .then((res) => {
         dispatch(showModal(false));
         alert(
@@ -127,16 +123,6 @@ const SignupForm = () => {
             확인
           </Button>
           <div className="box_btn block">
-            <a href="/">
-              <img
-                className="btn-kakao-login"
-                src={imgkakao}
-                width="60"
-                align="center"
-                alt="kakao-logo"
-              ></img>
-            </a>
-            <span> </span>
             <a href="/">
               <img
                 className="btn-google-login"

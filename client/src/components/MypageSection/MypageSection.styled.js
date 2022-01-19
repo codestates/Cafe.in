@@ -50,13 +50,15 @@ export const ImgWrapper = styled.div`
 `;
 
 export const Img = styled.img`
+  width: 200px;
+  height: 200px;
   padding-right: 0;
-  border: 0;
   max-width: 100%;
   text-align: center;
   justify-content: center;
   display: flex;
   max-height: 200px;
+  border-radius: 50%;
 `;
 
 export const Id = styled.div`

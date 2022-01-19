@@ -1,28 +1,26 @@
 import React, { useState } from "react";
 import { Button } from "../../assets/styles/GlobalStyle";
-import axios from "axios";
 import { useDispatch } from "react-redux";
-import { login, loginUserInfo, showModal } from "../../store/actions";
-import imgkakao from "../../assets/images/kakao-login.png";
+import {
+  login,
+  loginUserInfo,
+  showModal,
+  postCountResetAction,
+} from "../../store/actions";
 import imggoogle from "../../assets/images/google-login.png";
 import "./Form.css";
-import { emailCheck, passwordCheck1 } from "../../utils/RegExTest.js";
+import { emailCheck, passwordCheck1 } from "../../utils/helper/RegExTest.js";
+import axiosConfig from "../../axiosConfig";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
 
   const [loginInfo, setLoginInfo] = useState({
     email: "yar0606@naver.com",
-    password: "qwe@12345",
+    password: "qwe!12345",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
-
-  // const handleLoginSuccess = (loginInfo) => {
-  //   dispatch(login(true));
-  //   dispatch(showModal(false));
-  //   dispatch(loginUserInfo(loginInfo));
-  // };
 
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
@@ -50,19 +48,14 @@ const LoginForm = () => {
       return;
     }
 
-    //! 서버 연동시 아래는 주석 처리??
-    //handleLoginSuccess(loginInfo);
-
-    axios
-      .post(
-        "http://localhost:8080/users/sign-in",
-        { user_email: email, password: password },
-        { "Content-Type": "application/json", withCredentials: true }
-      )
+    axiosConfig
+      .post(`/users/sign-in`, { user_email: email, password: password })
       .then((res) => {
         dispatch(showModal(false));
         dispatch(loginUserInfo(res.data.data.payload));
         dispatch(login(true));
+        dispatch(postCountResetAction());
+        //window.location.reload();
       })
       .catch((err) => console.log(err.response.data.message));
   };
@@ -122,6 +115,7 @@ const LoginForm = () => {
               align="center"
               alt="google-logo"
             ></img>
+             <div className="google">Google 로그인</div>    
           </div>
         </form>
       </center>

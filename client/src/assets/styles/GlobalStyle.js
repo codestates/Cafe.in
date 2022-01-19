@@ -35,6 +35,8 @@ export const Button = styled.button`
   color: ${ ({theme}) => theme.colors.buttonFontColor};
   font-size: ${({ fontBig }) => (fontBig ? '20px' : '16px')};
   font-weight:480;
+  margin-bottom:10px;
+  margin-top:10px;
   outline: none;
   border: none;
   cursor: pointer;

@@ -14,6 +14,8 @@ router.post("/delete-account", controllers.deleteAccount);
 
 router.get("/mypage", controllers.mypage);
 
+router.post("/mypage/profile/:userid", controllers.profile);
+
 router.patch("/mypage/password", controllers.changePassword);
 
 module.exports = router;

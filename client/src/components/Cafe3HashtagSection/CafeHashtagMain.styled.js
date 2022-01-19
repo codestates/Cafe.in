@@ -1,22 +1,23 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Container } from "../../assets/styles/GlobalStyle";
+// import { Link } from "react-router-dom";
+// import { Container } from "../../assets/styles/GlobalStyle";
 
 export const CafeHashtagContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+
   @media screen and (max-width: 960px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
   }
 `;
 
-// CafeHashtagLikeWrapper와 CafeHashtagHateWrapper 복사 붙이기 + 이름 바꾸기
 export const CafeHashtagSectionWrapper = styled.div`
   height: 100%;
   width: 49%;
@@ -37,44 +38,6 @@ export const CafeHashtagSectionWrapper = styled.div`
   }
 `;
 
-// export const CafeHashtagLikeWrapper  = styled.div`
-// height: 490px;
-// width: 49%;
-// background: ${ ({theme}) => theme.colors.mainBackground };
-// border-radius:40px;
-// box-shadow: 0 0px 10px #aaaaaa;
-// align-items:center;
-// text-align:center;
-// display: center;
-// margin: 2px auto;
-// margin-bottom:2rem;
-// margin-top : 2rem;
-
-// @media screen and (max-width: 960px) {
-//     width: 100%;
-//     &:hover {
-//       transform: none;}
-//     }
-// `;
-
-// export const CafeHashtagHateWrapper  = styled.div`
-// height: 490px;
-// width: 49%;
-// border-radius:40px;
-// box-shadow: 0 0px 10px #aaaaaa;
-// align-items:center;
-// text-align:center;
-// display: center;
-// margin: 2px auto;
-
-// @media screen and (max-width: 960px) {
-//     width: 100%;
-//     &:hover {
-//       transform: none;
-//     }
-//   }
-// `;
-
 export const CafeImg = styled.img`
   width: 15vh;
   height: 20vh;
@@ -90,33 +53,7 @@ export const CafeImg = styled.img`
   }
 `;
 
-// export const CafeLikeImg = styled.img`
-//   width: 19%;
-//   height: 42%;
-//   position: relative;
-//   align-items: center;
-//   text-align: center;
-//   margin-top: -1.3rem;
 
-//   @media screen and (max-width: 960px) {
-//     width: 30%;
-//     height: 27%;
-//   }
-// `;
-
-// export const CafeBadImg = styled.img`
-//   width: 18%;
-//   height: 40%;
-//   position: relative;
-//   align-items: center;
-//   text-align: center;
-//   margin-top: -1.3rem;
-
-//   @media screen and (max-width: 960px) {
-//     width: 30%;
-//     height: 27%;
-//   }
-// `;
 
 export const CafeListWrapper = styled.div`
   &.short-div {
@@ -171,6 +108,7 @@ export const CafeRankCounts = styled.div`
     margin: 10px 10px 10px 4px;
   }
 `;
+
 export const Rankdiv = styled.div`
   width: 50%;
   height: 100%;
@@ -188,9 +126,10 @@ export const Rankdiv = styled.div`
   display: flex;
   justify-content: left;
 
-  @media screen and (max-width: 1000px) {
-    width: 70%;
+  @media screen and (max-width: 1440px) {
+    width: 72%;
     text-align: left;
+    align-items: center;
   }
 `;
 
@@ -209,30 +148,6 @@ export const CafeRankBox = styled.span`
     font-size: 16px;
   }
 `;
-// export const CafeRankBox  = styled.span`
-//   font-weight :700;
-//   width: 100%;
-//   color:#fff;
-//   padding: 4px 10px 4px 10px;
-//   vertical-align: middle;
-//   line-height: 2;
-//   font-size: 17px;
-//   background: #F2ACAC;
-//   border-radius: 12px;
-//   box-shadow: 1px 1px #cccc;
-//   `
-
-// export const CafeRankBox2  = styled.span`
-// font-weight :700;
-// color:#fff;
-// padding: 4px 10px 4px 10px;
-// vertical-align: middle;
-// line-height: 2;
-// font-size: 17px;
-// background: #77B9F2;
-// border-radius: 12px;
-// box-shadow: 1px 1px #cccc;
-// `
 
 export const CafeInputWrapper = styled.div`
   align-items: center;
@@ -269,6 +184,7 @@ export const Input = styled.input`
 export const HashtagInputWrapper = styled.div`
   align-items: center;
   text-align: center;
+  margin-top: 4px;
   width: 100%;
 
   @media screen and (max-width: 960px) {
@@ -328,7 +244,6 @@ export const Button = styled.button`
   &:hover {
     transition: all 0.3s ease-out;
     background: #cccccc;
-    background-color: ;
   }
   @media screen and (max-width: 960px) {
     width: 100%;
@@ -341,7 +256,7 @@ export const Button = styled.button`
 `;
 
 export const Buttonheart = styled.div`
-  cursor:pointer
+  cursor:pointer;
   display:flex;
   margin-top:3px;
   margin-bottom:-7px;

@@ -5,7 +5,7 @@ export const MainSectionSection = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
   grid-gap: 5px;
-  background: ${ ({theme}) => theme.colors.mainBackground };
+  background: ${({ theme }) => theme.colors.mainBackground};
 `;
 
 export const MainSectionHeading = styled.h1`
@@ -35,8 +35,8 @@ export const MainSectionContainer = styled.div`
   }
 `;
 
-export const MainSectionCard = styled(Link)`
-  background: ${ ({theme}) => theme.colors.cardBackground };
+export const MainSectionCard = styled.div`
+  background: ${({ theme }) => theme.colors.cardBackground};
   box-shadow: 0 6px 20px rgba(56, 125, 255, 0.2);
   text-decoration: none;
   border-radius: 20px;
@@ -58,16 +58,15 @@ export const MainSectionCard = styled(Link)`
     }
   }
   @keyframes zoomIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
   }
-  100% {
-    opacity: 1; 
-    transform: none;
-  } 
-}
-
 `;
 
 export const MainSectionCardInfo = styled.div`
@@ -77,8 +76,6 @@ export const MainSectionCardInfo = styled.div`
   padding: 24px;
 `;
 
-
-
 export const MainSectionCardPlan = styled.h3`
   overflow: hidden;
   text-overflow: ellipsis;
@@ -86,12 +83,12 @@ export const MainSectionCardPlan = styled.h3`
   color: #614b3f;
   font-size: 22px;
   margin: 8px 7px;
-  text-align:center;
+  text-align: center;
 
   &:hover {
     transform: scale(1.09);
     transition: all 0.3s ease-out;
-    color:   #311e26;
+    color: #311e26;
   }
 `;
 
@@ -100,15 +97,15 @@ export const MainSectionCardExp = styled.h4`
 `;
 
 export const MainSectionCardLength = styled.p`
-  color:#614b3f;
-  text-shadow:0 0 2 #FFF;
-  font-size:  14px;
+  color: #614b3f;
+  text-shadow: 0 0 2 #fff;
+  font-size: 14px;
   font-weight: 700;
   margin-bottom: 2px;
-  text-align:right;
+  text-align: right;
 
   &:hover {
-    color:  #311e26;
+    color: #311e26;
   }
 `;
 
@@ -122,11 +119,10 @@ export const MainSectionCardFeatures = styled.ul`
   color: #614b3f;
 
   &:hover {
-    color:    #311e26;
+    color: #311e26;
     margin-left: 0;
   }
 `;
-
 
 export const MainSectionCardFeature = styled.li`
   margin-bottom: 0px;
@@ -134,43 +130,38 @@ export const MainSectionCardFeature = styled.li`
 
 export const ImgWrapper = styled.div`
   max-width: 100%;
-  text-align:center;
+  text-align: center;
   flex-direction: column;
   align-items: center;
   display: flex;
 `;
 
 export const Img = styled.img`
-
   border-radius: 10px;
   max-width: 100%;
   height: 280px;
-  opacity: .8;
-  -webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-  
+  opacity: 0.8;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 `;
 
-
 export const HashtagSelect = styled.div`
+
   &:hover {
     transform: scale(1.09);
     transition: all 0.3s ease-out;
     color: #ffe4b5;
+  
   }
 `;
-
-
-
-
 
 export const Img8 = styled.img`
   max-width: 100%;
   display: flex;
-  left : 80x;
-  filter: drop-shadow(1px 1px 1px #CCCCCC);
-  `;
+  left: 80x;
+  filter: drop-shadow(1px 1px 1px #cccccc);
+`;

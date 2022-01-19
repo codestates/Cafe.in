@@ -4,9 +4,20 @@ import HashtagInputSection from "./HashtagInputSection";
 import { options } from "./DummyDataHashtag";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import axiosConfig from "../../axiosConfig";
 import { useParams } from "react-router-dom";
+import {
+  login,
+  showModal,
+  loginUserInfo,
+  getCafeInfo,
+  getLikeCount,
+  getHashTags,
+} from "../../store/actions";
+import { useNavigate } from "react-router-dom";
+import delteImg from "../../assets/images/pngwing.com.png";
 
 const HashtagHalfSection = ({
   type,
@@ -21,13 +32,20 @@ const HashtagHalfSection = ({
   const [divSize, setDivSize] = useState("short-div");
   const [showMoreText, setShowMoreText] = useState("해시태그 더보기 >");
   const [sliceIndex, setSliceIndex] = useState(3);
+  const [deleteHover, setDeleteHover] = useState(false);
+
   const userId = useSelector((state) => state.userInfo.userInfo?.id);
+  const isLogin = useSelector((state) => state.isLogin.isLogin);
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   // Dropdown에 쓸 State
   const [selected, setSelected] = useState({
     [type]: "",
   });
-
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
 
@@ -38,55 +56,86 @@ const HashtagHalfSection = ({
   // console.log("category", selected, "inputText", inputText);
 
   const handleFinalSubmit = () => {
-    axios
-      .post(
-        `http://localhost:8080/posts/add-hashtag`,
-        {
-          hashtag: inputText[type],
-          category: selected[type].split("#")[1],
-          type,
-          postid: id,
-        },
-        {
-          withCredentials: true,
-          "Content-Type": "applicaton/json",
-        }
-      )
-      .then(() => {
+    console.log(selected);
+    console.log(inputText);
+
+    axiosConfig
+      .post(`/posts/add-hashtag/${isLogin}`, {
+        hashtag: inputText[type],
+        category: selected[type].split("#")[1],
+        type,
+        postid: id,
+      })
+      .then((res) => {
         setSelected({
           [type]: "",
         });
         setInputText({
           [type]: "",
         });
-        clickHandle();
+        dispatch(getHashTags(id, isLogin));
+      })
+      .catch((e) => {
+        if (e.response.data.type === "noHash")
+          return alert(e.response.data.message);
+        if (e.response.data.type === "noCate")
+          return alert(e.response.data.message);
+        if (e.response.data.type === "already")
+          return alert(e.response.data.message);
+        if (e.response.data.type === "needToLogin")
+          return alert("로그인 후 해시태그를 입력해보세요");
+        //위의 오류종류 빼고 나는 오류는 예상치 못한 거던가 쿠키 시간이 끝났거나
+        //이런 식으로 구분하면 너무 길어질 것 같다.. 더 좋은 방법은 없을까?
+        dispatch(login(false));
+        dispatch(showModal(false));
+        dispatch(loginUserInfo(null));
+        navigate("/");
       });
   };
 
   // 해시태그 길이가 3보다 기냐?
   let hashtagsLength = hashtagArray && hashtagArray.length;
   let isLongerThan3 = hashtagsLength > 3;
-
-  const userClickedHeart = userPick && userPick.map((fill) => fill.like_id);
-
+  const userClickedHeart =
+    userPick && userPick.filter((fill) => fill.post_id === Number(id));
+  //const userClickedHeart = userPick && userPick.map((fill) => fill.like_id);
   const addLike = (hashId) => {
-    axios
-      .post(
-        `http://localhost:8080/posts/hashtag-click`,
-        {
-          userId,
-          postId: id,
-          hashId,
-          //user state에서 id를 가져와주면 됨. 지금은 user관련을 다 날려서 1로 고정함
-        },
-        {
-          "Content-Type": "applicaton/json",
-          withCredentials: true,
-        }
-      )
+    axiosConfig
+      .post(`/posts/hashtag-click/${isLogin}`, {
+        userId,
+        postId: id,
+        hashId,
+        type,
+        //user state에서 id를 가져와주면 됨. 지금은 user관련을 다 날려서 1로 고정함
+      })
       .then(() => {
-        clickHandle();
-        console.log("좋아요 눌렀어요호호");
+        dispatch(getLikeCount(id, isLogin));
+      })
+      .catch((e) => {
+        if (e.response.data.type === "needToLogin")
+          return alert(e.response.data.message);
+        alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+        axiosConfig.post(`/users/sign-out`).then(() => {
+          dispatch(login(false));
+          dispatch(showModal(false));
+          dispatch(loginUserInfo(null));
+          navigate("/");
+        });
+      });
+  };
+
+  const removeLike = (hashid) => {
+    axiosConfig
+      .post(`/posts/remove-hashtag`, {
+        hashid,
+        postid: id,
+        type,
+      })
+      .then((res) => {
+        dispatch(getHashTags(id, isLogin));
+      })
+      .catch(() => {
+        //
       });
   };
 
@@ -97,11 +146,36 @@ const HashtagHalfSection = ({
     hashtagArray.slice(0, sliceIndex).map((hashtagElement, index) => {
       return (
         <S.CafeRank key={index}>
-          <S.Rankdiv bgColor={hashtagBg}>
+          <S.Rankdiv bgColor={hashtagBg} style={{ position: "relative" }}>
             {index + 1}.{" "}
             <S.CafeRankBox>
               #{hashtagElement.category + " " + hashtagElement.name}
             </S.CafeRankBox>
+            {userInfo && userInfo.type === "admin" ? (
+              <span
+                style={{
+                  width: "13px",
+                  height: "13px",
+                  cursor: "pointer",
+                  fontSize: "15px",
+                  position: "absolute",
+                  right: "12px",
+                  top: "5px",
+                  borderRadius: "50%",
+                  color: "#000",
+                  backgroundImage: `url(${delteImg})`,
+                  backgroundSize: "cover",
+                  //backgroundPosition: "center",
+                }}
+                onClick={
+                  userInfo.type === "admin"
+                    ? () => removeLike(hashtagElement.id)
+                    : () => {}
+                }
+              ></span>
+            ) : (
+              ""
+            )}
           </S.Rankdiv>
 
           <S.Buttonheart
@@ -109,8 +183,9 @@ const HashtagHalfSection = ({
             style={{ cursor: "pointer" }}
           >
             {userClickedHeart &&
-            userClickedHeart.findIndex((res) => res === hashtagElement.id) ===
-              -1 ? (
+            userClickedHeart.findIndex(
+              (res) => res.like_id === hashtagElement.id
+            ) === -1 ? (
               <FaRegHeart />
             ) : (
               <FaHeart />
@@ -151,7 +226,13 @@ const HashtagHalfSection = ({
       <S.CafeListWrapper className={divSize}>
         {hashtagListMap && hashtagListMap.length === 0 ? (
           <>
-            <h2 style={{ paddingTop: "10px", color: "tomato" }}>
+            <h2
+              style={{
+                paddingTop: "20px",
+                marginBottom: "10px",
+                color: "grey",
+              }}
+            >
               아직 태그가 없어요!
             </h2>
             <br />

@@ -1,7 +1,16 @@
 const { post, hash_tag, click_hashtag } = require("../../models");
+const { accessTokenDecoded } = require("../modules/jwt");
 
 module.exports = async (req, res) => {
-  const { lat, long, location, lastid, category } = req.params;
+  const { lat, long, location, lastid, category, islogin } = req.params;
+
+  const accessToken = req.cookies.accessToken;
+
+  if (islogin && accessTokenDecoded(accessToken) === "null") {
+    res.clearCookie("accessToken", { path: "/" });
+    return res.redirect(401, "/");
+    //.send({ message: "세션이 만료되었습니다. 다시 로그인해주세요." });
+  }
   //통상적으로 불가능한 요청
   if (lat === "" || long === "" || location === "") {
     return res.status(400).send({

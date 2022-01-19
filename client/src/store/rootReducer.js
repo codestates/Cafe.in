@@ -10,6 +10,7 @@ import userLocationReducer from "./reducers/user/userLocationReducer";
 import listCountReducer from "./reducers/post/listCountReducer";
 import categoryReducer from "./reducers/post/categoryReducer";
 import addressReducer from "./reducers/user/addressReducer";
+import cafeInfoReducer from "./reducers/thunk/cafeInfoReducer";
 
 const persistConfig = {
   key: "root",
@@ -20,6 +21,8 @@ const persistConfig = {
     "listCountReducer",
     "categoryReducer",
     "userLocationReducer",
+    "addressReducer",
+    "cafeInfoReducer"
   ],
 };
 
@@ -32,6 +35,7 @@ export const rootReducer = combineReducers({
   listCountReducer,
   categoryReducer,
   addressReducer,
+  cafeInfoReducer,
 });
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);

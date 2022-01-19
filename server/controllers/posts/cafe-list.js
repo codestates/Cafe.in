@@ -1,7 +1,16 @@
 const { post, hash_tag, click_hashtag } = require("../../models");
+const { accessTokenDecoded } = require("../modules/jwt");
 
 module.exports = async (req, res) => {
-  const { lat, long, location, lastid } = req.params;
+  const { lat, long, location, lastid, islogin } = req.params;
+
+  const accessToken = req.cookies.accessToken;
+
+  if (islogin && accessTokenDecoded(accessToken) === "null") {
+    res.clearCookie("accessToken", { path: "/" });
+    return res.redirect(401, "/");
+    //.send({ message: "세션이 만료되었습니다. 다시 로그인해주세요." });
+  }
 
   if (lat === "" || long === "" || location === "") {
     return res.status(400).send({
@@ -21,7 +30,7 @@ module.exports = async (req, res) => {
   });
 
   if (selectedPost.length === 0) {
-    return res.status(201).send({
+    return res.status(200).send({
       data: [],
       message: "현재 서비스되고 있지 않은 지역입니다",
     });
