@@ -11,9 +11,7 @@ import DeleteAccountForm from "../Forms/DeleteAccountForm";
 import { useSelector, useDispatch } from "react-redux";
 import { login, showModal } from "../../store/actions";
 
-const ModalContainer = ({
-  handleLoginSuccess,
-}) => {
+const ModalContainer = () => {
   const modalRef = useRef();
   // 쓸데없는 기능 : 팝업창 위에서 아래로 내려오는 animation
   //

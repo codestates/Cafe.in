@@ -1,5 +1,6 @@
 import * as Types from "./types";
 import axios from "axios";
+import axiosConfig from "../axiosConfig";
 import { useNavigate } from "react-router-dom";
 
 export const clickModalType = (clickedMenu = "") => {
@@ -101,10 +102,8 @@ export const hashTagAction = (data) => {
 export const getCafeInfo = (id, isLogin) => {
   return (dispatch) => {
     dispatch(getCafeInfoRequest());
-    axios
-      .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
-        withCredentials: true,
-      })
+    axiosConfig
+      .get(`/posts/cafe-info/${id}/${isLogin}`)
       .then((res) => {
         const data = res.data.data;
         dispatch(getCafeInfoSuccess(data));
@@ -125,10 +124,8 @@ export const getCafeInfo = (id, isLogin) => {
 
 export const getLikeCount = (id, isLogin) => {
   return (dispatch) => {
-    axios
-      .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
-        withCredentials: true,
-      })
+    axiosConfig
+      .get(`/posts/cafe-info/${id}/${isLogin}`)
       .then((res) => {
         const data = res.data.data;
         dispatch(addlike(data));
@@ -138,10 +135,8 @@ export const getLikeCount = (id, isLogin) => {
 
 export const getHashTags = (id, isLogin) => {
   return (dispatch) => {
-    axios
-      .get(`http://localhost:8080/posts/cafe-info/${id}/${isLogin}`, {
-        withCredentials: true,
-      })
+    axiosConfig
+      .get(`/posts/cafe-info/${id}/${isLogin}`)
       .then((res) => {
         const data = res.data.data;
         dispatch(hashTagAction(data));
@@ -162,8 +157,8 @@ export const deniedGeolocation = (error) => {
   return {
     type: Types.DENIED_GEOLOCATION,
     payload: error,
-  }
-}
+  };
+};
 
 export const getCurrLocation = () => async (dispatch) => {
   const geolocation = navigator.geolocation;
@@ -183,7 +178,6 @@ export const getCurrLocation = () => async (dispatch) => {
 // get current Address (예: 대치동)
 
 export const getCurrAddress = (lat, lng) => {
-
   // GET 요청 보낼 param 합치기 작업
   const geocode_url = "https://maps.googleapis.com/maps/api/geocode/json";
   let params = new URLSearchParams();
@@ -200,5 +194,5 @@ export const getCurrAddress = (lat, lng) => {
         dispatch(userAddressAction(addr[0].long_name));
       })
       .catch((err) => console.log(err));
-  }
-}
+  };
+};

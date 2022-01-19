@@ -17,7 +17,7 @@ import {
 } from "../../store/actions";
 import { postCategoryAction } from "../../store/actions";
 
-const Navbar = ({ handleLoginSuccess }) => {
+const Navbar = () => {
   // Redux
   const isLogin = useSelector((state) => state.isLogin.isLogin);
   const isShowModal = useSelector((state) => state.showModal.isShowModal);
@@ -64,7 +64,6 @@ const Navbar = ({ handleLoginSuccess }) => {
       setButton(true);
     }
   };
-
 
   useEffect(() => {
     showButton();
@@ -177,7 +176,7 @@ const Navbar = ({ handleLoginSuccess }) => {
             </N.NavMenu>
           </N.NavbarContainer>
 
-          <ModalContainer handleLoginSuccess={handleLoginSuccess} />
+          <ModalContainer />
         </N.Nav>
       </IconContext.Provider>
     </>
