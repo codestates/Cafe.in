@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const { sequelize, post } = require("./models");
 const yeoksam = require("./cafeJsonData/yeoksam.json");
 const daechi = require("./cafeJsonData/daechi.json");
+const dummydata = require("./cafeJsonData/dummydata.json");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -36,6 +37,7 @@ app.use(
 app.use(cookieParser());
 app.use("/", Router);
 
+// const dummyImages = [...dummydata.results];
 // const data = [...yeoksam.documents, ...daechi.documents];
 // const result = data.map((fill) => {
 //   return {
@@ -49,8 +51,8 @@ app.use("/", Router);
 // });
 // const putIn = result.map(async (fill) => {
 //   await post.create({
-//     large_img: "http://placeimg.com/300/300/nature",
-//     small_img: "http://placeimg.com/300/300/arch",
+//     large_img: dummyImages[Math.floor(Math.random()*24)].urls.full,
+//     small_img: dummyImages[Math.floor(Math.random()*24)].urls.small,
 //     tel: fill.tel,
 //     adress: fill.adress,
 //     distance: null,
