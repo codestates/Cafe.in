@@ -192,4 +192,5 @@ export const Img = styled.img`
     &:hover {
       border: none;
     }
-    `;
+  }
+`;

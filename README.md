@@ -1,32 +1,46 @@
-![twitter_header_photo_2](https://user-images.githubusercontent.com/65543775/145968916-1e108cdb-9e4e-491a-8b64-03a5cf382f6a.png)
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=Cafe.in%20&fontSize=80)
 
----
+# 📚 About
 
-### About
+> ### 카페 + 공부 = ☕ Cafe In ☕
+>
+> - 카페에서 공부나 작업을 하는 사용자가 원하는 카페를 찾을 수 있습니다.
+> - 내 주변 카페를 찾아 후기를 통해 직접 사용해보세요.
+>   _**👉 Cafe In 시작하기👈**_
 
-가고싶은 카페를 편하게 갈 수 있게, Cafe.in
+# ✏ Feature
 
-### Feature
+> - 위치기반 서비스를 통해 사용자 주변 카페를 검색할 수 있습니다
+> - 해시태그를 이용해 다양하고 한눈에 보기 쉬운 짧은 카페 리뷰를 작성할 수 있습니다
+> - 만족해요 해시태그에 여러 이용자가 공감를 눌러 믿을 수 있고 평가를 보여줍니다
+> - 만족해요 / 아쉬워요 해시태그 분류를 통해 다양한 정보를 알 수 있습니다
 
-- 위치기반 서비스를 통해 사용자 주변 카페를 검색할 수 있습니다
-- 해시태그를 이용해 카페 리뷰를 작성할 수 있습니다
-- 공감되는 해시태그에 좋아요를 눌러 믿을 수 있고 다양한 평가가 가능합니다
-- 공감해요, 아쉬워요 해시태그를 이용해 믿을 수 있고 다양한 평가가 가능합니다
+<a/>
 
-<hr />   
-   
+# 🛠 Tech Stack & System Architecture
+
+</br>
+<p align="center">
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/></a> 
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"/></a> 
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/></a> 
+<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/></a> 
+<!-- <img src="https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=Android&logoColor=white"/></a> -->
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat-square&logo=Amazon%20AWS&logoColor=white"/></a> </p>
  
-* **_Tech Stack & System Architecture_**
- 
-![stack](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8bd35115-8aef-43d0-aa3f-a4296144fca0/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2021-12-30_11-21-30.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20211230%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211230T022158Z&X-Amz-Expires=86400&X-Amz-Signature=f6cfff3230b064bb631138c52f10842b97229686a24f6803ab7d3520424b2295&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25EC%258A%25A4%25ED%2581%25AC%25EB%25A6%25B0%25EC%2583%25B7%252C%25202021-12-30%252011-21-30.png%22&x-id=GetObject)   
+![stack](https://user-images.githubusercontent.com/85789647/148152805-4fb64bb9-c7a6-4751-91de-4c15d7e66502.png)   
    
 <hr />
+<a/>
 
-- **_Team Caffeine_**
+# 🧑‍🤝‍🧑 Team Caffeine
 
-|     Name     |                  Position                  |
-| :----------: | :----------------------------------------: |
-| 문기훈(팀장) |  <span style="color: red">Back-end</span>  |
-|    양승준    |  <span style="color: red">Back-end</span>  |
-|    박세현    | <span style="color: blue">Front-end</span> |
-|    김윤재    | <span style="color: blue">Front-end</span> |
+|     Name     |                  Position                  |                                   Github ID                                    |
+| :----------: | :----------------------------------------: | :----------------------------------------------------------------------------: |
+| 문기훈(팀장) |  <span style="color: red">Back-end</span>  |    <span style="color: blue">[kihunism](https://github.com/kihunism)</span>    |
+|    양승준    |  <span style="color: red">Back-end</span>  |    <span style="color: blue">[Tarosism](https://github.com/Tarosism)</span>    |
+|    박세현    | <span style="color: blue">Front-end</span> |    <span style="color: blue">[park0866](https://github.com/park0866)</span>    |
+|    김윤재    | <span style="color: blue">Front-end</span> | <span style="color: blue">[yunjaekim00](https://github.com/yunjaekim00)</span> |
+
+</div>
