@@ -115,6 +115,7 @@ const LoginForm = () => {
               align="center"
               alt="google-logo"
             ></img>
+             <div className="google">Google 로그인</div>    
           </div>
         </form>
       </center>
