@@ -63,7 +63,7 @@ const LoginForm = () => {
       });
   };
 
-  const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_ID}&response_type=token&redirect_uri=http://localhost:3000&scope=openid%20profile%20email`;
+  const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_ID}&response_type=token&redirect_uri="https://server.cafestudy.click/"&scope=openid%20profile%20email`;
 
   const googleLoginHandler = () => {
     window.location.assign(googleUrl);

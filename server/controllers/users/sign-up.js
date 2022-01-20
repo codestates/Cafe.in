@@ -7,6 +7,7 @@ const {
 } = require("../modules/register");
 const { failedResponse } = require("../modules/response");
 const bcrypt = require("bcrypt");
+const profile = require("../../../client/src/assets/images/profile.png");
 //const { transporter, NODEMAILER_USER } = require("../modules/mailer");
 
 module.exports = async (req, res) => {
@@ -58,7 +59,7 @@ module.exports = async (req, res) => {
 
   const passwordHash = bcrypt.hashSync(password, 10);
   if (!profile_img) {
-    profile_img = "http://placeimg.com/640/480/any";
+    profile_img = profile;
 
     const payload = {
       type: !type ? "nomal" : type,
