@@ -3,15 +3,15 @@ import {
   Container,
   Button,
   ProfilImgBtn,
-} from "../../assets/styles/GlobalStyle";
+} from "../../../assets/styles/GlobalStyle";
 // import imgurl from "../../assets/images/profile.png";
 import { IconContext } from "react-icons/lib";
-import ModalContainer from "../ModalContainer/ModalContainer";
+import ModalContainer from "../../../components/ModalContainer/ModalContainer";
 
 import * as Styled from "./MypageSection.styled";
 import { useSelector, useDispatch } from "react-redux";
-import { clickModalType, showModal, loginUserInfo } from "../../store/actions";
-import axiosConfig from "../../axiosConfig";
+import { clickModalType, showModal, loginUserInfo } from "../../../store/actions";
+import axiosConfig from "../../../axiosConfig";
 
 const MypageSection = ({ mypageObjOne }) => {
   // Redux

@@ -6,7 +6,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import axiosConfig from "../../axiosConfig";
+import axiosConfig from "../../../axiosConfig";
 import { useParams } from "react-router-dom";
 import {
   login,
@@ -15,9 +15,9 @@ import {
   getCafeInfo,
   getLikeCount,
   getHashTags,
-} from "../../store/actions";
+} from "../../../store/actions";
 import { useNavigate } from "react-router-dom";
-import delteImg from "../../assets/images/pngwing.com.png";
+import delteImg from "../../../assets/images/pngwing.com.png";
 
 const HashtagHalfSection = ({
   type,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { MainListSection } from "../../components";
-import { MainInfoSection } from "../../components";
+import MainListSection from "./MainListSection/MainListSection";
+import MainInfoSection from "./MainInfoSection/MainInfoSection";
 import { homeObjOne } from "./MainInfoData";
 import { login, loginUserInfo, showModal } from "../../store/actions";
 import axios from "axios";

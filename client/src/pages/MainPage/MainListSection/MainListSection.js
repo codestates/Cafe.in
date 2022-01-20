@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { IconContext } from "react-icons/lib";
 import * as Styled from "./MainListSection.styled";
 import MainListFragment from "./MainListFragment";
-import { distanceCalc } from "../../utils/helper/DistCalculator";
-import imgurl8 from "../../assets/images/menu.png";
+import { distanceCalc } from "../../../utils/helper/DistCalculator";
+import imgurl8 from "../../../assets/images/menu.png";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
-import { postCountAction } from "../../store/actions";
-import axiosConfig from "../../axiosConfig";
+import { postCountAction } from "../../../store/actions";
+import axiosConfig from "../../../axiosConfig";
 
 const MainListSection = () => {
 

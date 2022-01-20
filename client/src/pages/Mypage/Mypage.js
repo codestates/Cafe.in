@@ -1,5 +1,5 @@
 import React from "react";
-import { MypageSection } from "../../components";
+import MypageSection from "./MypageSection/MypageSection";
 import { mypageObjOne } from "./MypageData";
 
 const Mypage = () => {

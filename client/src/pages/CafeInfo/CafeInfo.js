@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import * as S from "./CafeInfo.styled";
 import { useSelector, useDispatch } from "react-redux";
 import { getCafeInfo } from "../../store/actions";
-import { Cafe1ImageSection } from "../../components";
-import { Cafe2InfoSection } from "../../components";
-import { Cafe3HashtagSection } from "../../components";
-import { Cafe4MapSection } from "../../components";
+import Cafe1ImageSection from "./Cafe1ImageSection/CafeImageSection";
+import Cafe2InfoSection from "./Cafe2InfoSection/CafeInfoDetail";
+import Cafe3HashtagSection from "./Cafe3HashtagSection/CafeHashtagMain";
+import Cafe4MapSection from "./Cafe4MapSection/CafeMapSection";
 import Spinner from '../../assets/styles/Spinner.js';
 
 const CafeInfo = () => {
