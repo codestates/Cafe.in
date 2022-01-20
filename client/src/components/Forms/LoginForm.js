@@ -57,7 +57,10 @@ const LoginForm = () => {
         dispatch(postCountResetAction());
         //window.location.reload();
       })
-      .catch((err) => console.log(err.response.data.message));
+      .catch((err) => {
+        err.response.status === 400 &&
+          setErrorMessage("아이디 또는 패스워드가 정확하지 않습니다");
+      });
   };
 
   const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_ID}&response_type=token&redirect_uri=http://localhost:3000&scope=openid%20profile%20email`;
@@ -115,7 +118,7 @@ const LoginForm = () => {
               align="center"
               alt="google-logo"
             ></img>
-             <div className="google">Google 로그인</div>    
+            <div className="google">Google 로그인</div>
           </div>
         </form>
       </center>

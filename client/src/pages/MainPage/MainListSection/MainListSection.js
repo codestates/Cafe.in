@@ -4,13 +4,13 @@ import * as Styled from "./MainListSection.styled";
 import MainListFragment from "./MainListFragment";
 import { distanceCalc } from "../../../utils/helper/DistCalculator";
 import imgurl8 from "../../../assets/images/menu.png";
+import imgurl9 from "../../../assets/images/Untitled-1.png";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import { postCountAction } from "../../../store/actions";
 import axiosConfig from "../../../axiosConfig";
 
 const MainListSection = () => {
-
   const [main, setMain] = useState([]);
   const [ref, inView] = useInView();
 
@@ -22,10 +22,13 @@ const MainListSection = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
- 
     location &&
-      axiosConfig.get(`/posts/cafe-list/${location}/lat/${
-              latlng.lat}/long/${latlng.long}/${listCount}/${isLogin}/${category === "" ? "" : category}`)
+      axiosConfig
+        .get(
+          `/posts/cafe-list/${location}/lat/${latlng.lat}/long/${
+            latlng.long
+          }/${listCount}/${isLogin}/${category === "" ? "" : category}`
+        )
         .then((res) => {
           setMain(res.data.data.listUp);
         })
@@ -68,7 +71,14 @@ const MainListSection = () => {
     <>
       <IconContext.Provider value={{ color: "#472d0c" }}>
         <Styled.MainSectionSection>
-          <Styled.Img8 src={imgurl8} />
+          {location === "서비스 지역 외" && imgurl9 ? (
+            <>
+              <br />
+              <Styled.Img9 src={imgurl9} />
+            </>
+          ) : (
+            <Styled.Img8 src={imgurl8} />
+          )}
           {listMap}
         </Styled.MainSectionSection>
       </IconContext.Provider>

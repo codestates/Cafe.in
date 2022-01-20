@@ -150,12 +150,10 @@ export const Img = styled.img`
 `;
 
 export const HashtagSelect = styled.div`
-
   &:hover {
     transform: scale(1.09);
     transition: all 0.3s ease-out;
     color: #ffe4b5;
-  
   }
 `;
 
@@ -164,4 +162,17 @@ export const Img8 = styled.img`
   display: flex;
   left: 80x;
   filter: drop-shadow(1px 1px 1px #cccccc);
+`;
+
+export const Img9 = styled.img`
+  width: 892px;
+  opacity: 90%;
+  @media screen and (max-width: 1500px) {
+    max-width: 120%;
+    margin-right: 200px;
+  }
+  @media screen and (max-width: 1200px) {
+    max-width: 100%;
+    margin-right: 200px;
+  }
 `;
