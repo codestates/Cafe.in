@@ -124,23 +124,19 @@ export const getCafeInfo = (id, isLogin) => {
 
 export const getLikeCount = (id, isLogin) => {
   return (dispatch) => {
-    axiosConfig
-      .get(`/posts/cafe-info/${id}/${isLogin}`)
-      .then((res) => {
-        const data = res.data.data;
-        dispatch(addlike(data));
-      });
+    axiosConfig.get(`/posts/cafe-info/${id}/${isLogin}`).then((res) => {
+      const data = res.data.data;
+      dispatch(addlike(data));
+    });
   };
 };
 
 export const getHashTags = (id, isLogin) => {
   return (dispatch) => {
-    axiosConfig
-      .get(`/posts/cafe-info/${id}/${isLogin}`)
-      .then((res) => {
-        const data = res.data.data;
-        dispatch(hashTagAction(data));
-      });
+    axiosConfig.get(`/posts/cafe-info/${id}/${isLogin}`).then((res) => {
+      const data = res.data.data;
+      dispatch(hashTagAction(data));
+    });
   };
 };
 
@@ -183,15 +179,14 @@ export const getCurrAddress = (lat, lng) => {
   let params = new URLSearchParams();
   params.append("latlng", lat + "," + lng);
   params.append("key", process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-
   return (dispatch) => {
     axios
       .get(geocode_url, { params })
       .then((data) => {
         const addr = data.data.results[6].address_components;
-        const addrString =
-          addr[2].long_name + " " + addr[1].long_name + " " + addr[0].long_name;
-        dispatch(userAddressAction(addr[0].long_name));
+        if (addr[2] !== undefined)
+          dispatch(userAddressAction(addr[0].long_name));
+        else dispatch(userAddressAction("서비스 지역 외"));
       })
       .catch((err) => console.log(err));
   };

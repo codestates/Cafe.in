@@ -14,8 +14,8 @@ const LogoutForm = () => {
   const navigate = useNavigate();
 
   const handleOK = () => {
-    axiosConfig.post(`/users/sign-out`).then(() => {
-      navigate("/");
+    axiosConfig.post(`/users/sign-out`).then(async () => {
+      await navigate("/");
       dispatch(login(false));
       dispatch(showModal(false));
       dispatch(loginUserInfo(null));

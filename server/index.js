@@ -9,6 +9,8 @@ const cookieParser = require("cookie-parser");
 const { sequelize, post } = require("./models");
 const yeoksam = require("./cafeJsonData/yeoksam.json");
 const daechi = require("./cafeJsonData/daechi.json");
+const geapho = require("./cafeJsonData/geapho.json");
+const gentelman = require("./cafeJsonData/gentelman.json");
 const dummydata = require("./cafeJsonData/dummydata.json");
 
 const app = express();
@@ -28,7 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://localhost:3000"],
+    origin: true,
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })
@@ -38,7 +40,12 @@ app.use(cookieParser());
 app.use("/", Router);
 
 // const dummyImages = [...dummydata.results];
-// const data = [...yeoksam.documents, ...daechi.documents];
+// const data = [
+//   ...yeoksam.documents,
+//   ...daechi.documents,
+//   ...gentelman.documents,
+//   ...geapho.documents,
+// ];
 // const result = data.map((fill) => {
 //   return {
 //     title: fill.place_name,
@@ -51,8 +58,8 @@ app.use("/", Router);
 // });
 // const putIn = result.map(async (fill) => {
 //   await post.create({
-//     large_img: dummyImages[Math.floor(Math.random()*24)].urls.full,
-//     small_img: dummyImages[Math.floor(Math.random()*24)].urls.small,
+//     large_img: dummyImages[Math.floor(Math.random() * 24)].urls.full,
+//     small_img: dummyImages[Math.floor(Math.random() * 24)].urls.small,
 //     tel: fill.tel,
 //     adress: fill.adress,
 //     distance: null,
