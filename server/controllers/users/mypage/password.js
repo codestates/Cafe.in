@@ -56,6 +56,8 @@ module.exports = async (req, res) => {
   );
 
   payload.password = passwordHash;
+  delete payload.exp;
+  delete payload.iat;
 
   accessToken = generatedAccessToken(payload);
 
