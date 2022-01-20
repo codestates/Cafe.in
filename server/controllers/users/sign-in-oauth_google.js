@@ -10,6 +10,15 @@ module.exports = async (req, res) => {
     where: { user_email },
   });
 
+  const cookieOptions = {
+    sameSite: 'none',
+    secure: true,
+    httpOnly: true,
+    expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+    path: '/',
+    domain: 'cafestudy.click'
+  }
+
   if (!isEmail) {
     const signUp = await user.create({
       type: "nomal",
@@ -36,11 +45,7 @@ module.exports = async (req, res) => {
 
     return res
       .status(201)
-      .cookie("accessToken", accessToken, {
-        sameSite: "none",
-        httpOnly: true,
-        secure: true,
-      })
+      .cookie("accessToken", accessToken, cookieOptions)
       .send({
         data: {
           payload,
@@ -61,14 +66,11 @@ module.exports = async (req, res) => {
     };
 
     const accessToken = generatedAccessToken(payload);
+    
 
     return res
       .status(201)
-      .cookie("accessToken", accessToken, {
-        sameSite: "none",
-        httpOnly: true,
-        secure: true,
-      })
+      .cookie("accessToken", accessToken, cookieOptions)
       .send({
         data: {
           payload,

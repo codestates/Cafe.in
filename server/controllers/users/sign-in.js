@@ -33,8 +33,16 @@ module.exports = async (req, res) => {
     };
 
     const accessToken = generatedAccessToken(payload);
+    const cookieOptions = {
+      sameSite: 'none',
+      secure: true,
+      httpOnly: true,
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      path: '/',
+      domain: 'cafestudy.click'
+    }
 
-    return res.status(201).cookie("accessToken", accessToken).send({
+    return res.status(201).cookie("accessToken", accessToken, cookieOptions).send({
       data: {
         payload,
         accessToken,
