@@ -1,4 +1,4 @@
-import axiosConfig from "../../axiosConfig";
+import axiosConfig from "../../../axiosConfig";
 import React, { useEffect, useState } from "react";
 
 export default function Hashtag({ text, id, mainSearchHandle }) {

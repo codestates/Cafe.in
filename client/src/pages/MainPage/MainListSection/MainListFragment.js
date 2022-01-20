@@ -1,9 +1,9 @@
 import React from "react";
 import * as Styled from "./MainListSection.styled";
-import { distanceCalc } from "../../utils/helper/DistCalculator";
+import { distanceCalc } from "../../../utils/helper/DistCalculator";
 // import Hashtag from "./Hashtag";
 import { useSelector, useDispatch } from "react-redux";
-import { postCategoryAction, postCountResetAction } from "../../store/actions";
+import { postCategoryAction, postCountResetAction } from "../../../store/actions";
 import { Link } from "react-router-dom";
 
 const MainListFragment = ({ id, title, title_img, dist, likes_hash_tags }) => {

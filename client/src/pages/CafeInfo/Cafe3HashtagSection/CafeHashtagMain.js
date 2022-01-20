@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./CafeHashtagMain.styled";
-import good from "../../assets/images/good.png";
-import bad from "../../assets/images/bad.png";
+import good from "../../../assets/images/good.png";
+import bad from "../../../assets/images/bad.png";
 import CafeHashHalfSection from "./CafeHashHalfSection";
 
 const CafeHashtagMain = ({ positive, negative, userPick }) => {
